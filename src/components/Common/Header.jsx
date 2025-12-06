@@ -153,7 +153,7 @@ export const Header = ({ favs, isDarkMode, toggleTheme }) => {
 
         <Actions>
           <SearchBar />
-          <DarkModeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
+          {/* <DarkModeToggle isDarkMode={isDarkMode} toggleTheme={toggleTheme} /> */}
 
           {user ? (
             <div style={{ position: 'relative' }}>
