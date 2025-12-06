@@ -21,6 +21,11 @@ Built with performance and aesthetics in mind, it features a custom **Dark Mode*
 > - **Password:** `123456`
 > - **Deployment:** [Link to the page](https://animenexusapp.vercel.app/)
 
+### 📸 Screenshots
+> *Add your screenshots here*
+>
+> ![Home Page](assets/image.png)
+> *Interactive Hero Section & Trending Lists*
 
 ### ✨ Key Features Overview
 
