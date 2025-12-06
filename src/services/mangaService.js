@@ -4,7 +4,7 @@ const MANGA_UPDATES_API = 'https://api.mangaupdates.com/v1';
 
 /**
  * Curated manga continuation data for popular anime
- * This is a high-confidence data source for well-known series
+ * This is a FALLBACK data source when APIs fail
  * Source: Cross-referenced from MyAnimeList, AniList, and manga wikis
  */
 const CURATED_MANGA_DATA = {
@@ -43,7 +43,7 @@ export const searchManga = async (title) => {
         });
         return response.data.results || [];
     } catch (error) {
-        console.error('Error searching manga:', error);
+        console.error('[MangaService] Error searching manga:', error.message);
         return [];
     }
 };
@@ -58,7 +58,7 @@ export const getMangaDetails = async (seriesId) => {
         const response = await axios.get(`${MANGA_UPDATES_API}/series/${seriesId}`);
         return response.data;
     } catch (error) {
-        console.error('Error fetching manga details:', error);
+        console.error('[MangaService] Error fetching manga details:', error.message);
         return null;
     }
 };
@@ -76,13 +76,9 @@ const parseMangaInfo = (text) => {
     if (!text || typeof text !== 'string') return { chapter: null, volume: null };
 
     // Try to find the last occurrence of Chapter/Chap and Volume/Vol
-    // This helps with strings like "Vol 1, Chap 1 ... Vol 5, Chap 20" -> We usually want the end point
-
-    // Regex for Chapter
     const chapMatches = [...text.matchAll(/Chap(?:ter)?\\.?\\s*(\\d+)/gi)];
     const lastChapMatch = chapMatches.length > 0 ? chapMatches[chapMatches.length - 1] : null;
 
-    // Regex for Volume
     const volMatches = [...text.matchAll(/Vol(?:ume)?\\.?\\s*(\\d+)/gi)];
     const lastVolMatch = volMatches.length > 0 ? volMatches[volMatches.length - 1] : null;
 
@@ -131,68 +127,21 @@ const getAniListAnimeRelations = async (malId) => {
 
         return response.data?.data?.Media;
     } catch (error) {
-        console.error('Error fetching AniList anime relations:', error);
+        console.error('[MangaService] Error fetching AniList anime relations:', error.message);
         return null;
     }
 };
 
 /**
- * Extract chapter information from relation descriptions or notes
- * @param {Object} mangaRelation - AniList manga relation object
- * @returns {Object} { chapter, volume, confidence }
- */
-const extractChapterFromRelation = (mangaRelation) => {
-    const description = mangaRelation.description || '';
-
-    // Enhanced patterns to match common description formats
-    const patterns = [
-        /episodes? (?:\\d+[-–])?(\\d+) (?:adapts?|covers?|ends? at) chapters? (?:\\d+[-–])?(\\d+)/i,
-        /chapters? (?:\\d+[-–])?(\\d+)/i,
-        /volumes? (?:\\d+[-–])?(\\d+)/i,
-    ];
-
-    let chapter = null;
-    let volume = null;
-
-    for (const pattern of patterns) {
-        const match = description.match(pattern);
-        if (match) {
-            if (match[2]) chapter = parseInt(match[2]); // End chapter if range
-            else if (match[1]) {
-                if (pattern.source.includes('chapter')) chapter = parseInt(match[1]);
-                else if (pattern.source.includes('volume')) volume = parseInt(match[1]);
-            }
-            if (chapter) break;
-        }
-    }
-
-    return { chapter, volume, confidence: chapter ? 'medium' : 'low' };
-};
-
-/**
  * Find manga continuation info for an anime
- * Searches AniList anime relations first, then MangaUpdates
+ * Prioritizes MangaUpdates, then uses curated data as fallback
  * @param {string} animeTitle - The anime title to look up
  * @param {number} malId - MyAnimeList anime ID (optional)
  * @returns {Promise<Object|null>} Continuation info { chapter, volume, mangaTitle, mangaUrl }
  */
 export const getMangaContinuation = async (animeTitle, malId = null) => {
     try {
-        // Strategy 0: Check curated data first (HIGHEST PRIORITY)
-        if (malId && CURATED_MANGA_DATA[malId]) {
-            console.log(`[Curated Data] Found exact match for MAL ID ${malId}`);
-            const curated = CURATED_MANGA_DATA[malId];
-            return {
-                mangaTitle: curated.mangaTitle,
-                endChapter: curated.endChapter,
-                endVolume: curated.endVolume,
-                startChapter: 1,
-                startVolume: 1,
-                confidence: curated.confidence,
-                source: 'Curated Database',
-                status: 'Ongoing' // Most  ongoing, can be updated in curated data if needed
-            };
-        }
+        console.log(`[MangaService] Looking up: "${animeTitle}" (MAL ID: ${malId})`);
 
         // Clean up title for better search results
         let cleanTitle = animeTitle
@@ -225,34 +174,10 @@ export const getMangaContinuation = async (animeTitle, malId = null) => {
         let confidence = 'low';
         let mangaData = null;
         let totalEpisodes = null;
+        let dataSource = 'Estimation';
 
-        // Strategy 1: Query AniList with MAL ID for anime-manga relations (BEST)
-        if (malId) {
-            const animeData = await getAniListAnimeRelations(malId);
-            if (animeData) {
-                totalEpisodes = animeData.episodes;
-
-                // Find MANGA or SOURCE relation
-                const mangaRelation = animeData.relations?.edges?.find(edge =>
-                    edge.node.type === 'MANGA' &&
-                    (edge.relationType === 'ADAPTATION' || edge.relationType === 'SOURCE')
-                );
-
-                if (mangaRelation?.node) {
-                    mangaData = mangaRelation.node;
-
-                    // Try to extract chapter info from description
-                    const extracted = extractChapterFromRelation(mangaRelation.node);
-                    if (extracted.chapter) {
-                        extractedChapter = extracted.chapter;
-                        extractedVolume = extracted.volume;
-                        confidence = 'high';
-                    }
-                }
-            }
-        }
-
-        // Strategy 2: Search MangaUpdates for detailed chapter mapping
+        // STRATEGY 1: MangaUpdates (PRIMARY - has exact anime.end data)
+        console.log(`[MangaService] Strategy 1: Searching MangaUpdates...`);
         const searchResults = await searchManga(cleanTitle);
         let bestMatch = null;
         if (searchResults.length > 0) {
@@ -266,19 +191,48 @@ export const getMangaContinuation = async (animeTitle, malId = null) => {
         let mangaDetails = null;
         if (bestMatch?.record?.series_id) {
             mangaDetails = await getMangaDetails(bestMatch.record.series_id);
-        }
 
-        // Parse MangaUpdates anime chapter mapping if available
-        if (mangaDetails?.anime && !extractedChapter) {
-            const endInfo = parseMangaInfo(mangaDetails.anime.end);
-            if (endInfo.chapter) {
-                extractedChapter = endInfo.chapter;
-                extractedVolume = endInfo.volume;
-                confidence = 'high';
+            // Parse MangaUpdates anime chapter mapping (anime.end field)
+            if (mangaDetails?.anime?.end) {
+                const endInfo = parseMangaInfo(mangaDetails.anime.end);
+                if (endInfo.chapter) {
+                    extractedChapter = endInfo.chapter;
+                    extractedVolume = endInfo.volume;
+                    confidence = 'high';
+                    dataSource = 'MangaUpdates';
+                    console.log(`[MangaService] ✓ MangaUpdates SUCCESS: Ch.${extractedChapter}, Vol.${extractedVolume}`);
+                }
             }
         }
 
-        // Strategy 3: Query AniList for manga directly (backup)
+        // STRATEGY 2: Curated Data (FALLBACK when MangaUpdates fails)
+        if (!extractedChapter && malId && CURATED_MANGA_DATA[malId]) {
+            console.log(`[MangaService] Strategy 2: Using curated data for MAL ID ${malId}`);
+            const curated = CURATED_MANGA_DATA[malId];
+            extractedChapter = curated.endChapter;
+            extractedVolume = curated.endVolume;
+            confidence = curated.confidence;
+            dataSource = 'Curated Database';
+        }
+
+        // STRATEGY 3: AniList (for manga metadata)
+        if (malId) {
+            const animeData = await getAniListAnimeRelations(malId);
+            if (animeData) {
+                totalEpisodes = animeData.episodes;
+
+                const mangaRelation = animeData.relations?.edges?.find(edge =>
+                    edge.node.type === 'MANGA' &&
+                    (edge.relationType === 'ADAPTATION' || edge.relationType === 'SOURCE')
+                );
+
+                if (mangaRelation?.node) {
+                    mangaData = mangaRelation.node;
+                }
+            }
+        }
+
+        // STRATEGY 4: AniList manga search (backup for manga data)
         if (!mangaData) {
             const aniListQuery = `
             query ($search: String) {
@@ -304,37 +258,7 @@ export const getMangaContinuation = async (animeTitle, malId = null) => {
                     mangaData = aniListManga;
                 }
             } catch (e) {
-                console.warn('AniList manga search failed:', e.message);
-            }
-        }
-
-        // Strategy 4: Text mining from all available descriptions
-        if (!extractedChapter) {
-            const descriptions = [
-                mangaDetails?.description,
-                mangaDetails?.anime?.start,
-                mangaDetails?.anime?.end,
-                mangaData?.description
-            ].filter(Boolean).join('\\n');
-
-            const patterns = [
-                /anime (?:ends?|covers?) (?:at |through |up to )?(?:chapter|ch\\.?)\\s*(\\d+)/i,
-                /(?:ends?|covers?) (?:at |through |up to )?(?:volume|vol\\.?)\\s*(\\d+)/i,
-                /adapts? (?:chapters?|ch\\.?)\\s*\\d+[-–]\\s*(\\d+)/i,
-                /episode \\d+ (?:ends?|covers?) (?:chapter|ch\\.?)\\s*(\\d+)/i,
-            ];
-
-            for (const pattern of patterns) {
-                const match = descriptions.match(pattern);
-                if (match) {
-                    if (pattern.source.includes('volume')) {
-                        extractedVolume = parseInt(match[1]);
-                    } else {
-                        extractedChapter = parseInt(match[1]);
-                        confidence = 'medium';
-                    }
-                    if (extractedChapter) break;
-                }
+                console.warn('[MangaService] AniList manga search failed:', e.message);
             }
         }
 
@@ -344,6 +268,8 @@ export const getMangaContinuation = async (animeTitle, malId = null) => {
         const image = mangaData?.coverImage?.extraLarge || mangaDetails?.image?.url?.original;
         const url = mangaData?.siteUrl || mangaDetails?.url;
         const status = mangaDetails?.status || (mangaData?.status ? 'Ongoing' : null);
+
+        console.log(`[MangaService] Final result: Ch.${extractedChapter || '?'}, Confidence: ${confidence}, Source: ${dataSource}`);
 
         return {
             mangaTitle: title,
@@ -358,11 +284,11 @@ export const getMangaContinuation = async (animeTitle, malId = null) => {
             totalEpisodes: totalEpisodes,
             status: status,
             confidence: confidence,
-            source: extractedChapter ? (mangaData ? 'AniList' : 'MangaUpdates') : 'Estimation'
+            source: dataSource
         };
 
     } catch (error) {
-        console.error('Error getting manga continuation:', error);
+        console.error('[MangaService] Error getting manga continuation:', error);
         return null;
     }
 };
@@ -377,20 +303,15 @@ export const getMangaContinuation = async (animeTitle, malId = null) => {
 export const getMangaContinuationWithFallback = async (malId, animeTitle) => {
     console.log(`[SmartResolver] Starting resolution for: ${animeTitle} (MAL ID: ${malId})`);
 
-    // Strategy 1: Smart API Search (AniList Relations + MangaUpdates)
+    // Use the improved getMangaContinuation with proper prioritization
     const apiResult = await getMangaContinuation(animeTitle, malId);
 
-    // Check if we got high-confidence data (explicit start/end chapters)
+    // Check if we got high-confidence data
     if (apiResult && apiResult.endChapter) {
-        console.log(`[SmartResolver] Found exact mapping via API for ${animeTitle}`);
-        return { ...apiResult, method: 'Exact/API' };
+        console.log(`[SmartResolver] ✓ Found data for ${animeTitle}`);
+        return { ...apiResult, method: 'Success' };
     }
 
-    // Strategy 2: If API gave us generic info but no chapters, return for UI estimation
-    if (apiResult && apiResult.totalChapters) {
-        return { ...apiResult, method: 'Estimation/Metadata' };
-    }
-
-    // Return what we found even if incomplete, UI will handle fallback
+    // Return what we found even if incomplete
     return apiResult || { method: 'Failed' };
 };
