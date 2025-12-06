@@ -24,7 +24,7 @@ Built with performance and aesthetics in mind, it features a custom **Dark Mode*
 ### 📸 Screenshots
 > *Add your screenshots here*
 >
-> ![Home Page]((assets/image.png))
+> ![Home Page](assets/image.png)
 > *Interactive Hero Section & Trending Lists*
 
 ### ✨ Key Features Overview
