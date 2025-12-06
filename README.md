@@ -3,6 +3,7 @@
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&style=flat-square)](https://reactjs.org/)
 [![Firebase](https://img.shields.io/badge/Firebase-Auth-FFCA28?logo=firebase&style=flat-square)](https://firebase.google.com/)
 [![Styled Components](https://img.shields.io/badge/Styled_Components-CSS_in_JS-DB7093?logo=styled-components&style=flat-square)](https://styled-components.com/)
+[![Vercel](https://img.shields.io/badge/Vercel-Deployment-000000?style=flat-square&logo=vercel&logoColor=white)](https://vercel.com/)
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=flat-square&logo=vercel)](https://animenexusapp.vercel.app/)
 
 ![AnimeNexus Home](./assets/image.png)
@@ -47,6 +48,10 @@ Built with performance and aesthetics in mind, it features a custom **Dark Mode*
 *   **Backend / Auth:** Firebase v9
 *   **Data Source:** Jikan API v4 (MyAnimeList), AniList API
 *   **Routing:** React Router v6
+*   **State / HTTP:** Axios
+*   **Notifications:** React Hot Toast
+*   **Icons:** Iconify
+*   **Deployment:** Vercel
     ```
 
 3.  **Configure Environment Variables**
@@ -102,7 +107,10 @@ Construida pensando en el rendimiento y la estética, cuenta con **Modo Oscuro**
 *   **Backend / Auth:** Firebase v9
 *   **Fuente de Datos:** Jikan API v4 (MyAnimeList), AniList API
 *   **Enrutamiento:** React Router v6
+*   **Estado / HTTP:** Axios
+*   **Notificaciones:** React Hot Toast
 *   **Iconos:** Iconify
+*   **Despliegue:** Vercel
 
 ### Cómo Correrlo Localmente
 
