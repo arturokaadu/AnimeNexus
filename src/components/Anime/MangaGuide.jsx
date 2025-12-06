@@ -110,6 +110,26 @@ const StatusBadge = styled.span`
     margin-left: 0.5rem;
 `;
 
+const ConfidenceBadge = styled.span`
+    display: inline-block;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    background: ${({ $confidence }) =>
+        $confidence === 'high' ? 'rgba(16, 185, 129, 0.2)' :
+            $confidence === 'medium' ? 'rgba(245, 158, 11, 0.2)' :
+                'rgba(239, 68, 68, 0.2)'
+    };
+    color: ${({ $confidence }) =>
+        $confidence === 'high' ? '#34d399' :
+            $confidence === 'medium' ? '#fbbf24' :
+                '#f87171'
+    };
+    border: 1px solid currentColor;
+    margin-bottom: 1rem;
+`;
+
 const Description = styled.p`
     font-size: 0.9rem;
     color: rgba(255, 255, 255, 0.7);
@@ -211,10 +231,12 @@ export const MangaGuide = ({ animeId, animeTitle }) => {
                             {mangaData.endVolume && (
                                 <VolumeInfo>Volume {mangaData.endVolume}</VolumeInfo>
                             )}
-                            {mangaData.isFromCache && (
-                                <VolumeInfo style={{ marginTop: '0.5rem', fontSize: '0.75rem' }}>
-                                    📌 Quick reference
-                                </VolumeInfo>
+                            {mangaData.confidence && (
+                                <ConfidenceBadge $confidence={mangaData.confidence}>
+                                    {mangaData.confidence === 'high' ? '✓ Verified' :
+                                        mangaData.confidence === 'medium' ? '~ Estimated' :
+                                            '? Approximation'}
+                                </ConfidenceBadge>
                             )}
                         </ContinuationBox>
 
@@ -235,6 +257,12 @@ export const MangaGuide = ({ animeId, animeTitle }) => {
                             {mangaData.totalChapters && (
                                 <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>
                                     Total chapters available: {mangaData.totalChapters}+
+                                </p>
+                            )}
+
+                            {mangaData.source && (
+                                <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginTop: '0.5rem' }}>
+                                    Data source: {mangaData.source}
                                 </p>
                             )}
 

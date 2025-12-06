@@ -267,10 +267,10 @@ export const MangaGuide = () => {
     setEpisode('');
     setMangaDetails(null);
 
-    // Fetch manga details immediately
+    // Fetch manga details immediately with MAL ID
     setFetchingManga(true);
     try {
-      const details = await getMangaContinuation(anime.title);
+      const details = await getMangaContinuation(anime.title, anime.mal_id);
       setMangaDetails(details);
     } catch (error) {
       console.error("Error fetching manga details:", error);
