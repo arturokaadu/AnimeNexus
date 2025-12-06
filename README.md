@@ -22,7 +22,7 @@ Built with performance and aesthetics in mind, it features a custom **Dark Mode*
 > - **Deployment:** [Link to the page](https://animenexusapp.vercel.app/)
 
 ### Screenshots
-> *Add your screenshots here*
+
 >
 > ![Home Page](assets/image.png)
 > *Interactive Hero Section & Trending Lists*
