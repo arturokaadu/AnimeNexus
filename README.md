@@ -1,15 +1,12 @@
-# AnimeNexus 🎬
+# AnimeNexus
 
-[![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&style=flat-square)](https://reactjs.org/)
-[![Firebase](https://img.shields.io/badge/Firebase-Auth-FFCA28?logo=firebase&style=flat-square)](https://firebase.google.com/)
-[![Styled Components](https://img.shields.io/badge/Styled_Components-CSS_in_JS-DB7093?logo=styled-components&style=flat-square)](https://styled-components.com/)
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=flat-square&logo=vercel)](https://animenexusapp.vercel.app/)
+
 
 ![AnimeNexus Home](./assets/image.png)
 
-**🔗 Link to the page:** https://animenexusapp.vercel.app/
+**Link to the page:** https://animenexusapp.vercel.app/
 
-## 🚀 About the Project
+## About the Project
 **AnimeNexus** is a modern, feature-rich web application designed for anime enthusiasts. It provides a comprehensive platform to discover movies, TV series, and explore detailed character information.
 
 Built with performance and aesthetics in mind, it features a custom **Dark Mode**, **NSFW content gating**, and a seamless user experience powered by **React** and **Jikan API (MyAnimeList)**.
@@ -21,27 +18,27 @@ Built with performance and aesthetics in mind, it features a custom **Dark Mode*
 > - **Password:** `123456`
 > - **Deployment:** [Link to the page](https://animenexusapp.vercel.app/)
 
-### 📸 Screenshots
+### Screenshots
 > *Add your screenshots here*
 >
 > ![Home Page](assets/image.png)
 > *Interactive Hero Section & Trending Lists*
 
-### ✨ Key Features Overview
+### Key Features Overview
 
 | Feature | Description | Preview |
 | :--- | :--- | :--- |
-| **Mood Explorer** 😃 | **Don't know what to watch?** Tell us how you feel (Hype, Chill, Sad, etc.) and we'll recommend the perfect anime. | ![Mood Explorer](assets/mood_explorer.png) |
-| **Direct Soundtracks** 🎵 | Listen to your favorite Openings & Endings directly. **One-click YouTube search** for instant gratification. | ![Soundtracks](assets/soundtracks.png) |
-| **NSFW Fanservice** 🔞 | **Age-Gated Content**. Curated "Brutal Moments" and "Hot Characters" with **video clips** (not just images). | ![NSFW Content](assets/home_hero.png) |
-| **Manga Guide** 📖 | Smart guide that tells you **exactly where to start reading** the manga after the anime ends. | ![Manga Guide](assets/manga_guide.png) |
+| **Mood Explorer** | Don't know what to watch? Tell us how you feel (Hype, Chill, Sad, etc.) and we'll recommend the perfect anime. | ![Mood Explorer](assets/mood_explorer.png) |
+| **Direct Soundtracks** | Listen to your favorite Openings & Endings directly. One-click YouTube search for instant gratification. | ![Soundtracks](assets/soundtracks.png) |
+| **NSFW Fanservice** | Age-Gated Content. Curated "Brutal Moments" and "Hot Characters" with video clips (not just images). | ![NSFW Content](assets/home_hero.png) |
+| **Manga Guide** | Smart guide that tells you exactly where to start reading the manga after the anime ends. | ![Manga Guide](assets/manga_guide.png) |
 
-### 🛠️ Other Features
+### Other Features
 *   **Authentication:** Secure login and registration.
 *   **Dark Mode:** Built-in theme toggler.
 *   **Responsive:** Works perfectly on mobile.
 
-### 🛠️ Tech Stack
+### Tech Stack
 *   **Frontend:** React.js (Hooks, Context API)
 *   **Styling:** Styled Components (CSS-in-JS)
 *   **Backend / Auth:** Firebase v9
@@ -69,34 +66,34 @@ Built with performance and aesthetics in mind, it features a custom **Dark Mode*
 ---
 
 <a name="español"></a>
-## 🚀 Sobre el Proyecto
+## Sobre el Proyecto
 **AnimeNexus** es una aplicación web moderna y completa diseñada para fanáticos del anime. Ofrece una plataforma para descubrir películas, series de TV y explorar información detallada sobre personajes.
 
 Construida pensando en el rendimiento y la estética, cuenta con **Modo Oscuro** personalizado, **protección de contenido NSFW** y una experiencia de usuario fluida impulsada por **React** y la **Jikan API (MyAnimeList)**.
 
-### 📸 Capturas de Pantalla
+### Capturas de Pantalla
 
 ![Página Principal](./assets/image.png)
 
-**🔗 Link to the page:** https://animenexusapp.vercel.app/
+**Link to the page:** https://animenexusapp.vercel.app/
 
 *Sección Hero Interactiva y Listas de Tendencias*
 
-### ✨ Key Features Overview
+### Key Features Overview
 
 | Feature | Description | Preview |
 | :--- | :--- | :--- |
-| **Mood Explorer** 😃 | **Don't know what to watch?** Tell us how you feel (Hype, Chill, Sad, etc.) and we'll recommend the perfect anime. | ![Mood Explorer](assets/mood_explorer.png) |
-| **Direct Soundtracks** 🎵 | Listen to your favorite Openings & Endings directly. **One-click YouTube search** for instant gratification. | ![Soundtracks](assets/soundtracks.png) |
-| **NSFW Fanservice** 🔞 | **Age-Gated Content**. Curated "Brutal Moments" and "Hot Characters" with **video clips** (not just images). | ![NSFW Content](assets/home_hero.png) |
-| **Manga Guide** 📖 | Smart guide that tells you **exactly where to start reading** the manga after the anime ends. | ![Manga Guide](assets/manga_guide.png) |
+| **Mood Explorer** | Don't know what to watch? Tell us how you feel (Hype, Chill, Sad, etc.) and we'll recommend the perfect anime. | ![Mood Explorer](assets/mood_explorer.png) |
+| **Direct Soundtracks** | Listen to your favorite Openings & Endings directly. One-click YouTube search for instant gratification. | ![Soundtracks](assets/soundtracks.png) |
+| **NSFW Fanservice** | Age-Gated Content. Curated "Brutal Moments" and "Hot Characters" with video clips (not just images). | ![NSFW Content](assets/home_hero.png) |
+| **Manga Guide** | Smart guide that tells you exactly where to start reading the manga after the anime ends. | ![Manga Guide](assets/manga_guide.png) |
 
-### 🛠️ Other Features
+### Other Features
 *   **Authentication:** Secure login and registration.
 *   **Dark Mode:** Built-in theme toggler.
 *   **Responsive:** Works perfectly on mobile.
 
-### 🛠️ Tecnologías Usadas
+### Tecnologías Usadas
 *   **Frontend:** React.js (Hooks, Context API)
 *   **Estilos:** Styled Components (CSS-in-JS)
 *   **Backend / Auth:** Firebase v9
@@ -104,7 +101,7 @@ Construida pensando en el rendimiento y la estética, cuenta con **Modo Oscuro**
 *   **Enrutamiento:** React Router v6
 *   **Iconos:** Iconify
 
-### 🏃‍♂️ Cómo Correrlo Localmente
+### Cómo Correrlo Localmente
 
 1.  **Clonar el repositorio**
     ```bash
