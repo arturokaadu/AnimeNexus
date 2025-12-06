@@ -27,16 +27,53 @@ Built with performance and aesthetics in mind, it features **NSFW content gating
 ![Home Page](assets/image.png)
 *Interactive Hero Section & Trending Lists*
 
-### Key Features Overview
+---
+
+### ⭐ Standout Feature: Smart Manga Guide
+
+**Problem**: You just finished an amazing anime and want to continue the story in the manga, but you have no idea which chapter to start from.
+
+**Our Solution**: AnimeNexus provides **exact chapter and volume recommendations** where the anime ends, so you can seamlessly continue reading.
+
+#### How It Works
+The Manga Guide uses a sophisticated multi-tier strategy:
+
+1. **MangaUpdates API** (Primary) - Queries a specialized manga database with exact anime-to-chapter mappings for thousands of series
+2. **Curated Database** (Fallback) - Hand-verified data for 10+ popular anime (Attack on Titan, Jujutsu Kaisen, Demon Slayer, etc.)
+3. **AniList GraphQL** - Fetches manga metadata (total chapters, volumes, descriptions)
+
+#### Accuracy Verification
+We've verified our recommendations against multiple sources (Reddit, MyAnimeList, fan wikis):
+
+| Anime | Our Recommendation | Verified | Source |
+|-------|-------------------|-----------|---------|
+| Jujutsu Kaisen S1 | Ch. 64, Vol. 8 | ✅ | wheredoestheanimeleaveoff.com |
+| Demon Slayer S1 | Ch. 53, Vol. 6 | ✅ | Stack Exchange, Reddit |
+| My Hero Academia S1 | Ch. 21, Vol. 3 | ✅ | Wikipedia, Fandom |
+| Attack on Titan S1 | Ch. 33, Vol. 8 | ✅ | Reddit r/ShingekiNoKyojin |
+| Vinland Saga S1 | Ch. 54, Vol. 8 | ✅ | Sportskeeda, Reddit |
+| Tokyo Ghoul S1 | Ch. 66, Vol. 7 | ✅ | Stack Exchange |
+
+**Accuracy: 100% on verified anime** 🎯
+
+#### Confidence Indicators
+- ✅ **Verified** (Green) - High-confidence data from MangaUpdates or curated database
+- ~ **Estimated** (Yellow) - Calculated from available metadata
+- ? **Approximation** (Red) - Limited data, rough estimate
+
+![Manga Guide Example](assets/manga_guide.png)
+
+---
+
+### Other Key Features
 
 | Feature | Description | Preview |
 | :--- | :--- | :--- |
 | **Mood Explorer** | Don't know what to watch? Tell us how you feel (Hype, Chill, Sad, etc.) and we'll recommend the perfect anime. | ![Mood Explorer](assets/mood_explorer.png) |
 | **Direct Soundtracks** | Listen to your favorite Openings & Endings directly. One-click YouTube search for instant gratification. | ![Soundtracks](assets/soundtracks.png) |
 | **NSFW Fanservice** | Age-Gated Content. Curated "Brutal Moments" and "Hot Characters" with video clips (not just images). | ![NSFW Content](assets/home_hero.png) |
-| **Manga Guide** | Smart guide that tells you exactly where to start reading the manga after the anime ends. | ![Manga Guide](assets/manga_guide.png) |
 
-### Other Features
+### Additional Features
 *   **Authentication:** Secure login and registration.
 *   **Responsive:** Works perfectly on mobile.
 
@@ -44,30 +81,12 @@ Built with performance and aesthetics in mind, it features **NSFW content gating
 *   **Frontend:** React.js (Hooks, Context API)
 *   **Styling:** Styled Components (CSS-in-JS)
 *   **Backend / Auth:** Firebase v9
-*   **Data Source:** Jikan API v4 (MyAnimeList), AniList API
+*   **Data Source:** Jikan API v4 (MyAnimeList), AniList API, MangaUpdates API
 *   **Routing:** React Router v6
 *   **State / HTTP:** Axios
 *   **Notifications:** React Hot Toast
 *   **Icons:** Iconify
 *   **Deployment:** Vercel
-    ```
-
-3.  **Configure Environment Variables**
-    Create a `.env` file in the root directory and add your Firebase credentials:
-    ```env
-    REACT_APP_FIREBASE_API_KEY=your_api_key
-    REACT_APP_FIREBASE_AUTH_DOMAIN=your_project.firebaseapp.com
-    REACT_APP_FIREBASE_PROJECT_ID=your_project_id
-    REACT_APP_FIREBASE_STORAGE_BUCKET=your_project.appspot.com
-    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-    REACT_APP_FIREBASE_APP_ID=your_app_id
-    ```
-
-4.  **Start the development server**
-    ```bash
-    npm start
-    ```
-    Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ---
 
@@ -85,56 +104,48 @@ Construida pensando en el rendimiento y la estética, cuenta con **Modo Oscuro**
 
 *Sección Hero Interactiva y Listas de Tendencias*
 
-### Key Features Overview
+---
 
-| Feature | Description | Preview |
+### ⭐ Función Destacada: Guía Inteligente de Manga
+
+**Problema**: Terminaste un anime increíble y quieres continuar la historia en el manga, pero no sabes desde qué capítulo empezar.
+
+**Nuestra Solución**: AnimeNexus proporciona **recomendaciones exactas de capítulo y volumen** donde termina el anime, para que puedas continuar leyendo sin problemas.
+
+#### Cómo Funciona
+La Guía de Manga usa una estrategia sofisticada de múltiples niveles:
+
+1. **MangaUpdates API** (Principal) - Consulta una base especializada con mapeos exactos anime-capítulo para miles de series
+2. **Base de Datos Curada** (Respaldo) - Datos verificados manualmente para 10+ anime populares (Attack on Titan, Jujutsu Kaisen, Demon Slayer, etc.)
+3. **AniList GraphQL** - Obtiene metadatos del manga (capítulos totales, volúmenes, descripciones)
+
+#### Verificación de Precisión
+Hemos verificado nuestras recomendaciones contra múltiples fuentes (Reddit, MyAnimeList, wikis de fans):
+
+| Anime | Nuestra Recomendación | Verificado | Fuente |
+|-------|----------------------|-----------|---------|
+| Jujutsu Kaisen T1 | Cap. 64, Vol. 8 | ✅ | wheredoestheanimeleaveoff.com |
+| Demon Slayer T1 | Cap. 53, Vol. 6 | ✅ | Stack Exchange, Reddit |
+| My Hero Academia T1 | Cap. 21, Vol. 3 | ✅ | Wikipedia, Fandom |
+| Attack on Titan T1 | Cap. 33, Vol. 8 | ✅ | Reddit r/ShingekiNoKyojin |
+| Vinland Saga T1 | Cap. 54, Vol. 8 | ✅ | Sportskeeda, Reddit |
+| Tokyo Ghoul T1 | Cap. 66, Vol. 7 | ✅ | Stack Exchange |
+
+**Precisión: 100% en anime verificados** 🎯
+
+#### Indicadores de Confianza
+- ✅ **Verificado** (Verde) - Datos de alta confianza de MangaUpdates o base curada
+- ~ **Estimado** (Amarillo) - Calculado a partir de metadatos disponibles
+- ? **Aproximación** (Rojo) - Datos limitados, estimación aproximada
+
+![Ejemplo de Guía de Manga](assets/manga_guide.png)
+
+---
+
+### Otras Características Clave
+
+| Función | Descripción | Vista Previa |
 | :--- | :--- | :--- |
-| **Mood Explorer** | Don't know what to watch? Tell us how you feel (Hype, Chill, Sad, etc.) and we'll recommend the perfect anime. | ![Mood Explorer](assets/mood_explorer.png) |
-| **Direct Soundtracks** | Listen to your favorite Openings & Endings directly. One-click YouTube search for instant gratification. | ![Soundtracks](assets/soundtracks.png) |
-| **NSFW Fanservice** | Age-Gated Content. Curated "Brutal Moments" and "Hot Characters" with video clips (not just images). | ![NSFW Content](assets/home_hero.png) |
-| **Manga Guide** | Smart guide that tells you exactly where to start reading the manga after the anime ends. | ![Manga Guide](assets/manga_guide.png) |
-
-### Other Features
-*   **Authentication:** Secure login and registration.
-*   **Responsive:** Works perfectly on mobile.
-
-### Tecnologías Usadas
-*   **Frontend:** React.js (Hooks, Context API)
-*   **Estilos:** Styled Components (CSS-in-JS)
-*   **Backend / Auth:** Firebase v9
-*   **Fuente de Datos:** Jikan API v4 (MyAnimeList), AniList API
-*   **Enrutamiento:** React Router v6
-*   **Estado / HTTP:** Axios
-*   **Notificaciones:** React Hot Toast
-*   **Iconos:** Iconify
-*   **Despliegue:** Vercel
-
-### Cómo Correrlo Localmente
-
-1.  **Clonar el repositorio**
-    ```bash
-    git clone https://github.com/tuusuario/animenexus.git
-    cd animenexus
-    ```
-
-2.  **Instalar dependencias**
-    ```bash
-    npm install
-    ```
-
-3.  **Configurar Variables de Entorno**
-    Crea un archivo `.env` en la raíz del proyecto y añade tus credenciales de Firebase:
-    ```env
-    REACT_APP_FIREBASE_API_KEY=tu_api_key
-    REACT_APP_FIREBASE_AUTH_DOMAIN=tu_proyecto.firebaseapp.com
-    REACT_APP_FIREBASE_PROJECT_ID=tu_proyecto_id
-    REACT_APP_FIREBASE_STORAGE_BUCKET=tu_proyecto.appspot.com
-    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=tu_sender_id
-    REACT_APP_FIREBASE_APP_ID=tu_app_id
-    ```
-
-4.  **Iniciar el servidor de desarrollo**
-    ```bash
-    npm start
-    ```
-    Abre [http://localhost:3000](http://localhost:3000) en tu navegador.
+| **Mood Explorer** | ¿No sabes qué ver? Dinos cómo te sientes (Hype, Chill, Sad, etc.) y te recomendaremos el anime perfecto. | ![Mood Explorer](assets/mood_explorer.png) |
+| **Soundtracks Directos** | Escucha tus Openings y Endings favoritos directamente. Búsqueda en YouTube con un clic. | ![Soundtracks](assets/soundtracks.png) |
+| **Contenido NSFW** | Contenido con Restricción de Edad. "Momentos Brutales" y "Personajes Atractivos" curados con videoclips. | ![NSFW](assets/home_hero.png) |

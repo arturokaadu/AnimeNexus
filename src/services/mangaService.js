@@ -11,7 +11,7 @@ const CURATED_MANGA_DATA = {
     // Jujutsu Kaisen Season 1
     40748: { endChapter: 64, endVolume: 8, mangaTitle: 'Jujutsu Kaisen', confidence: 'high' },
     // Attack on Titan Season 1
-    16498: { endChapter: 34, endVolume: 8, mangaTitle: 'Shingeki no Kyojin', confidence: 'high' },
+    16498: { endChapter: 33, endVolume: 8, mangaTitle: 'Shingeki no Kyojin', confidence: 'high' },
     // My Hero Academia Season 1  
     31964: { endChapter: 21, endVolume: 3, mangaTitle: 'Boku no Hero Academia', confidence: 'high' },
     // Demon Slayer Season 1
