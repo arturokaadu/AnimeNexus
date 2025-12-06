@@ -13,7 +13,7 @@
 ## About the Project
 **AnimeNexus** is a modern, feature-rich web application designed for anime enthusiasts. It provides a comprehensive platform to discover movies, TV series, and explore detailed character information.
 
-Built with performance and aesthetics in mind, it features a custom **Dark Mode**, **NSFW content gating**, and a seamless user experience powered by **React** and **Jikan API (MyAnimeList)**.
+Built with performance and aesthetics in mind, it features **NSFW content gating** and a seamless user experience powered by **React** and **Jikan API (MyAnimeList)**.
 
 > [!NOTE]
 > **Live Demo & Login:**
@@ -38,7 +38,6 @@ Built with performance and aesthetics in mind, it features a custom **Dark Mode*
 
 ### Other Features
 *   **Authentication:** Secure login and registration.
-*   **Dark Mode:** Built-in theme toggler.
 *   **Responsive:** Works perfectly on mobile.
 
 ### Tech Stack
@@ -97,7 +96,6 @@ Construida pensando en el rendimiento y la estética, cuenta con **Modo Oscuro**
 
 ### Other Features
 *   **Authentication:** Secure login and registration.
-*   **Dark Mode:** Built-in theme toggler.
 *   **Responsive:** Works perfectly on mobile.
 
 ### Tecnologías Usadas
