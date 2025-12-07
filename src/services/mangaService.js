@@ -200,6 +200,7 @@ const CURATED_MANGA_DATA = {
 };
 
 const MANGA_UPDATES_API = 'https://api.mangaupdates.com/v1';
+const PROXY_API = '/api/mangaupdates';
 
 /**
  * Parse chapter and volume from MangaUpdates string
@@ -223,6 +224,18 @@ const parseMangaInfo = (text) => {
  * Search for manga by title on MangaUpdates
  */
 export const searchManga = async (title) => {
+    // Try proxy first (production - bypasses CORS)
+    try {
+        const proxyResponse = await axios.get(`${PROXY_API}?action=search&query=${encodeURIComponent(title)}`);
+        if (proxyResponse.data?.results) {
+            console.log('[MangaService] ✓ Proxy search successful');
+            return proxyResponse.data.results;
+        }
+    } catch (proxyError) {
+        console.warn('[MangaService] Proxy unavailable, trying direct API...');
+    }
+
+    // Fallback to direct API
     try {
         const response = await axios.post(`${MANGA_UPDATES_API}/series/search`, {
             search: title,
@@ -239,6 +252,18 @@ export const searchManga = async (title) => {
  * Get detailed series information
  */
 export const getMangaDetails = async (seriesId) => {
+    // Try proxy first (production - bypasses CORS)
+    try {
+        const proxyResponse = await axios.get(`${PROXY_API}?action=details&seriesId=${seriesId}`);
+        if (proxyResponse.data) {
+            console.log('[MangaService] ✓ Proxy details successful');
+            return proxyResponse.data;
+        }
+    } catch (proxyError) {
+        console.warn('[MangaService] Proxy unavailable, trying direct API...');
+    }
+
+    // Fallback to direct API
     try {
         const response = await axios.get(`${MANGA_UPDATES_API}/series/${seriesId}`);
         return response.data;
