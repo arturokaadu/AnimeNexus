@@ -98,9 +98,9 @@ export default async function handler(req, res) {
 
 // Generate multiple search variations for better matching
 function generateSearchVariations(anime) {
-    const variations = [anime];
+    const variations = [];
 
-    // Title mappings (English -> Japanese)
+    // Title mappings (English -> Japanese) - PRIORITY ORDER
     const titleMappings = {
         'attack on titan': 'Shingeki no Kyojin',
         'demon slayer': 'Kimetsu no Yaiba',
@@ -139,12 +139,16 @@ function generateSearchVariations(anime) {
 
     const lowerAnime = anime.toLowerCase();
 
-    // Add mapped title
+    // Add mapped title FIRST (highest priority)
     for (const [key, value] of Object.entries(titleMappings)) {
-        if (lowerAnime.includes(key)) {
+        if (lowerAnime.includes(key) || lowerAnime === key) {
             variations.push(value);
+            break; // Only add first match
         }
     }
+
+    // Add original search term
+    variations.push(anime);
 
     // Remove common suffixes and try again
     const cleanedTitle = anime
@@ -155,11 +159,11 @@ function generateSearchVariations(anime) {
         .replace(/\s+/g, ' ')
         .trim();
 
-    if (cleanedTitle !== anime) {
+    if (cleanedTitle !== anime && cleanedTitle.length > 3) {
         variations.push(cleanedTitle);
     }
 
-    // Remove duplicates
+    // Remove duplicates and return
     return [...new Set(variations)];
 }
 
