@@ -210,10 +210,10 @@ export const MangaGuide = ({ animeId, animeTitle }) => {
                     </LoadingState>
                 )}
 
-                {!loading && !mangaData && hasFetched && (
+                {!loading && mangaData && mangaData.method === 'NotFound' && (
                     <NoDataState>
                         <Icon icon="bi:question-circle" style={{ fontSize: '2rem', marginBottom: '0.5rem' }} />
-                        <p>No manga continuation data found for this anime.</p>
+                        <p>{mangaData.suggestion || "No manga continuation data found for this anime."}</p>
                         <p style={{ fontSize: '0.85rem' }}>
                             Try searching manually on{' '}
                             <a href="https://www.mangaupdates.com" target="_blank" rel="noopener noreferrer" style={{ color: '#a78bfa' }}>
@@ -223,7 +223,7 @@ export const MangaGuide = ({ animeId, animeTitle }) => {
                     </NoDataState>
                 )}
 
-                {!loading && mangaData && (
+                {!loading && mangaData && mangaData.method !== 'NotFound' && (
                     <InfoCard>
                         <ContinuationBox>
                             <ChapterLabel>Continue from</ChapterLabel>
