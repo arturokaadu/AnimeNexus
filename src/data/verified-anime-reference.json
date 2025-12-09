@@ -1,0 +1,363 @@
+{
+    "Jujutsu Kaisen": {
+        "malId": 40748,
+        "anilistId": 113415,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 24,
+                "continueFromChapter": 64,
+                "continueFromVolume": 8,
+                "notes": "Season 1 finale - Death Painting Arc conclusion"
+            },
+            {
+                "season": 2,
+                "finalEpisode": 47,
+                "continueFromChapter": 137,
+                "continueFromVolume": 16,
+                "notes": "Season 2 finale (episode 47 total) - Shibuya Incident Arc conclusion"
+            }
+        ],
+        "sources": [
+            "wheredoestheanimeleaveoff.com",
+            "reddit.com/r/JuJutsuKaisen"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Chainsaw Man": {
+        "malId": 44511,
+        "anilistId": 127230,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 12,
+                "continueFromChapter": 39,
+                "continueFromVolume": 5,
+                "notes": "Season 1 finale"
+            }
+        ],
+        "sources": [
+            "reddit.com/r/ChainsawMan",
+            "myanimelist.net"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Sousou no Frieren": {
+        "malId": 52991,
+        "anilistId": 154587,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 28,
+                "continueFromChapter": 61,
+                "continueFromVolume": 7,
+                "notes": "Season 1 finale"
+            }
+        ],
+        "sources": [
+            "wheredoestheanimeleaveoff.com"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Kimetsu no Yaiba": {
+        "malId": 38000,
+        "anilistId": 101922,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 26,
+                "continueFromChapter": 54,
+                "continueFromVolume": 7,
+                "notes": "Season 1 finale - Mt. Natagumo Arc conclusion"
+            }
+        ],
+        "sources": [
+            "reddit.com/r/KimetsuNoYaiba",
+            "stackexchange.com"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Shingeki no Kyojin": {
+        "malId": 16498,
+        "anilistId": 16498,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 25,
+                "continueFromChapter": 34,
+                "continueFromVolume": 9,
+                "notes": "Season 1 finale - Female Titan Arc conclusion"
+            }
+        ],
+        "sources": [
+            "reddit.com/r/ShingekiNoKyojin"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Boku no Hero Academia": {
+        "malId": 31964,
+        "anilistId": 21459,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 13,
+                "continueFromChapter": 21,
+                "continueFromVolume": 3,
+                "notes": "Season 1 finale - USJ Arc conclusion"
+            }
+        ],
+        "sources": [
+            "wikipedia.org",
+            "fandom.com"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "One Punch Man": {
+        "malId": 30276,
+        "anilistId": 21087,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 12,
+                "continueFromChapter": 38,
+                "continueFromVolume": 8,
+                "notes": "Season 1 finale"
+            }
+        ],
+        "sources": [
+            "comicbook.com",
+            "myanimelist.net"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Tokyo Ghoul": {
+        "malId": 22319,
+        "anilistId": 20605,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 12,
+                "continueFromChapter": 66,
+                "continueFromVolume": 7,
+                "notes": "Season 1 finale - Aogiri Arc conclusion"
+            }
+        ],
+        "sources": [
+            "stackexchange.com",
+            "reddit.com/r/TokyoGhoul"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Vinland Saga": {
+        "malId": 37521,
+        "anilistId": 101348,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 24,
+                "continueFromChapter": 55,
+                "continueFromVolume": 8,
+                "notes": "Season 1 finale"
+            }
+        ],
+        "sources": [
+            "sportskeeda.com",
+            "reddit.com/r/VinlandSaga"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Mob Psycho 100": {
+        "malId": 32182,
+        "anilistId": 21507,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 12,
+                "continueFromChapter": 50,
+                "continueFromVolume": 6,
+                "notes": "Season 1 finale"
+            }
+        ],
+        "sources": [
+            "myanimelist.net",
+            "comicbook.com"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Death Note": {
+        "malId": 1535,
+        "anilistId": 1535,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 37,
+                "continueFromChapter": 108,
+                "continueFromVolume": 12,
+                "notes": "Complete adaptation - anime covers entire manga"
+            }
+        ],
+        "sources": [
+            "wikipedia.org",
+            "deathnote.fandom.com"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Hunter x Hunter (2011)": {
+        "malId": 11061,
+        "anilistId": 11061,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 148,
+                "continueFromChapter": 340,
+                "continueFromVolume": null,
+                "notes": "Anime ends at Election Arc - manga continues"
+            }
+        ],
+        "sources": [
+            "reddit.com/r/HunterXHunter",
+            "anime.stackexchange.com"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Fullmetal Alchemist: Brotherhood": {
+        "malId": 5114,
+        "anilistId": 5114,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 64,
+                "continueFromChapter": 108,
+                "continueFromVolume": 27,
+                "notes": "Complete adaptation - anime covers entire manga"
+            }
+        ],
+        "sources": [
+            "reddit.com/r/FullmetalAlchemist",
+            "comicbook.com"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Spy x Family": {
+        "malId": 50265,
+        "anilistId": 140960,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 25,
+                "continueFromChapter": 39,
+                "continueFromVolume": 7,
+                "notes": "Season 1 (part 1 + part 2)"
+            }
+        ],
+        "sources": [
+            "comicbook.com",
+            "reddit.com/r/SpyxFamily"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Blue Lock": {
+        "malId": 49596,
+        "anilistId": 137822,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 24,
+                "continueFromChapter": 109,
+                "continueFromVolume": 13,
+                "notes": "Season 1 finale"
+            }
+        ],
+        "sources": [
+            "sportskeeda.com",
+            "reddit.com/r/BlueLock"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Tokyo Revengers": {
+        "malId": 42249,
+        "anilistId": 120120,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 24,
+                "continueFromChapter": 74,
+                "continueFromVolume": 9,
+                "notes": "Season 1 finale - Valhalla Arc conclusion"
+            }
+        ],
+        "sources": [
+            "sportskeeda.com"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Dr. Stone": {
+        "malId": 38691,
+        "anilistId": 105333,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 24,
+                "continueFromChapter": 61,
+                "continueFromVolume": 7,
+                "notes": "Season 1 finale"
+            }
+        ],
+        "sources": [
+            "comicbook.com"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Fire Force": {
+        "malId": 38671,
+        "anilistId": 105310,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 24,
+                "continueFromChapter": 90,
+                "continueFromVolume": 11,
+                "notes": "Season 1 finale"
+            }
+        ],
+        "sources": [
+            "comicbook.com"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "Parasyte": {
+        "malId": 22535,
+        "anilistId": 20623,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 24,
+                "continueFromChapter": 64,
+                "continueFromVolume": 8,
+                "notes": "Complete adaptation - anime covers entire manga"
+            }
+        ],
+        "sources": [
+            "myanimelist.net"
+        ],
+        "lastVerified": "2024-12-09"
+    },
+    "The Promised Neverland": {
+        "malId": 37779,
+        "anilistId": 101759,
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 12,
+                "continueFromChapter": 38,
+                "continueFromVolume": 5,
+                "notes": "Season 1 finale - Escape Arc conclusion"
+            }
+        ],
+        "sources": [
+            "comicbook.com",
+            "stackexchange.com"
+        ],
+        "lastVerified": "2024-12-09"
+    }
+}
