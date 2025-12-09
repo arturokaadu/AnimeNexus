@@ -324,7 +324,7 @@ export const AnimeDetails = () => {
                         <VoiceActors staff={staff} characters={characters} />
 
                         {/* Manga Guide - Where to Continue Reading */}
-                        <MangaGuide animeId={details.mal_id} animeTitle={details.title} />
+                        <MangaGuide animeId={details.mal_id} animeTitle={extractBaseTitle(details.title)} />
 
                         {/* Trailer */}
                         {videos.length > 0 && (
