@@ -1,12 +1,16 @@
 /**
- * Vercel Serverless Function - Hybrid Manga Resolver
+ * Vercel Serverless Function - INTELLIGENT Hybrid Manga Resolver
  * 
- * STRATEGY:
- * 1. Check verified database first (100% accurate)
- * 2. If not found, use Gemini AI (estimated)
+ * COMPLETE ALGORITHM:
+ * 1. Check if anime is in verified DB
+ * 2. If yes: Calculate adaptation ratio and predict for ANY episode
+ * 3. If no: Fallback to Gemini AI
+ * 
+ * KEY FEATURE: Can predict chapters for episodes we don't have explicit data for!
+ * Example: If we know JJK S1 (ep 24 → ch 64) and S2 (ep 47 → ch 137),
+ * we can predict ep 30, ep 35, ep 40, etc. automatically!
  */
 
-// Import verified database directly (works in Vercel)
 import verifiedDB from '../src/data/verified-anime-reference.json';
 
 export default async function handler(req, res) {
@@ -17,18 +21,18 @@ export default async function handler(req, res) {
     }
 
     try {
-        console.log(`[Manga Resolver] Query: "${anime}" Episode ${episode}`);
+        console.log(`[Intelligent Resolver] Query: "${anime}" Episode ${episode}`);
 
-        // STEP 1: Check verified database
-        const verifiedResult = checkVerifiedDatabase(anime, parseInt(episode));
+        // STEP 1: Try intelligent prediction with mathematical ratios
+        const intelligentResult = intelligentPredict(anime, parseInt(episode));
 
-        if (verifiedResult) {
-            console.log('[Verified DB] ✅ Found exact match');
-            return res.status(200).json(verifiedResult);
+        if (intelligentResult) {
+            console.log(`[✅ ${intelligentResult.method}] Ch ${intelligentResult.continueFromChapter}, Vol ${intelligentResult.continueFromVolume}`);
+            return res.status(200).json(intelligentResult);
         }
 
         // STEP 2: Fallback to Gemini AI
-        console.log('[Verified DB] Not found, using Gemini AI fallback');
+        console.log('[Gemini Fallback] Anime not in verified database, using AI...');
 
         const apiKey = process.env.GEMINI_API_KEY;
         if (!apiKey) {
@@ -39,7 +43,7 @@ export default async function handler(req, res) {
         return res.status(200).json(geminiResult);
 
     } catch (error) {
-        console.error('[Manga Resolver Error]', error);
+        console.error('[Resolver Error]', error);
         return res.status(500).json({
             error: error.message,
             continueFromChapter: null,
@@ -51,70 +55,154 @@ export default async function handler(req, res) {
 }
 
 /**
- * Check verified database for exact match
+ * INTELLIGENT PREDICTION - The Core Algorithm
+ * Uses mathematical adaptation ratios to predict ANY episode
  */
-function checkVerifiedDatabase(animeTitle, episodeNumber) {
-    console.log(`[Verified DB] Searching for "${animeTitle}" episode ${episodeNumber}`);
-
-    // Try exact match first
-    let animeData = verifiedDB[animeTitle];
-
-    // If not found, try fuzzy match with aliases
-    if (!animeData) {
-        const normalizedSearch = animeTitle.toLowerCase();
-        const matchingKey = Object.keys(verifiedDB).find(key => {
-            // Check main title
-            if (key.toLowerCase() === normalizedSearch ||
-                key.toLowerCase().includes(normalizedSearch) ||
-                normalizedSearch.includes(key.toLowerCase())) {
-                return true;
-            }
-
-            // Check aliases
-            const aliases = verifiedDB[key].aliases || [];
-            return aliases.some(alias =>
-                alias.toLowerCase() === normalizedSearch ||
-                alias.toLowerCase().includes(normalizedSearch) ||
-                normalizedSearch.includes(alias.toLowerCase())
-            );
-        });
-
-        if (matchingKey) {
-            console.log(`[Verified DB] Fuzzy matched: "${matchingKey}"`);
-            animeData = verifiedDB[matchingKey];
-        }
-    }
+function intelligentPredict(animeTitle, episodeNumber) {
+    // Find anime in database (with fuzzy matching + aliases)
+    const animeData = findAnimeInDB(animeTitle);
 
     if (!animeData) {
-        console.log('[Verified DB] Anime not in database');
+        console.log('[Intelligent Predict] Anime not in database');
         return null;
     }
 
-    // Find season matching episode number
-    const season = animeData.verifiedSeasons.find(s => s.finalEpisode === episodeNumber);
+    console.log(`[Intelligent Predict] Found "${animeData.matchedName}"`);
 
-    if (!season) {
-        console.log(`[Verified DB] Episode ${episodeNumber} not found for this anime`);
+    // Calculate adaptation ratio
+    const ratio = calculateAdaptationRatio(animeData.data);
+
+    if (!ratio) {
+        console.log('[Intelligent Predict] Could not calculate ratio');
         return null;
     }
 
-    // Return verified data
-    console.log(`[Verified DB] ✅ Match found: Ch ${season.continueFromChapter}, Vol ${season.continueFromVolume}`);
+    console.log(`[Ratio Info] ${ratio.avgRatio} ch/ep | Consistency: ${(ratio.consistency * 100).toFixed(0)}%`);
+
+    // Check if we have exact data for this episode
+    const exactMatch = animeData.data.verifiedSeasons.find(s => s.finalEpisode === episodeNumber);
+
+    if (exactMatch) {
+        // Perfect! We have verified data for this exact episode
+        return {
+            continueFromChapter: exactMatch.continueFromChapter,
+            continueFromVolume: exactMatch.continueFromVolume,
+            buyVolume: exactMatch.continueFromVolume,
+            confidence: 'high',
+            reasoning: `Episode ${episodeNumber} of ${animeData.matchedName}: ${exactMatch.notes}. Continue from chapter ${exactMatch.continueFromChapter}, volume ${exactMatch.continueFromVolume}.`,
+            sourceMaterial: 'Manga',
+            specialNotes: 'Verified data',
+            verified: true,
+            method: 'exact_match'
+        };
+    }
+
+    // No exact match - USE MATHEMATICAL PREDICTION!
+    const predictedChapter = Math.round(episodeNumber * ratio.avgRatio);
+    const continueFromChapter = predictedChapter + 1; // Next chapter to read
+    const predictedVolume = Math.round(continueFromChapter / ratio.avgChaptersPerVolume);
+
+    // Confidence based on consistency of ratio
+    let confidence = 'medium';
+    if (ratio.consistency > 0.9) confidence = 'high';
+    else if (ratio.consistency < 0.7) confidence = 'low';
 
     return {
-        continueFromChapter: season.continueFromChapter,
-        continueFromVolume: season.continueFromVolume,
-        buyVolume: season.continueFromVolume,
-        confidence: 'high',
-        reasoning: `Episode ${episodeNumber} of ${animeTitle} ends at chapter ${season.continueFromChapter - 1}. Continue reading from chapter ${season.continueFromChapter}, which is in Volume ${season.continueFromVolume}. ${season.notes}`,
+        continueFromChapter: continueFromChapter,
+        continueFromVolume: predictedVolume,
+        buyVolume: predictedVolume,
+        confidence: confidence,
+        reasoning: `Calculated using ${animeData.matchedName}'s adaptation ratio of ${ratio.avgRatio} chapters/episode (${(ratio.consistency * 100).toFixed(0)}% consistent across ${ratio.dataPoints.length} verified season${ratio.dataPoints.length > 1 ? 's' : ''}). Episode ${episodeNumber} likely ends around chapter ${predictedChapter}.`,
         sourceMaterial: 'Manga',
-        specialNotes: season.notes,
-        verified: true
+        specialNotes: `Mathematical prediction - based on verified ${ratio.dataPoints.length} data point${ratio.dataPoints.length > 1 ? 's' : ''}`,
+        verified: false,
+        method: 'ratio_calculation'
     };
 }
 
 /**
- * Query Gemini AI for prediction (fallback)
+ * Find anime in database with fuzzy matching + aliases
+ */
+function findAnimeInDB(animeTitle) {
+    // Try exact match
+    if (verifiedDB[animeTitle]) {
+        return { matchedName: animeTitle, data: verifiedDB[animeTitle] };
+    }
+
+    // Try fuzzy match with aliases
+    const normalizedSearch = animeTitle.toLowerCase();
+
+    for (const [key, data] of Object.entries(verifiedDB)) {
+        // Check main title
+        if (key.toLowerCase() === normalizedSearch ||
+            key.toLowerCase().includes(normalizedSearch) ||
+            normalizedSearch.includes(key.toLowerCase())) {
+            return { matchedName: key, data: data };
+        }
+
+        // Check aliases
+        const aliases = data.aliases || [];
+        const matchesAlias = aliases.some(alias =>
+            alias.toLowerCase() === normalizedSearch ||
+            alias.toLowerCase().includes(normalizedSearch) ||
+            normalizedSearch.includes(alias.toLowerCase())
+        );
+
+        if (matchesAlias) {
+            return { matchedName: key, data: data };
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Calculate adaptation ratio from verified data
+ */
+function calculateAdaptationRatio(animeData) {
+    if (!animeData?.verifiedSeasons || animeData.verifiedSeasons.length === 0) {
+        return null;
+    }
+
+    // Extract data points
+    const dataPoints = animeData.verifiedSeasons.map(season => {
+        const chapterEnds = season.continueFromChapter - 1; // Chapter it ends at
+        const ratio = chapterEnds / season.finalEpisode;
+        return {
+            episodes: season.finalEpisode,
+            chapter: chapterEnds,
+            ratio: ratio
+        };
+    });
+
+    // Calculate average ratio
+    const avgRatio = dataPoints.reduce((sum, dp) => sum + dp.ratio, 0) / dataPoints.length;
+
+    // Calculate consistency (standard deviation)
+    const variance = dataPoints.reduce((sum, dp) =>
+        sum + Math.pow(dp.ratio - avgRatio, 2), 0
+    ) / dataPoints.length;
+
+    const stdDev = Math.sqrt(variance);
+    const consistency = Math.max(0, 1 - (stdDev / avgRatio)); // 0-1 scale
+
+    // Average chapters per volume
+    const volumeData = animeData.verifiedSeasons.filter(s => s.continueFromVolume);
+    const avgChPerVol = volumeData.length > 0 ?
+        Math.round(volumeData.reduce((sum, s) =>
+            sum + ((s.continueFromChapter - 1) / s.continueFromVolume), 0
+        ) / volumeData.length) : 9; // Default: 9 ch/vol
+
+    return {
+        avgRatio: parseFloat(avgRatio.toFixed(2)),
+        consistency: parseFloat(consistency.toFixed(2)),
+        dataPoints: dataPoints,
+        avgChaptersPerVolume: avgChPerVol
+    };
+}
+
+/**
+ * Gemini AI fallback (for anime not in DB)
  */
 async function queryGeminiAI(anime, episode, apiKey) {
     console.log('[Gemini AI] Generating prediction...');
@@ -131,12 +219,6 @@ CRITICAL INSTRUCTIONS:
 4. Provide the EXACT manga chapter where episode ${episode} ends
 5. Tell me the NEXT chapter to start reading (chapter AFTER that episode)
 
-Example: If asked about "Jujutsu Kaisen Episode 47":
-- Episode 47 is in Season 2 (episodes 25-47)
-- Season 2 ends at Chapter 136
-- Continue from: Chapter 137, Volume 16
-- DO NOT mention Season 1 info
-
 RESPOND IN EXACT JSON FORMAT:
 {
     "continueFromChapter": number,
@@ -145,11 +227,10 @@ RESPOND IN EXACT JSON FORMAT:
     "confidence": "medium",
     "reasoning": "Episode ${episode} is in [Season X/Arc Y]. This episode ends at chapter Z. Continue reading from chapter W.",
     "sourceMaterial": "Manga",
-    "specialNotes": "Any important notes about this specific season" or null
+    "specialNotes": "Any important notes" or null
 }
 
 REMEMBER: Only provide info for the season containing episode ${episode}. Never mention other seasons.`;
-
 
     const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
@@ -185,7 +266,8 @@ REMEMBER: Only provide info for the season containing episode ${episode}. Never 
         .trim();
 
     const result = JSON.parse(cleanJson);
-    result.verified = false; // Mark as AI prediction
+    result.verified = false;
+    result.method = 'gemini_ai';
 
     console.log('[Gemini AI] Response:', result);
     return result;
