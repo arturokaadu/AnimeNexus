@@ -132,6 +132,7 @@ export const Header = ({ favs, isDarkMode, toggleTheme }) => {
               </MenuLink>
             </DropdownMenu>
           </MenuItem>
+          */}
 
           {
             user && (
