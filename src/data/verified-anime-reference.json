@@ -12,6 +12,7 @@
             {
                 "season": 1,
                 "finalEpisode": 12,
+                "canonEpisodes": 12,
                 "continueFromChapter": 31,
                 "continueFromVolume": 4,
                 "notes": "Season 1 finale"
@@ -30,6 +31,7 @@
             {
                 "season": 1,
                 "finalEpisode": 24,
+                "canonEpisodes": 24,
                 "continueFromChapter": 64,
                 "continueFromVolume": 8,
                 "notes": "Season 1 finale - Death Painting Arc conclusion"
@@ -37,9 +39,18 @@
             {
                 "season": 2,
                 "finalEpisode": 47,
+                "canonEpisodes": 47,
                 "continueFromChapter": 137,
                 "continueFromVolume": 16,
                 "notes": "Season 2 finale (episode 47 total) - Shibuya Incident Arc conclusion"
+            },
+            {
+                "season": 3,
+                "finalEpisode": 75,
+                "canonEpisodes": 75,
+                "continueFromChapter": 221,
+                "continueFromVolume": 25,
+                "notes": "Season 3 finale (episode 75 total) - Culling Game conclusion"
             }
         ],
         "sources": [

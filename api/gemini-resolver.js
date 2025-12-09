@@ -291,48 +291,56 @@ function findAnimeInDB(animeTitle) {
 }
 
 /**
- * Calculate adaptation ratio from verified data
+ * Calculate adaptation ratio using verified seasons
+ * Now supports filler-aware calculation via canonEpisodes field
  */
 function calculateAdaptationRatio(animeData) {
-    if (!animeData?.verifiedSeasons || animeData.verifiedSeasons.length === 0) {
+    if (!animeData.verifiedSeasons || animeData.verifiedSeasons.length === 0) {
         return null;
     }
 
-    // Extract data points
-    const dataPoints = animeData.verifiedSeasons.map(season => {
-        const chapterEnds = season.continueFromChapter - 1; // Chapter it ends at
-        const ratio = chapterEnds / season.finalEpisode;
-        return {
-            episodes: season.finalEpisode,
-            chapter: chapterEnds,
-            ratio: ratio
-        };
-    });
+    const seasons = animeData.verifiedSeasons;
 
-    // Calculate average ratio
-    const avgRatio = dataPoints.reduce((sum, dp) => sum + dp.ratio, 0) / dataPoints.length;
+    // Calculate total chapters and episodes across all seasons
+    let totalChapters = 0;
+    let totalEpisodes = 0;
+    let totalCanonEpisodes = 0;
+    let hasCanonData = false;
 
-    // Calculate consistency (standard deviation)
-    const variance = dataPoints.reduce((sum, dp) =>
-        sum + Math.pow(dp.ratio - avgRatio, 2), 0
-    ) / dataPoints.length;
+    const ratios = [];
 
+    for (let i = 0; i < seasons.length; i++) {
+        const season = seasons[i];
+        const prevSeason = i > 0 ? seasons[i - 1] : null;
+
+        // Calculate chapter difference for this season
+        const chapterStart = prevSeason ? prevSeason.continueFromChapter : 1;
+        const chaptersInSeason = season.continueFromChapter - chapterStart;
+
+        // Use canonEpisodes if available (excludes fillers), otherwise use finalEpisode
+        const episodesInSeason = season.canonEpisodes || season.finalEpisode;
+
+        if (season.canonEpisodes) {
+            hasCanonData = true;
+            totalCanonEpisodes += season.canonEpisodes;
+        }
+
+        totalChapters += chaptersInSeason;
+        totalEpisodes += episodesInSeason;
+
+        const seasonRatio = chaptersInSeason / episodesInSeason;
+        ratios.push(seasonRatio);
+    }
+
+    // Use canon episodes for ratio if available (better accuracy, excludes fillers)
+    const effectiveEpisodes = hasCanonData ? totalCanonEpisodes : totalEpisodes;
+    const avgRatio = totalChapters / effectiveEpisodes;
+
+    // Calculate consistency (lower variance = higher consistency)
+    const variance = ratios.reduce((sum, r) => sum + Math.pow(r - avgRatio, 2), 0) / ratios.length;
     const stdDev = Math.sqrt(variance);
-    const consistency = Math.max(0, 1 - (stdDev / avgRatio)); // 0-1 scale
-
-    // Average chapters per volume
-    const volumeData = animeData.verifiedSeasons.filter(s => s.continueFromVolume);
-    const avgChPerVol = volumeData.length > 0 ?
-        Math.round(volumeData.reduce((sum, s) =>
-            sum + ((s.continueFromChapter - 1) / s.continueFromVolume), 0
-        ) / volumeData.length) : 9; // Default: 9 ch/vol
-
-    return {
-        avgRatio: parseFloat(avgRatio.toFixed(2)),
-        consistency: parseFloat(consistency.toFixed(2)),
-        dataPoints: dataPoints,
-        avgChaptersPerVolume: avgChPerVol
-    };
+    avgChaptersPerVolume: avgChPerVol
+};
 }
 
 /**
