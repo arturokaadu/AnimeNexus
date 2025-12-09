@@ -1,0 +1,86 @@
+{
+    "Fullmetal Alchemist Brotherhood": {
+        "malId": 5114,
+        "anilistId": 5114,
+        "source": "Manga",
+        "dataPoints": [
+            {
+                "season": 1,
+                "episodes": 64,
+                "chapterEnd": 108,
+                "volumeEnd": 27
+            }
+        ],
+        "calculated": {
+            "avgChaptersPerEpisode": 1.69,
+            "avgChaptersPerVolume": 4,
+            "consistency": 1.0,
+            "lastUpdate": "2024-12-09",
+            "notes": "Complete adaptation - anime covers entire manga"
+        },
+        "verificationSources": [
+            "https://www.reddit.com/r/anime/comments/6pmvjy/",
+            "https://comicbook.com/anime/"
+        ]
+    },
+    "Hunter x Hunter 2011": {
+        "malId": 11061,
+        "anilistId": 11061,
+        "source": "Manga",
+        "dataPoints": [
+            {
+                "season": 1,
+                "episodes": 148,
+                "chapterEnd": 339,
+                "volumeEnd": null
+            }
+        ],
+        "calculated": {
+            "avgChaptersPerEpisode": 2.29,
+            "avgChaptersPerVolume": null,
+            "consistency": 1.0,
+            "lastUpdate": "2024-12-09",
+            "notes": "Manga continues beyond anime - not complete"
+        },
+        "verificationSources": [
+            "https://www.reddit.com/r/HunterXHunter/",
+            "https://anime.stackexchange.com/"
+        ]
+    },
+    "Steins Gate": {
+        "malId": 9253,
+        "anilistId": 9253,
+        "source": "Visual Novel",
+        "dataPoints": [],
+        "calculated": {
+            "avgChaptersPerEpisode": null,
+            "notes": "NOT manga-based - Visual Novel original. No chapter mapping applicable."
+        },
+        "verificationSources": [
+            "https://www.reddit.com/r/steinsgate/"
+        ]
+    },
+    "Frieren": {
+        "malId": 52991,
+        "anilistId": 154587,
+        "source": "Manga",
+        "dataPoints": [
+            {
+                "season": 1,
+                "episodes": 28,
+                "chapterEnd": 60,
+                "volumeEnd": 7
+            }
+        ],
+        "calculated": {
+            "avgChaptersPerEpisode": 2.14,
+            "avgChaptersPerVolume": 8.6,
+            "consistency": 1.0,
+            "lastUpdate": "2024-12-09",
+            "notes": "Verified from Gemini prompt data"
+        },
+        "verificationSources": [
+            "wheredoestheanimeleaveoff.com"
+        ]
+    }
+}

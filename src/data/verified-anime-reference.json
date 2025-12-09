@@ -62,6 +62,10 @@
     "Kimetsu no Yaiba": {
         "malId": 38000,
         "anilistId": 101922,
+        "aliases": [
+            "Demon Slayer",
+            "KNY"
+        ],
         "verifiedSeasons": [
             {
                 "season": 1,

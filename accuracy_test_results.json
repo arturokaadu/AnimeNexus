@@ -1,0 +1,72 @@
+[
+  {
+    "anime": "Demon Slayer",
+    "episode": 26,
+    "verified": {
+      "ch": 54,
+      "vol": 7
+    },
+    "gemini": {
+      "continueFromChapter": 70,
+      "continueFromVolume": 9
+    },
+    "exactMatch": false,
+    "chapterMatch": false
+  },
+  {
+    "anime": "Chainsaw Man",
+    "episode": 12,
+    "verified": {
+      "ch": 39,
+      "vol": 5
+    },
+    "gemini": {
+      "continueFromChapter": 39,
+      "continueFromVolume": 5
+    },
+    "exactMatch": true,
+    "chapterMatch": true
+  },
+  {
+    "anime": "Jujutsu Kaisen",
+    "episode": 24,
+    "verified": {
+      "ch": 64,
+      "vol": 8
+    },
+    "gemini": {
+      "continueFromChapter": 64,
+      "continueFromVolume": 8
+    },
+    "exactMatch": true,
+    "chapterMatch": true
+  },
+  {
+    "anime": "Tokyo Ghoul",
+    "episode": 12,
+    "verified": {
+      "ch": 66,
+      "vol": 7
+    },
+    "gemini": {
+      "continueFromChapter": 49,
+      "continueFromVolume": 6
+    },
+    "exactMatch": false,
+    "chapterMatch": false
+  },
+  {
+    "anime": "Vinland Saga",
+    "episode": 24,
+    "verified": {
+      "ch": 55,
+      "vol": 8
+    },
+    "gemini": {
+      "continueFromChapter": 55,
+      "continueFromVolume": 7
+    },
+    "exactMatch": false,
+    "chapterMatch": true
+  }
+]

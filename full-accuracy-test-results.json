@@ -1,0 +1,2808 @@
+{
+  "summary": {
+    "tested": 127,
+    "perfectMatches": 0,
+    "chapterCorrect": 0,
+    "closeEnough": 0,
+    "incorrect": 0,
+    "noWebData": 0,
+    "no_web_data": null
+  },
+  "overallAccuracy": "0.0%",
+  "results": [
+    {
+      "anime": "Sousou no Frieren",
+      "episodes": 28,
+      "score": 9.29,
+      "rank": 1,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 61,
+        "volume": 7,
+        "method": "reference_db",
+        "confidence": "high"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Chainsaw Man Movie: Reze-hen",
+      "episodes": 1,
+      "score": 9.18,
+      "rank": 2,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Fullmetal Alchemist: Brotherhood",
+      "episodes": 64,
+      "score": 9.1,
+      "rank": 3,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 108,
+        "volume": 27,
+        "method": "reference_db",
+        "confidence": "high"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Shingeki no Kyojin Season 3 Part 2",
+      "episodes": 10,
+      "score": 9.05,
+      "rank": 6,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 25,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Gintama°",
+      "episodes": 51,
+      "score": 9.05,
+      "rank": 8,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 128,
+        "volume": 14,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Gintama: The Final",
+      "episodes": 1,
+      "score": 9.05,
+      "rank": 7,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Hunter x Hunter (2011)",
+      "episodes": 148,
+      "score": 9.03,
+      "rank": 9,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 340,
+        "volume": null,
+        "method": "reference_db",
+        "confidence": "high"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Gintama'",
+      "episodes": 51,
+      "score": 9.02,
+      "rank": 11,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 128,
+        "volume": 14,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Gintama': Enchousen",
+      "episodes": 13,
+      "score": 9.02,
+      "rank": 12,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Bleach: Sennen Kessen-hen",
+      "episodes": 13,
+      "score": 8.99,
+      "rank": 14,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Gintama.",
+      "episodes": 12,
+      "score": 8.98,
+      "rank": 15,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kaguya-sama wa Kokurasetai: Ultra Romantic",
+      "episodes": 13,
+      "score": 8.96,
+      "rank": 16,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Fruits Basket: The Final",
+      "episodes": 13,
+      "score": 8.94,
+      "rank": 17,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Koe no Katachi",
+      "episodes": 1,
+      "score": 8.93,
+      "rank": 20,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kusuriya no Hitorigoto 2nd Season",
+      "episodes": 24,
+      "score": 8.91,
+      "rank": 21,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 60,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "3-gatsu no Lion 2nd Season",
+      "episodes": 22,
+      "score": 8.9,
+      "rank": 23,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 55,
+        "volume": 6,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Gintama Movie 2: Kanketsu-hen - Yorozuya yo Eien Nare",
+      "episodes": 1,
+      "score": 8.89,
+      "rank": 24,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Monster",
+      "episodes": 74,
+      "score": 8.89,
+      "rank": 25,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 185,
+        "volume": 21,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Boku no Hero Academia: Final Season",
+      "episodes": 11,
+      "score": 8.88,
+      "rank": 26,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 28,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Gintama. Shirogane no Tamashii-hen - Kouhan-sen",
+      "episodes": 14,
+      "score": 8.88,
+      "rank": 27,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 35,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kusuriya no Hitorigoto",
+      "episodes": 24,
+      "score": 8.86,
+      "rank": 28,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 60,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kingdom 3rd Season",
+      "episodes": 26,
+      "score": 8.84,
+      "rank": 32,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 65,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Violet Evergarden Movie",
+      "episodes": 1,
+      "score": 8.84,
+      "rank": 31,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Shingeki no Kyojin Movie: Kanketsu-hen - The Last Attack",
+      "episodes": 1,
+      "score": 8.83,
+      "rank": 34,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Vinland Saga Season 2",
+      "episodes": 24,
+      "score": 8.82,
+      "rank": 35,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 55,
+        "volume": 8,
+        "method": "reference_db",
+        "confidence": "high"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Gintama. Shirogane no Tamashii-hen",
+      "episodes": 12,
+      "score": 8.81,
+      "rank": 36,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kizumonogatari III: Reiketsu-hen",
+      "episodes": 1,
+      "score": 8.78,
+      "rank": 40,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Shingeki no Kyojin: The Final Season",
+      "episodes": 16,
+      "score": 8.78,
+      "rank": 38,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 40,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Hajime no Ippo",
+      "episodes": 75,
+      "score": 8.78,
+      "rank": 39,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 188,
+        "volume": 21,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Haikyuu!! Karasuno Koukou vs. Shiratorizawa Gakuen Koukou",
+      "episodes": 10,
+      "score": 8.77,
+      "rank": 46,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 25,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Ashita no Joe 2",
+      "episodes": 47,
+      "score": 8.77,
+      "rank": 45,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 118,
+        "volume": 13,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Vinland Saga",
+      "episodes": 24,
+      "score": 8.77,
+      "rank": 44,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 55,
+        "volume": 8,
+        "method": "reference_db",
+        "confidence": "high"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Shingeki no Kyojin: The Final Season Part 2",
+      "episodes": 12,
+      "score": 8.77,
+      "rank": 43,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Monogatari Series: Second Season",
+      "episodes": 26,
+      "score": 8.76,
+      "rank": 47,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 65,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Bocchi the Rock!",
+      "episodes": 12,
+      "score": 8.74,
+      "rank": 49,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kingdom 4th Season",
+      "episodes": 26,
+      "score": 8.73,
+      "rank": 50,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 65,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Boku no Kokoro no Yabai Yatsu 2nd Season",
+      "episodes": 13,
+      "score": 8.72,
+      "rank": 57,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kingdom 5th Season",
+      "episodes": 13,
+      "score": 8.72,
+      "rank": 54,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kaguya-sama wa Kokurasetai: First Kiss wa Owaranai",
+      "episodes": 1,
+      "score": 8.72,
+      "rank": 53,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Mushishi Zoku Shou 2nd Season",
+      "episodes": 10,
+      "score": 8.72,
+      "rank": 55,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 25,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "86 Part 2",
+      "episodes": 12,
+      "score": 8.72,
+      "rank": 56,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Jujutsu Kaisen 2nd Season",
+      "episodes": 23,
+      "score": 8.72,
+      "rank": 52,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 136,
+        "volume": 16,
+        "method": "reference_db",
+        "confidence": "high"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kimetsu no Yaiba Movie 1: Mugenjou-hen - Akaza Sairai",
+      "episodes": 1,
+      "score": 8.71,
+      "rank": 62,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "The First Slam Dunk",
+      "episodes": 1,
+      "score": 8.71,
+      "rank": 61,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kimetsu no Yaiba: Yuukaku-hen",
+      "episodes": 11,
+      "score": 8.71,
+      "rank": 63,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 28,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Bleach: Sennen Kessen-hen - Ketsubetsu-tan",
+      "episodes": 13,
+      "score": 8.7,
+      "rank": 66,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Chi. Chikyuu no Undou ni Tsuite",
+      "episodes": 25,
+      "score": 8.7,
+      "rank": 67,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 63,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Shouwa Genroku Rakugo Shinjuu: Sukeroku Futatabi-hen",
+      "episodes": 12,
+      "score": 8.7,
+      "rank": 68,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Violet Evergarden",
+      "episodes": 13,
+      "score": 8.69,
+      "rank": 70,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Mushishi Zoku Shou",
+      "episodes": 10,
+      "score": 8.68,
+      "rank": 73,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 25,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Great Teacher Onizuka",
+      "episodes": 43,
+      "score": 8.68,
+      "rank": 71,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 108,
+        "volume": 12,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Bleach: Sennen Kessen-hen - Soukoku-tan",
+      "episodes": 14,
+      "score": 8.67,
+      "rank": 75,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 35,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Hajime no Ippo: New Challenger",
+      "episodes": 26,
+      "score": 8.67,
+      "rank": 76,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 65,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Mushishi",
+      "episodes": 26,
+      "score": 8.65,
+      "rank": 80,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 65,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Shigatsu wa Kimi no Uso",
+      "episodes": 22,
+      "score": 8.64,
+      "rank": 83,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 55,
+        "volume": 6,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Shingeki no Kyojin Season 3",
+      "episodes": 12,
+      "score": 8.64,
+      "rank": 85,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Look Back",
+      "episodes": 1,
+      "score": 8.63,
+      "rank": 89,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Natsume Yuujinchou Shi",
+      "episodes": 13,
+      "score": 8.63,
+      "rank": 91,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Ping Pong the Animation",
+      "episodes": 11,
+      "score": 8.63,
+      "rank": 93,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 28,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kaguya-sama wa Kokurasetai? Tensai-tachi no Renai Zunousen",
+      "episodes": 12,
+      "score": 8.62,
+      "rank": 94,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Mushoku Tensei: Isekai Ittara Honki Dasu Part 2",
+      "episodes": 12,
+      "score": 8.62,
+      "rank": 95,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Death Note",
+      "episodes": 37,
+      "score": 8.62,
+      "rank": 97,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 93,
+        "volume": 10,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Haikyuu!! Second Season",
+      "episodes": 25,
+      "score": 8.62,
+      "rank": 98,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 63,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Bungou Stray Dogs 5th Season",
+      "episodes": 11,
+      "score": 8.61,
+      "rank": 99,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 28,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Haikyuu!! Movie: Gomisuteba no Kessen",
+      "episodes": 1,
+      "score": 8.61,
+      "rank": 100,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Natsume Yuujinchou Roku",
+      "episodes": 11,
+      "score": 8.61,
+      "rank": 103,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 28,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Hajime no Ippo: Rising",
+      "episodes": 25,
+      "score": 8.61,
+      "rank": 101,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 63,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kenpuu Denki Berserk",
+      "episodes": 25,
+      "score": 8.61,
+      "rank": 102,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 63,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Dungeon Meshi",
+      "episodes": 24,
+      "score": 8.59,
+      "rank": 110,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 60,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Seishun Buta Yarou wa Yumemiru Shoujo no Yume wo Minai",
+      "episodes": 1,
+      "score": 8.59,
+      "rank": 108,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Suzumiya Haruhi no Shoushitsu",
+      "episodes": 1,
+      "score": 8.59,
+      "rank": 109,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Natsume Yuujinchou Shichi",
+      "episodes": 12,
+      "score": 8.58,
+      "rank": 113,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "JoJo no Kimyou na Bouken Part 5: Ougon no Kaze",
+      "episodes": 39,
+      "score": 8.58,
+      "rank": 111,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 98,
+        "volume": 11,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Mushishi Zoku Shou: Suzu no Shizuku",
+      "episodes": 1,
+      "score": 8.58,
+      "rank": 112,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Uma Musume: Cinderella Gray",
+      "episodes": 13,
+      "score": 8.57,
+      "rank": 116,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Shingeki no Kyojin",
+      "episodes": 25,
+      "score": 8.57,
+      "rank": 115,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 63,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Nana",
+      "episodes": 47,
+      "score": 8.57,
+      "rank": 117,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 118,
+        "volume": 13,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Natsume Yuujinchou Go",
+      "episodes": 11,
+      "score": 8.56,
+      "rank": 119,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 28,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kizumonogatari II: Nekketsu-hen",
+      "episodes": 1,
+      "score": 8.56,
+      "rank": 118,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Natsume Yuujinchou San",
+      "episodes": 13,
+      "score": 8.56,
+      "rank": 120,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Haikyuu!! To the Top Part 2",
+      "episodes": 12,
+      "score": 8.56,
+      "rank": 122,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "[Oshi no Ko]",
+      "episodes": 11,
+      "score": 8.55,
+      "rank": 127,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 28,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Slam Dunk",
+      "episodes": 101,
+      "score": 8.55,
+      "rank": 124,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 253,
+        "volume": 28,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kimetsu no Yaiba Movie: Mugen Ressha-hen",
+      "episodes": 1,
+      "score": 8.55,
+      "rank": 128,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "[Oshi no Ko] 2nd Season",
+      "episodes": 13,
+      "score": 8.54,
+      "rank": 135,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Shouwa Genroku Rakugo Shinjuu",
+      "episodes": 13,
+      "score": 8.54,
+      "rank": 134,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Fate/Zero 2nd Season",
+      "episodes": 12,
+      "score": 8.54,
+      "rank": 132,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Uma Musume: Cinderella Gray Part 2",
+      "episodes": 10,
+      "score": 8.53,
+      "rank": 136,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 25,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Dr. Stone: Science Future Part 2",
+      "episodes": 12,
+      "score": 8.53,
+      "rank": 139,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Shingeki no Kyojin Season 2",
+      "episodes": 12,
+      "score": 8.53,
+      "rank": 135,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Zoku Natsume Yuujinchou",
+      "episodes": 13,
+      "score": 8.53,
+      "rank": 137,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Fruits Basket 2nd Season",
+      "episodes": 25,
+      "score": 8.53,
+      "rank": 140,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 63,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Jujutsu Kaisen",
+      "episodes": 24,
+      "score": 8.53,
+      "rank": 141,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 60,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Gintama Movie 1: Shinyaku Benizakura-hen",
+      "episodes": 1,
+      "score": 8.52,
+      "rank": 145,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Bakuman. 3rd Season",
+      "episodes": 25,
+      "score": 8.52,
+      "rank": 144,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 63,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kara no Kyoukai Movie 5: Mujun Rasen",
+      "episodes": 1,
+      "score": 8.51,
+      "rank": 148,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Gintama. Porori-hen",
+      "episodes": 13,
+      "score": 8.51,
+      "rank": 146,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Koukaku Kidoutai: Stand Alone Complex 2nd GIG",
+      "episodes": 26,
+      "score": 8.51,
+      "rank": 149,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 65,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Grand Blue Season 2",
+      "episodes": 12,
+      "score": 8.5,
+      "rank": 153,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Yuru Camp△ Season 2",
+      "episodes": 13,
+      "score": 8.5,
+      "rank": 156,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "JoJo no Kimyou na Bouken Part 4: Diamond wa Kudakenai",
+      "episodes": 39,
+      "score": 8.5,
+      "rank": 150,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 98,
+        "volume": 11,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Uchuu Kyoudai",
+      "episodes": 99,
+      "score": 8.48,
+      "rank": 161,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 248,
+        "volume": 28,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Given Movie 3: Umi e",
+      "episodes": 1,
+      "score": 8.47,
+      "rank": 168,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Yakusoku no Neverland",
+      "episodes": 12,
+      "score": 8.47,
+      "rank": 163,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Ansatsu Kyoushitsu 2nd Season",
+      "episodes": 25,
+      "score": 8.47,
+      "rank": 165,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 63,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Aria the Origination",
+      "episodes": 13,
+      "score": 8.47,
+      "rank": 166,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Summertime Render",
+      "episodes": 25,
+      "score": 8.47,
+      "rank": 162,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 63,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Nichijou",
+      "episodes": 26,
+      "score": 8.47,
+      "rank": 164,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 65,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Dandadan 2nd Season",
+      "episodes": 12,
+      "score": 8.46,
+      "rank": 169,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Rainbow: Nisha Rokubou no Shichinin",
+      "episodes": 26,
+      "score": 8.46,
+      "rank": 175,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 65,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Yuu☆Yuu☆Hakusho",
+      "episodes": 112,
+      "score": 8.46,
+      "rank": 172,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 280,
+        "volume": 31,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Dandadan",
+      "episodes": 12,
+      "score": 8.45,
+      "rank": 179,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Owarimonogatari",
+      "episodes": 12,
+      "score": 8.45,
+      "rank": 176,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Banana Fish",
+      "episodes": 24,
+      "score": 8.45,
+      "rank": 177,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 60,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Grand Blue",
+      "episodes": 12,
+      "score": 8.45,
+      "rank": 180,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Chihayafuru 3",
+      "episodes": 24,
+      "score": 8.45,
+      "rank": 178,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 60,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "JoJo no Kimyou na Bouken Part 3: Stardust Crusaders - Egypt-hen",
+      "episodes": 24,
+      "score": 8.44,
+      "rank": 184,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 60,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Chainsaw Man",
+      "episodes": 12,
+      "score": 8.44,
+      "rank": 187,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 39,
+        "volume": 5,
+        "method": "reference_db",
+        "confidence": "high"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Spy x Family",
+      "episodes": 12,
+      "score": 8.44,
+      "rank": 182,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Re:Zero kara Hajimeru Isekai Seikatsu 3rd Season",
+      "episodes": 16,
+      "score": 8.43,
+      "rank": 192,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 40,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Zoku Owarimonogatari",
+      "episodes": 6,
+      "score": 8.43,
+      "rank": 193,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 15,
+        "volume": 2,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Hunter x Hunter",
+      "episodes": 62,
+      "score": 8.43,
+      "rank": 191,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 155,
+        "volume": 17,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Haikyuu!!",
+      "episodes": 25,
+      "score": 8.43,
+      "rank": 190,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 63,
+        "volume": 7,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Golden Kamuy 3rd Season",
+      "episodes": 12,
+      "score": 8.43,
+      "rank": 189,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Natsume Yuujinchou Movie: Utsusemi ni Musubu",
+      "episodes": 1,
+      "score": 8.42,
+      "rank": 206,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 3,
+        "volume": 0,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Re:Zero kara Hajimeru Isekai Seikatsu 2nd Season Part 2",
+      "episodes": 12,
+      "score": 8.42,
+      "rank": 194,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 30,
+        "volume": 3,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    },
+    {
+      "anime": "Kono Oto Tomare! Part 2",
+      "episodes": 13,
+      "score": 8.42,
+      "rank": 203,
+      "webData": {
+        "chapter": null,
+        "volume": null,
+        "confidence": "none",
+        "source": "error"
+      },
+      "mangaGuide": {
+        "chapter": 33,
+        "volume": 4,
+        "method": "calculated",
+        "confidence": "low"
+      },
+      "comparison": {
+        "verdict": "no_web_data",
+        "diff": null
+      }
+    }
+  ]
+}
