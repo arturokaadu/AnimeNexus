@@ -109,7 +109,7 @@ export const Header = ({ favs, isDarkMode, toggleTheme }) => {
               <Icon icon="bi:book-half" /> Manga Guide
             </MenuLink>
           </MenuItem>
-          {/* +18 Section - Show dropdown directly, auth handled on page */}
+          {/* TEMPORARILY HIDDEN - +18 Section 
           <MenuItem className="dropdown-trigger">
             <MenuLink
               as="span"
@@ -133,6 +133,7 @@ export const Header = ({ favs, isDarkMode, toggleTheme }) => {
             </DropdownMenu>
           </MenuItem>
           */}
+
 
           {
             user && (
