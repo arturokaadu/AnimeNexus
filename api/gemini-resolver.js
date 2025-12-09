@@ -26,52 +26,64 @@ export default async function handler(req, res) {
     try {
         console.log(`[Gemini API] Query: "${anime}" Episode ${episode}`);
 
-        const prompt = `Eres un experto en anime y manga. Tu trabajo es decirle al usuario EXACTAMENTE en qué capítulo y volumen del manga debe continuar después de ver un episodio específico de anime.
+        const prompt = `You are an expert on anime-to-manga chapter mapping. Your job is to tell the user EXACTLY which manga chapter and volume to continue reading after watching a specific anime episode.
 
-ANIME: "${anime}"
-EPISODIO VISTO: ${episode}
+ANIME TITLE: "${anime}"
+EPISODE WATCHED: ${episode}
 
-INSTRUCCIONES:
-1. Identifica a qué capítulo del manga corresponde el episodio ${episode} del anime "${anime}"
-2. Indica el PRÓXIMO capítulo de manga que debe leer el usuario (el siguiente al que cubre ese episodio)
-3. Indica en qué VOLUMEN está ese capítulo
-4. Recomienda qué volumen comprar
+YOUR TASK:
+1. Identify which manga chapter corresponds to episode ${episode} of "${anime}"
+2. Tell me the NEXT chapter to read (the one AFTER what the anime covered)
+3. Tell me which VOLUME contains that chapter
+4. Recommend which volume to buy
 
-DATOS DE REFERENCIA VERIFICADOS (usa estos como guía de calibración):
-- Frieren: Beyond Journey's End - El anime (28 eps) termina en el capítulo 60 → Continuar desde Cap 61, Volumen 7
-- Chainsaw Man Parte 1 - El anime (12 eps) termina en el capítulo 38 → Continuar desde Cap 39, Volumen 5
-  * La película "Reze Arc" cubre los volúmenes 5-6, si la vieron empezar en Volumen 7
-- Jujutsu Kaisen S1 (24 eps) termina en capítulo 63 → Continuar desde Cap 64, Volumen 8
-- Jujutsu Kaisen S2 (23 eps, total ep 47) termina en capítulo 136 → Continuar desde Cap 137, Volumen 16
-- Attack on Titan S1 (25 eps) termina en capítulo 33 → Continuar desde Cap 34, Volumen 9
-- Demon Slayer S1 (26 eps) termina en capítulo 53 → Continuar desde Cap 54, Volumen 7
-- My Hero Academia S7 (21 eps, total ~153) termina en capítulo 423 (FIN del manga)
-- Spy x Family S1 (25 eps) termina en capítulo 38 → Continuar desde Cap 39, Volumen 7
-- Vinland Saga S2 (24 eps) termina en capítulo 99 → Continuar desde Cap 100, Volumen 14
-- One Punch Man S2 (12 eps) termina en capítulo 84 → Continuar desde Cap 85, Volumen 17
-- Blue Lock (24 eps) termina en capítulo 108 → Continuar desde Cap 109, Volumen 13
-- Solo Leveling S1 (12 eps) termina en capítulo 45 → Continuar desde Cap 46, Volumen 5
-- Tokyo Revengers S1 (24 eps) termina en capítulo 73 → Continuar desde Cap 74, Volumen 9
+VERIFIED REFERENCE DATA (use as calibration):
+- Frieren: Beyond Journey's End (28 eps) ends at Chapter 60 → Continue from Ch 61, Volume 7
+- Chainsaw Man Part 1 (12 eps) ends at Chapter 38 → Continue from Ch 39, Volume 5
+- Jujutsu Kaisen S1 (24 eps) ends at Chapter 63 → Continue from Ch 64, Volume 8
+- Jujutsu Kaisen S2 (23 eps, total 47 eps) ends at Chapter 136 → Continue from Ch 137, Volume 16
+- Attack on Titan S1 (25 eps) ends at Chapter 33 → Continue from Ch 34, Volume 9
+- Attack on Titan FULL (87 eps) ends at Chapter 139 (manga complete)
+- Demon Slayer S1 (26 eps) ends at Chapter 53 → Continue from Ch 54, Volume 7
+- Demon Slayer FULL (55 eps + movies) covers entire manga to Ch 205
+- My Hero Academia S7 (~153 total eps) ends at Chapter 423 (manga complete)
+- Spy x Family S1 (25 eps) ends at Chapter 38 → Continue from Ch 39, Volume 7
+- Vinland Saga S1 (24 eps) ends at Chapter 54 → Continue from Ch 55, Volume 8
+- Vinland Saga S2 (24 eps, total 48 eps) ends at Chapter 99 → Continue from Ch 100, Volume 14
+- One Punch Man S1 (12 eps) ends at Chapter 37 → Continue from Ch 38, Volume 8
+- One Punch Man S2 (12 eps, total 24 eps) ends at Chapter 84 → Continue from Ch 85, Volume 17
+- Blue Lock (24 eps) ends at Chapter 108 → Continue from Ch 109, Volume 13
+- Solo Leveling S1 (12 eps) ends at Chapter 45 → Continue from Ch 46
+- Tokyo Revengers S1 (24 eps) ends at Chapter 73 → Continue from Ch 74, Volume 9
+- Naruto (220 eps) ends at Chapter 238 → Continue from Ch 239 or start Shippuden
+- Naruto Shippuden (500 eps) ends at Chapter 700 (manga complete)
+- One Piece (1000+ eps) - approximately 2 chapters per episode
+- Dragon Ball Z (291 eps) covers entire manga from Ch 195-519
+- Bleach TYBW (26 eps S1) starts at Chapter 480
+- Death Note (37 eps) covers entire manga (108 chapters)
+- Fullmetal Alchemist Brotherhood (64 eps) covers entire manga (108 chapters)
+- Hunter x Hunter 2011 (148 eps) ends at Chapter 339 → Continue from Ch 340
 
-REGLAS IMPORTANTES:
-1. Si el usuario pone un episodio específico, calcula proporcionalmente basándote en los datos de referencia
-2. La mayoría de animes adaptan ~2-3 capítulos por episodio
-3. Si el anime es ORIGINAL (sin manga fuente como Cowboy Bebop, Code Geass), dilo claramente
-4. Si está basado en Light Novel, indica que es Light Novel, no manga
+IMPORTANT RULES:
+1. For episodes in-between seasons, calculate proportionally using ~2-3 chapters per episode
+2. If the anime is ORIGINAL (no manga source, like Cowboy Bebop, Code Geass, Steins;Gate), say so clearly
+3. If based on a Light Novel (like Sword Art Online, Re:Zero, Konosuba), indicate it's a Light Novel, not manga
+4. If the anime FULLY adapted the manga, mention that no continuation is needed
+5. BE PRECISE - users rely on this to not miss or repeat content
 
-RESPONDE ÚNICAMENTE EN ESTE FORMATO JSON:
+RESPOND ONLY IN THIS JSON FORMAT:
 {
-    "continueFromChapter": número o null,
-    "continueFromVolume": número o null,
-    "buyVolume": número o null,
+    "continueFromChapter": number or null,
+    "continueFromVolume": number or null,
+    "buyVolume": number or null,
     "confidence": "high" | "medium" | "low",
-    "reasoning": "El episodio X del anime cubre hasta el capítulo Y del manga. Debes continuar desde el capítulo Z que está en el Volumen W.",
-    "sourceMaterial": "Manga" | "Light Novel" | "Web Novel" | "Original",
-    "specialNotes": "Notas especiales sobre películas, OVAs, o el anime completo" o null
+    "reasoning": "Episode ${episode} of ${anime} covers up to manga chapter X. Continue reading from chapter Y, which is in Volume Z.",
+    "sourceMaterial": "Manga" | "Light Novel" | "Web Novel" | "Original" | "Visual Novel",
+    "specialNotes": "Any special notes about movies, OVAs, or if the anime is complete" or null
 }`;
 
         const response = await fetch(
-            `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+            `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
             {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
