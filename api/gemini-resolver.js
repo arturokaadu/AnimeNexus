@@ -56,54 +56,82 @@ export default async function handler(req, res) {
 }
 
 /**
- * Fetch volume cover image from Google Books API or fallback
+ * Fetch volume cover image from Google Books API or Jikan (MAL) API
  */
 async function getVolumeCover(mangaTitle, volumeNumber) {
     try {
         console.log(`[Volume Cover] Searching for: ${mangaTitle} Volume ${volumeNumber}`);
 
-        // Clean title for better search results
+        // Try Google Books first
         const cleanTitle = mangaTitle.replace(/[:\-]/g, ' ').trim();
         const query = `${cleanTitle} volume ${volumeNumber} manga`;
 
-        const response = await fetch(
+        const gbResponse = await fetch(
             `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=5`
         );
 
-        if (!response.ok) {
-            console.log('[Volume Cover] Google Books API request failed');
-            return null;
-        }
+        if (gbResponse.ok) {
+            const data = await gbResponse.json();
+            console.log(`[Volume Cover] Google Books found ${data.items?.length || 0} results`);
 
-        const data = await response.json();
-        console.log(`[Volume Cover] Found ${data.items?.length || 0} results`);
+            if (data.items && data.items.length > 0) {
+                for (const item of data.items) {
+                    if (item.volumeInfo?.imageLinks) {
+                        const imageLinks = item.volumeInfo.imageLinks;
+                        let coverUrl = imageLinks.large ||
+                            imageLinks.medium ||
+                            imageLinks.small ||
+                            imageLinks.thumbnail ||
+                            imageLinks.smallThumbnail;
 
-        if (data.items && data.items.length > 0) {
-            // Try to find best match
-            for (const item of data.items) {
-                if (item.volumeInfo?.imageLinks) {
-                    // Prefer larger images and convert http to https
-                    const imageLinks = item.volumeInfo.imageLinks;
-                    let coverUrl = imageLinks.large ||
-                        imageLinks.medium ||
-                        imageLinks.small ||
-                        imageLinks.thumbnail ||
-                        imageLinks.smallThumbnail;
-
-                    if (coverUrl) {
-                        // Ensure https
-                        coverUrl = coverUrl.replace('http:', 'https:');
-                        console.log(`[Volume Cover] Found cover: ${coverUrl}`);
-                        return coverUrl;
+                        if (coverUrl) {
+                            coverUrl = coverUrl.replace('http:', 'https:');
+                            console.log(`[Volume Cover] Found via Google Books: ${coverUrl}`);
+                            return coverUrl;
+                        }
                     }
                 }
             }
         }
 
-        console.log('[Volume Cover] No cover found');
+        // Fallback to Jikan/MAL manga pictures
+        console.log('[Volume Cover] Google Books failed, trying Jikan API...');
+
+        // Search for manga on MAL via Jikan
+        const searchResponse = await fetch(
+            `https://api.jikan.moe/v4/manga?q=${encodeURIComponent(cleanTitle)}&limit=1`
+        );
+
+        if (searchResponse.ok) {
+            const searchData = await searchResponse.json();
+            if (searchData.data && searchData.data.length > 0) {
+                const mangaId = searchData.data[0].mal_id;
+                console.log(`[Volume Cover] Found manga ID: ${mangaId}`);
+
+                // Get manga pictures
+                const picturesResponse = await fetch(
+                    `https://api.jikan.moe/v4/manga/${mangaId}/pictures`
+                );
+
+                if (picturesResponse.ok) {
+                    const picturesData = await picturesResponse.json();
+                    if (picturesData.data && picturesData.data.length > 0) {
+                        // Get the first/main picture (usually the cover)
+                        const coverUrl = picturesData.data[0].jpg.large_image_url ||
+                            picturesData.data[0].jpg.image_url;
+                        if (coverUrl) {
+                            console.log(`[Volume Cover] Found via Jikan: ${coverUrl}`);
+                            return coverUrl;
+                        }
+                    }
+                }
+            }
+        }
+
+        console.log('[Volume Cover] No cover found from any source');
         return null;
     } catch (error) {
-        console.error('[Google Books API Error]', error);
+        console.error('[Volume Cover Error]', error);
         return null;
     }
 }
