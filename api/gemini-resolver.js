@@ -56,10 +56,12 @@ export default async function handler(req, res) {
 }
 
 /**
- * Fetch volume cover image from Google Books API
+ * Fetch volume cover image from Google Books API or fallback
  */
 async function getVolumeCover(mangaTitle, volumeNumber) {
     try {
+        console.log(`[Volume Cover] Searching for: ${mangaTitle} Volume ${volumeNumber}`);
+
         // Clean title for better search results
         const cleanTitle = mangaTitle.replace(/[:\-]/g, ' ').trim();
         const query = `${cleanTitle} volume ${volumeNumber} manga`;
@@ -68,25 +70,37 @@ async function getVolumeCover(mangaTitle, volumeNumber) {
             `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=5`
         );
 
-        if (!response.ok) return null;
+        if (!response.ok) {
+            console.log('[Volume Cover] Google Books API request failed');
+            return null;
+        }
 
         const data = await response.json();
+        console.log(`[Volume Cover] Found ${data.items?.length || 0} results`);
 
         if (data.items && data.items.length > 0) {
             // Try to find best match
             for (const item of data.items) {
                 if (item.volumeInfo?.imageLinks) {
-                    // Prefer larger images
+                    // Prefer larger images and convert http to https
                     const imageLinks = item.volumeInfo.imageLinks;
-                    return imageLinks.large ||
+                    let coverUrl = imageLinks.large ||
                         imageLinks.medium ||
                         imageLinks.small ||
                         imageLinks.thumbnail ||
                         imageLinks.smallThumbnail;
+
+                    if (coverUrl) {
+                        // Ensure https
+                        coverUrl = coverUrl.replace('http:', 'https:');
+                        console.log(`[Volume Cover] Found cover: ${coverUrl}`);
+                        return coverUrl;
+                    }
                 }
             }
         }
 
+        console.log('[Volume Cover] No cover found');
         return null;
     } catch (error) {
         console.error('[Google Books API Error]', error);
