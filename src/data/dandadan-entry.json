@@ -1,0 +1,24 @@
+{
+    "Dandadan": {
+        "malId": 55851,
+        "anilistId": 171018,
+        "aliases": [
+            "Dan Da Dan",
+            "DDD"
+        ],
+        "verifiedSeasons": [
+            {
+                "season": 1,
+                "finalEpisode": 12,
+                "continueFromChapter": 31,
+                "continueFromVolume": 4,
+                "notes": "Season 1 finale"
+            }
+        ],
+        "sources": [
+            "reddit.com/r/Dandadan",
+            "myanimelist.net"
+        ],
+        "lastVerified": "2024-12-09"
+    }
+}
