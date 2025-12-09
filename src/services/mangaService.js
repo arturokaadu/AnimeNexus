@@ -58,6 +58,7 @@ export async function getMangaContinuation(animeTitle, episode) {
                 reasoning: data.reasoning || 'No details available.',
                 sourceMaterial: data.sourceMaterial || 'Unknown',
                 specialNotes: data.specialNotes || null,
+                volumeCoverUrl: data.volumeCoverUrl || null,
                 source: 'Google Gemini AI'
             };
         }
