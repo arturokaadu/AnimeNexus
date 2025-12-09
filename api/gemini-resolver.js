@@ -59,14 +59,25 @@ function checkVerifiedDatabase(animeTitle, episodeNumber) {
     // Try exact match first
     let animeData = verifiedDB[animeTitle];
 
-    // If not found, try fuzzy match
+    // If not found, try fuzzy match with aliases
     if (!animeData) {
         const normalizedSearch = animeTitle.toLowerCase();
-        const matchingKey = Object.keys(verifiedDB).find(key =>
-            key.toLowerCase() === normalizedSearch ||
-            key.toLowerCase().includes(normalizedSearch) ||
-            normalizedSearch.includes(key.toLowerCase())
-        );
+        const matchingKey = Object.keys(verifiedDB).find(key => {
+            // Check main title
+            if (key.toLowerCase() === normalizedSearch ||
+                key.toLowerCase().includes(normalizedSearch) ||
+                normalizedSearch.includes(key.toLowerCase())) {
+                return true;
+            }
+
+            // Check aliases
+            const aliases = verifiedDB[key].aliases || [];
+            return aliases.some(alias =>
+                alias.toLowerCase() === normalizedSearch ||
+                alias.toLowerCase().includes(normalizedSearch) ||
+                normalizedSearch.includes(alias.toLowerCase())
+            );
+        });
 
         if (matchingKey) {
             console.log(`[Verified DB] Fuzzy matched: "${matchingKey}"`);
