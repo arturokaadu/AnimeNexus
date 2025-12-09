@@ -4,22 +4,10 @@
  * STRATEGY:
  * 1. Check verified database first (100% accurate)
  * 2. If not found, use Gemini AI (estimated)
- * 
- * Requires GEMINI_API_KEY environment variable.
  */
 
-const fs = require('fs');
-const path = require('path');
-
-// Load verified database
-const verifiedDBPath = path.join(process.cwd(), 'src/data/verified-anime-reference.json');
-let verifiedDB = {};
-
-try {
-    verifiedDB = JSON.parse(fs.readFileSync(verifiedDBPath, 'utf8'));
-} catch (error) {
-    console.error('[Verified DB] Failed to load:', error.message);
-}
+// Import verified database directly (works in Vercel)
+import verifiedDB from '../src/data/verified-anime-reference.json';
 
 export default async function handler(req, res) {
     const { anime, episode } = req.query;
@@ -132,7 +120,7 @@ RESPOND IN JSON:
     "continueFromChapter": number,
     "continueFromVolume": number,
     "buyVolume": number,
-    "confidence": "high" | "medium" | "low",
+    "confidence": "medium",
     "reasoning": "Brief explanation",
     "sourceMaterial": "Manga",
     "specialNotes": null
@@ -154,6 +142,8 @@ RESPOND IN JSON:
     );
 
     if (!response.ok) {
+        const errorText = await response.text();
+        console.error('[Gemini API Error]', response.status, errorText);
         throw new Error(`Gemini API Error: ${response.status}`);
     }
 
