@@ -84,12 +84,15 @@ function intelligentPredict(animeTitle, episodeNumber) {
 
     if (exactMatch) {
         // Perfect! We have verified data for this exact episode
+        const seasonInfo = exactMatch.notes || '';
         return {
             continueFromChapter: exactMatch.continueFromChapter,
             continueFromVolume: exactMatch.continueFromVolume,
             buyVolume: exactMatch.continueFromVolume,
             confidence: 'high',
-            reasoning: `After episode ${episodeNumber}, continue reading from chapter ${exactMatch.continueFromChapter} (volume ${exactMatch.continueFromVolume}).`,
+            reasoning: seasonInfo ?
+                `${seasonInfo}. Continue reading from chapter ${exactMatch.continueFromChapter} (volume ${exactMatch.continueFromVolume}).` :
+                `After episode ${episodeNumber}, continue reading from chapter ${exactMatch.continueFromChapter} (volume ${exactMatch.continueFromVolume}).`,
             sourceMaterial: 'Manga',
             specialNotes: null,
             verified: true,
