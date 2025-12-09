@@ -89,9 +89,9 @@ function intelligentPredict(animeTitle, episodeNumber) {
             continueFromVolume: exactMatch.continueFromVolume,
             buyVolume: exactMatch.continueFromVolume,
             confidence: 'high',
-            reasoning: `Episode ${episodeNumber} of ${animeData.matchedName}: ${exactMatch.notes}. Continue from chapter ${exactMatch.continueFromChapter}, volume ${exactMatch.continueFromVolume}.`,
+            reasoning: `After episode ${episodeNumber}, continue reading from chapter ${exactMatch.continueFromChapter} (volume ${exactMatch.continueFromVolume}).`,
             sourceMaterial: 'Manga',
-            specialNotes: 'Verified data',
+            specialNotes: null,
             verified: true,
             method: 'exact_match'
         };
@@ -112,9 +112,9 @@ function intelligentPredict(animeTitle, episodeNumber) {
         continueFromVolume: predictedVolume,
         buyVolume: predictedVolume,
         confidence: confidence,
-        reasoning: `Calculated using ${animeData.matchedName}'s adaptation ratio of ${ratio.avgRatio} chapters/episode (${(ratio.consistency * 100).toFixed(0)}% consistent across ${ratio.dataPoints.length} verified season${ratio.dataPoints.length > 1 ? 's' : ''}). Episode ${episodeNumber} likely ends around chapter ${predictedChapter}.`,
+        reasoning: `After episode ${episodeNumber}, continue reading from chapter ${continueFromChapter} (volume ${predictedVolume}).`,
         sourceMaterial: 'Manga',
-        specialNotes: `Mathematical prediction - based on verified ${ratio.dataPoints.length} data point${ratio.dataPoints.length > 1 ? 's' : ''}`,
+        specialNotes: null,
         verified: false,
         method: 'ratio_calculation'
     };
@@ -212,12 +212,10 @@ async function queryGeminiAI(anime, episode, apiKey) {
 ANIME TITLE: "${anime}"
 EPISODE NUMBER: ${episode}
 
-CRITICAL INSTRUCTIONS:
-1. If this anime has multiple seasons, FIRST determine which season episode ${episode} belongs to
-2. ONLY provide information for THAT SPECIFIC SEASON/ARC 
-3. Do NOT provide information about other seasons
-4. Provide the EXACT manga chapter where episode ${episode} ends
-5. Tell me the NEXT chapter to start reading (chapter AFTER that episode)
+INSTRUCTIONS:
+1. Determine the EXACT manga chapter where episode ${episode} ends
+2. Tell me the NEXT chapter to start reading (chapter AFTER that episode)
+3. Keep reasoning SIMPLE and DIRECT
 
 RESPOND IN EXACT JSON FORMAT:
 {
@@ -225,12 +223,12 @@ RESPOND IN EXACT JSON FORMAT:
     "continueFromVolume": number,
     "buyVolume": number,
     "confidence": "medium",
-    "reasoning": "Episode ${episode} is in [Season X/Arc Y]. This episode ends at chapter Z. Continue reading from chapter W.",
+    "reasoning": "After episode ${episode}, continue reading from chapter X (volume Y).",
     "sourceMaterial": "Manga",
-    "specialNotes": "Any important notes" or null
+    "specialNotes": null
 }
 
-REMEMBER: Only provide info for the season containing episode ${episode}. Never mention other seasons.`;
+IMPORTANT: Keep reasoning short. Just say where to continue, no extra details.`;
 
     const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
