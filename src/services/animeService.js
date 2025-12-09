@@ -96,8 +96,20 @@ export const getTopAnime = async (page = 1, filter = 'bypopularity') => {
 
 export const searchAnime = async (query, page = 1, sfw = true, genres = null, type = null, rating = null) => {
   try {
+    // Normalize search query for better matching
+    let normalizedQuery = query;
+
+    // Handle "No." variations (e.g., "Kaiju 8" -> "Kaiju No. 8")
+    if (normalizedQuery) {
+      // Match patterns like "Kaiju 8", "Demon 8", etc. and add "No."
+      normalizedQuery = normalizedQuery.replace(/(\w+)\s+(\d+)$/i, '$1 No. $2');
+
+      // Also handle "n 8" -> "No. 8"  
+      normalizedQuery = normalizedQuery.replace(/\bn\s+(\d+)/gi, 'No. $1');
+    }
+
     const params = {
-      q: query,
+      q: normalizedQuery,
       page,
       sfw: sfw,
       order_by: 'popularity',
