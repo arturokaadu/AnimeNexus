@@ -98,11 +98,44 @@ function intelligentPredict(animeTitle, episodeNumber) {
     }
 
     // No exact match - USE MATHEMATICAL PREDICTION!
+
+    // VALIDATION: Check if episode number is valid
+    const totalEpisodes = animeData.data.totalEpisodes;
+    const status = animeData.data.status || 'unknown';
+
+    if (totalEpisodes && episodeNumber > totalEpisodes) {
+        // Episode number exceeds known total
+        if (status === 'complete') {
+            return {
+                continueFromChapter: null,
+                continueFromVolume: null,
+                buyVolume: null,
+                confidence: 'low',
+                reasoning: `${animeData.matchedName} only has ${totalEpisodes} episodes (complete). Episode ${episodeNumber} doesn't exist.`,
+                sourceMaterial: 'Manga',
+                specialNotes: 'Invalid episode - anime complete',
+                verified: false,
+                method: 'validation_failed'
+            };
+        } else if (status === 'ongoing') {
+            return {
+                continueFromChapter: null,
+                continueFromVolume: null,
+                buyVolume: null,
+                confidence: 'low',
+                reasoning: `${animeData.matchedName} currently has ${totalEpisodes} episodes. Episode ${episodeNumber} hasn't aired yet. Check back when new episodes release!`,
+                sourceMaterial: 'Manga',
+                specialNotes: 'Episode not yet aired',
+                verified: false,
+                method: 'validation_failed'
+            };
+        }
+    }
+
     const predictedChapter = Math.round(episodeNumber * ratio.avgRatio);
-    const continueFromChapter = predictedChapter + 1; // Next chapter to read
+    const continueFromChapter = predictedChapter + 1;
     const predictedVolume = Math.round(continueFromChapter / ratio.avgChaptersPerVolume);
 
-    // Confidence based on consistency of ratio
     let confidence = 'medium';
     if (ratio.consistency > 0.9) confidence = 'high';
     else if (ratio.consistency < 0.7) confidence = 'low';
