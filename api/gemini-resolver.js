@@ -124,18 +124,32 @@ async function queryGeminiAI(anime, episode, apiKey) {
 ANIME TITLE: "${anime}"
 EPISODE NUMBER: ${episode}
 
-Provide the EXACT manga chapter and volume where episode ${episode} ends.
+CRITICAL INSTRUCTIONS:
+1. If this anime has multiple seasons, FIRST determine which season episode ${episode} belongs to
+2. ONLY provide information for THAT SPECIFIC SEASON/ARC 
+3. Do NOT provide information about other seasons
+4. Provide the EXACT manga chapter where episode ${episode} ends
+5. Tell me the NEXT chapter to start reading (chapter AFTER that episode)
 
-RESPOND IN JSON:
+Example: If asked about "Jujutsu Kaisen Episode 47":
+- Episode 47 is in Season 2 (episodes 25-47)
+- Season 2 ends at Chapter 136
+- Continue from: Chapter 137, Volume 16
+- DO NOT mention Season 1 info
+
+RESPOND IN EXACT JSON FORMAT:
 {
     "continueFromChapter": number,
     "continueFromVolume": number,
     "buyVolume": number,
     "confidence": "medium",
-    "reasoning": "Brief explanation",
+    "reasoning": "Episode ${episode} is in [Season X/Arc Y]. This episode ends at chapter Z. Continue reading from chapter W.",
     "sourceMaterial": "Manga",
-    "specialNotes": null
-}`;
+    "specialNotes": "Any important notes about this specific season" or null
+}
+
+REMEMBER: Only provide info for the season containing episode ${episode}. Never mention other seasons.`;
+
 
     const response = await fetch(
         `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${apiKey}`,
