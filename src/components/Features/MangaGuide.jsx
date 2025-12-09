@@ -4,21 +4,23 @@ import { Icon } from '@iconify/react';
 import { searchAnime } from '../../services/animeService';
 import { getMangaContinuation } from '../../services/mangaService';
 
+// ============ STYLED COMPONENTS ============
+
 const Container = styled.div`
   padding: 2rem;
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
   color: ${({ theme }) => theme.colors.text.primary};
 `;
 
 const Header = styled.div`
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
 `;
 
 const Title = styled.h1`
   font-size: 2.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   background: linear-gradient(45deg, #00d4ff, #a78bfa);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -27,13 +29,11 @@ const Title = styled.h1`
 const Subtitle = styled.p`
   color: rgba(255, 255, 255, 0.7);
   font-size: 1.1rem;
-  max-width: 600px;
-  margin: 0 auto;
 `;
 
 const SearchSection = styled.div`
   background: rgba(255, 255, 255, 0.05);
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 16px;
   margin-bottom: 2rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -41,90 +41,108 @@ const SearchSection = styled.div`
 
 const SearchInput = styled.input`
   width: 100%;
-  padding: 1rem 1.5rem;
+  padding: 1rem 1.25rem;
   background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 8px;
   color: white;
-  font-size: 1.1rem;
-  margin-bottom: 1rem;
-  transition: all 0.3s ease;
+  font-size: 1rem;
+  transition: all 0.2s ease;
 
   &:focus {
     outline: none;
     border-color: #00d4ff;
     box-shadow: 0 0 0 2px rgba(0, 212, 255, 0.2);
   }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+  }
 `;
 
 const ResultsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
 `;
 
 const AnimeCard = styled.div`
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+  border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.2s ease;
-  border: 1px solid ${({ selected }) => selected ? '#00d4ff' : 'transparent'};
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
 
   &:hover {
-    transform: translateY(-5px);
+    transform: translateY(-4px);
+    border-color: #00d4ff;
     background: rgba(255, 255, 255, 0.08);
   }
 `;
 
 const CardImage = styled.img`
   width: 100%;
-  height: 160px;
+  height: 120px;
   object-fit: cover;
 `;
 
 const CardContent = styled.div`
-  padding: 1rem;
+  padding: 0.75rem;
 `;
 
 const CardTitle = styled.h3`
-  font-size: 1rem;
-  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  margin: 0;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 `;
 
-const ConverterSection = styled.div`
-  background: rgba(0, 212, 255, 0.05);
-  padding: 2rem;
-  border-radius: 16px;
-  border: 1px solid rgba(0, 212, 255, 0.2);
-  margin-top: 2rem;
-  animation: fadeIn 0.5s ease;
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
+const CardMeta = styled.span`
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
 `;
 
-const ConverterTitle = styled.h2`
+const SelectedAnimeSection = styled.div`
+  background: linear-gradient(135deg, rgba(0, 212, 255, 0.1), rgba(167, 139, 250, 0.1));
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid rgba(0, 212, 255, 0.3);
+  margin-bottom: 1.5rem;
+`;
+
+const SelectedAnimeHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 0.8rem;
+  gap: 1rem;
   margin-bottom: 1.5rem;
+`;
+
+const SelectedImage = styled.img`
+  width: 80px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
+`;
+
+const SelectedInfo = styled.div`
+  flex: 1;
+`;
+
+const SelectedTitle = styled.h2`
+  margin: 0 0 0.25rem 0;
+  font-size: 1.3rem;
   color: #00d4ff;
 `;
 
-const ConverterForm = styled.div`
+const EpisodeForm = styled.div`
   display: flex;
   gap: 1rem;
   align-items: flex-end;
-  margin-bottom: 2rem;
 
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     flex-direction: column;
     align-items: stretch;
   }
@@ -132,19 +150,19 @@ const ConverterForm = styled.div`
 
 const FormGroup = styled.div`
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-
+  
   label {
-    font-size: 0.9rem;
+    display: block;
+    font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 0.5rem;
   }
 
   input {
-    padding: 0.8rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
     background: rgba(0, 0, 0, 0.3);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 6px;
     color: white;
     font-size: 1rem;
@@ -156,363 +174,415 @@ const FormGroup = styled.div`
   }
 `;
 
-const CalculateButton = styled.button`
-  padding: 0.8rem 2rem;
+const SubmitButton = styled.button`
+  padding: 0.75rem 2rem;
   background: linear-gradient(45deg, #00d4ff, #00a3cc);
   color: white;
   border: none;
   border-radius: 6px;
   font-weight: bold;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 
-  &:hover {
+  &:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-    transform: none;
   }
 `;
 
-const ResultBox = styled.div`
-  background: rgba(0, 0, 0, 0.3);
+const ResultCard = styled.div`
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
   padding: 1.5rem;
-  border-radius: 8px;
-  border-left: 4px solid #00d4ff;
+  border-left: 4px solid ${({ $confidence }) =>
+    $confidence === 'high' ? '#10b981' :
+      $confidence === 'medium' ? '#f59e0b' : '#ef4444'
+  };
 `;
 
-const ResultText = styled.p`
-  font-size: 1.1rem;
-  line-height: 1.6;
-  margin: 0;
-
-  strong {
-    color: #00d4ff;
-  }
-`;
-
-const Disclaimer = styled.p`
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.5);
-  margin-top: 1rem;
-  font-style: italic;
-`;
-
-const Badge = styled.span`
-  background: ${({ level }) => {
-    switch (level) {
-      case 'high': return 'rgba(16, 185, 129, 0.2)'; // Green
-      case 'medium': return 'rgba(245, 158, 11, 0.2)'; // Orange
-      case 'low': return 'rgba(239, 68, 68, 0.2)'; // Red
-      default: return 'rgba(255,255,255,0.1)';
-    }
-  }};
-  color: ${({ level }) => {
-    switch (level) {
-      case 'high': return '#34d399';
-      case 'medium': return '#fbbf24';
-      case 'low': return '#f87171';
-      default: return 'white';
-    }
-  }};
-  padding: 0.25rem 0.75rem;
+const ConfidenceBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.85rem;
   border-radius: 20px;
   font-size: 0.8rem;
   font-weight: bold;
-  border: 1px solid currentColor;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
   margin-bottom: 1rem;
+  background: ${({ $level }) =>
+    $level === 'high' ? 'rgba(16, 185, 129, 0.2)' :
+      $level === 'medium' ? 'rgba(245, 158, 11, 0.2)' : 'rgba(239, 68, 68, 0.2)'
+  };
+  color: ${({ $level }) =>
+    $level === 'high' ? '#34d399' :
+      $level === 'medium' ? '#fbbf24' : '#f87171'
+  };
+  border: 1px solid currentColor;
 `;
 
+const MainResult = styled.div`
+  display: flex;
+  gap: 2rem;
+  margin: 1.5rem 0;
+  flex-wrap: wrap;
+`;
+
+const ResultBox = styled.div`
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.2));
+  padding: 1.25rem 1.5rem;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 140px;
+`;
+
+const ResultLabel = styled.div`
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 0.35rem;
+`;
+
+const ResultValue = styled.div`
+  font-size: 2rem;
+  font-weight: bold;
+  color: #fbbf24;
+`;
+
+const ReasoningBox = styled.div`
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  border-left: 3px solid #60a5fa;
+`;
+
+const ReasoningText = styled.p`
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.5;
+  font-style: italic;
+`;
+
+const SpecialNote = styled.div`
+  background: rgba(245, 158, 11, 0.1);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #fbbf24;
+  font-size: 0.9rem;
+`;
+
+const ActionButtons = styled.div`
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+`;
+
+const ActionButton = styled.a`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  background: ${({ $primary }) => $primary
+    ? 'linear-gradient(45deg, #10b981, #059669)'
+    : 'rgba(255, 255, 255, 0.1)'
+  };
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+`;
+
+const ClearButton = styled.button`
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-top: 1rem;
+  
+  &:hover {
+    color: white;
+  }
+`;
+
+const LoadingSpinner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  color: rgba(255, 255, 255, 0.6);
+`;
+
+// ============ COMPONENT ============
+
 export const MangaGuide = () => {
-  const [query, setQuery] = useState('');
-  const [results, setResults] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const [selectedAnime, setSelectedAnime] = useState(null);
   const [episode, setEpisode] = useState('');
+  const [result, setResult] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [estimation, setEstimation] = useState(null);
-  const [mangaDetails, setMangaDetails] = useState(null);
-  const [fetchingManga, setFetchingManga] = useState(false);
+  const [searchLoading, setSearchLoading] = useState(false);
 
+  // Handle anime search
   const handleSearch = async (e) => {
-    const value = e.target.value;
-    setQuery(value);
+    const query = e.target.value;
+    setSearchQuery(query);
 
-    if (value.length > 2) {
-      setLoading(true);
-      try {
-        const data = await searchAnime(value, 1);
-        setResults(data.data.slice(0, 6));
-      } catch (error) {
-        console.error("Error searching anime:", error);
-      } finally {
-        setLoading(false);
-      }
-    } else {
-      setResults([]);
+    if (query.length < 3) {
+      setSearchResults([]);
+      return;
     }
-  };
 
-  const selectAnime = async (anime) => {
-    setSelectedAnime(anime);
-    setResults([]);
-    setQuery('');
-    setEstimation(null);
-    setEpisode('');
-    setMangaDetails(null);
-
-    // Fetch manga details immediately with MAL ID
-    setFetchingManga(true);
+    setSearchLoading(true);
     try {
-      const details = await getMangaContinuation(anime.title, anime.mal_id);
-      setMangaDetails(details);
+      const data = await searchAnime(query, 1);
+      setSearchResults(data.data?.slice(0, 8) || []);
     } catch (error) {
-      console.error("Error fetching manga details:", error);
+      console.error('Search error:', error);
     } finally {
-      setFetchingManga(false);
+      setSearchLoading(false);
     }
   };
 
-  const calculateChapter = () => {
+  // Handle anime selection
+  const handleSelectAnime = (anime) => {
+    setSelectedAnime(anime);
+    setSearchQuery('');
+    setSearchResults([]);
+    setResult(null);
+    setEpisode('');
+  };
+
+  // Handle form submission
+  const handleFindChapter = async () => {
     if (!selectedAnime || !episode) return;
 
-    const epNum = parseInt(episode);
-    if (isNaN(epNum) || epNum <= 0) return;
+    setLoading(true);
+    setResult(null);
 
-    let result = {
-      chapter: null,
-      volume: null,
-      note: '',
-      confidence: 'low' // low, medium, high
-    };
-
-    // Case 1: Exact Mappings (from API or Curated Data inside service)
-    // We check if we have a valid endChapter from the service
-    if (mangaDetails && mangaDetails.endChapter) {
-
-      // If the service returned a specific endChapter, we use that for interpolation
-      // But we need to know if this endChapter is for "Season 1" or the whole series?
-      // For now, we treat the 'endChapter' returned by service as the END of the ANIME adaptation found.
-
-      const totalAnimeEps = selectedAnime.episodes || 24; // Default if unknown
-      const startCh = parseFloat(mangaDetails.startChapter || 1);
-      const endCh = parseFloat(mangaDetails.endChapter);
-
-      let ratio = 0;
-      if (totalAnimeEps > 1) {
-        ratio = (epNum) / (totalAnimeEps);
-      } else {
-        ratio = 1;
-      }
-
-      // If looking for "what to read AFTER", we want where the episode ends.
-      // So if ratio is 1 (final ep), we are at endCh.
-      // If ratio is 0.5, we are at midpoint.
-
-      const estimatedCh = startCh + (endCh - startCh) * ratio;
-      result.chapter = Math.round(estimatedCh);
-
-      // Adjust volume if data exists
-      if (mangaDetails.startVolume && mangaDetails.endVolume) {
-        const startVol = parseFloat(mangaDetails.startVolume);
-        const endVol = parseFloat(mangaDetails.endVolume);
-        result.volume = Math.round(startVol + (endVol - startVol) * ratio);
-      } else {
-        // Rough estimate of volume (assuming ~9 chapters per volume standard)
-        result.volume = Math.ceil(result.chapter / 9);
-        result.isEstimatedVolume = true;
-      }
-
-      result.confidence = 'high';
-      result.note = "Based on data from " + (mangaDetails.source || "MangaUpdates");
-
-      if (epNum >= totalAnimeEps) {
-        result.chapter = endCh; // Cap at max
-        result.note += ". This is the anime finale.";
-      }
-
+    try {
+      const data = await getMangaContinuation(selectedAnime.title, parseInt(episode));
+      setResult(data);
+    } catch (error) {
+      console.error('Error:', error);
+      setResult({
+        chapter: null,
+        confidence: 'low',
+        reasoning: 'An error occurred while fetching data.'
+      });
+    } finally {
+      setLoading(false);
     }
-    // Case 2: Pacing Estimation (Total Chapters / Total Episodes) - The "Smart Fallback"
-    else if (mangaDetails && mangaDetails.totalChapters && selectedAnime.episodes) {
-      // We assume the anime adapts everything up to now OR we calculate a "standard pacing"
-      // Problem: Total Chapters is usually the CURRENT manga chapter (e.g. 270), not where anime ends.
-      // So we can't just divide total/total unless the anime is FULLY adapted (series finished).
+  };
 
-      // Heuristic:
-      // Standard Shonen Pacing is ~2.5 chapters per episode.
-      // Very Slow (One Piece) is ~0.8 - 1.0
-      // Fast (skipping content) is ~4.0
-
-      // We can try to guess pacing based on genre?
-      // For now, we use a conservative 2.5 multiplier.
-
-      const pacingMultiplier = 2.5;
-      const estCh = Math.ceil(epNum * pacingMultiplier);
-
-      result.chapter = estCh;
-      result.volume = Math.ceil(estCh / 9); // Estimated volume
-      result.isEstimatedVolume = true;
-      result.confidence = 'medium';
-      result.note = `Estimated ~${pacingMultiplier} chapters/episode.`;
-
-      // Sanity check: Don't exceed total published chapters
-      if (result.chapter > mangaDetails.totalChapters) {
-        result.chapter = mangaDetails.totalChapters;
-        result.note = "Caught up to latest manga release.";
-      }
-    }
-    // Case 3: Complete Guess
-    else {
-      result.chapter = `${epNum * 2} - ${epNum * 3}`;
-      result.confidence = 'low';
-      result.note = "Approximation (no manga data found).";
-    }
-
-    setEstimation(result);
+  // Clear selection
+  const handleClear = () => {
+    setSelectedAnime(null);
+    setResult(null);
+    setEpisode('');
   };
 
   return (
     <Container>
       <Header>
-        <Title>Manga Guide</Title>
+        <Title>📖 Manga Guide</Title>
         <Subtitle>
-          Find where to start reading the manga after watching the anime.
-          Select an anime and enter the episode you just watched.
+          Find exactly where to continue reading the manga after watching an anime
         </Subtitle>
       </Header>
 
-      <SearchSection>
-        <SearchInput
-          type="text"
-          placeholder="Search for an anime (e.g., Jujutsu Kaisen)..."
-          value={query}
-          onChange={handleSearch}
-        />
+      {/* Search Section */}
+      {!selectedAnime && (
+        <SearchSection>
+          <SearchInput
+            type="text"
+            placeholder="Search for an anime (e.g., Frieren, Chainsaw Man, Jujutsu Kaisen)..."
+            value={searchQuery}
+            onChange={handleSearch}
+          />
 
-        {loading && <p style={{ textAlign: 'center', color: 'rgba(255,255,255,0.5)' }}>Searching...</p>}
+          {searchLoading && (
+            <LoadingSpinner>
+              <Icon icon="eos-icons:loading" style={{ fontSize: '1.5rem' }} />
+              Searching...
+            </LoadingSpinner>
+          )}
 
-        <ResultsGrid>
-          {results.map(anime => (
-            <AnimeCard key={anime.mal_id} onClick={() => selectAnime(anime)}>
-              <CardImage src={anime.images.jpg.large_image_url} alt={anime.title} />
-              <CardContent>
-                <CardTitle>{anime.title}</CardTitle>
-                <span style={{ fontSize: '0.8rem', color: 'rgba(255,255,255,0.6)' }}>
-                  {anime.type} • {anime.year || 'N/A'}
-                </span>
-              </CardContent>
-            </AnimeCard>
-          ))}
-        </ResultsGrid>
-      </SearchSection>
+          {searchResults.length > 0 && (
+            <ResultsGrid>
+              {searchResults.map((anime) => (
+                <AnimeCard key={anime.mal_id} onClick={() => handleSelectAnime(anime)}>
+                  <CardImage
+                    src={anime.images?.jpg?.large_image_url}
+                    alt={anime.title}
+                  />
+                  <CardContent>
+                    <CardTitle>{anime.title}</CardTitle>
+                    <CardMeta>
+                      {anime.type} • {anime.episodes || '?'} eps • {anime.year || 'N/A'}
+                    </CardMeta>
+                  </CardContent>
+                </AnimeCard>
+              ))}
+            </ResultsGrid>
+          )}
+        </SearchSection>
+      )}
 
+      {/* Selected Anime + Episode Input */}
       {selectedAnime && (
-        <ConverterSection>
-          <ConverterTitle>
-            <Icon icon="bi:book-half" />
-            {selectedAnime.title}
-            {fetchingManga && <span style={{ fontSize: '0.8rem', opacity: 0.7, marginLeft: '1rem' }}>(Loading manga data...)</span>}
-          </ConverterTitle>
+        <SelectedAnimeSection>
+          <SelectedAnimeHeader>
+            <SelectedImage
+              src={selectedAnime.images?.jpg?.large_image_url}
+              alt={selectedAnime.title}
+            />
+            <SelectedInfo>
+              <SelectedTitle>{selectedAnime.title}</SelectedTitle>
+              <CardMeta>
+                {selectedAnime.type} • {selectedAnime.episodes || '?'} episodes • {selectedAnime.year || ''}
+              </CardMeta>
+            </SelectedInfo>
+          </SelectedAnimeHeader>
 
-          <ConverterForm>
+          <EpisodeForm>
             <FormGroup>
-              <label>Last Episode Watched</label>
+              <label>What episode did you watch up to?</label>
               <input
                 type="number"
                 placeholder={`1 - ${selectedAnime.episodes || '?'}`}
                 value={episode}
                 onChange={(e) => setEpisode(e.target.value)}
                 min="1"
+                max={selectedAnime.episodes || 9999}
               />
             </FormGroup>
+            <SubmitButton onClick={handleFindChapter} disabled={!episode || loading}>
+              {loading ? (
+                <>
+                  <Icon icon="eos-icons:loading" />
+                  Finding...
+                </>
+              ) : (
+                <>
+                  <Icon icon="bi:search" />
+                  Find Chapter
+                </>
+              )}
+            </SubmitButton>
+          </EpisodeForm>
 
-            <CalculateButton onClick={calculateChapter} disabled={!episode || fetchingManga}>
-              Find Chapter
-            </CalculateButton>
-          </ConverterForm>
+          <ClearButton onClick={handleClear}>
+            ← Choose a different anime
+          </ClearButton>
+        </SelectedAnimeSection>
+      )}
 
-          {estimation && (
-            <ResultBox>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Badge level={estimation.confidence}>
-                  <Icon icon={estimation.confidence === 'high' ? "bi:check-circle-fill" : "bi:exclamation-triangle-fill"} />
-                  {estimation.confidence === 'high' ? 'Verified Source' : estimation.confidence === 'medium' ? 'Smart Estimate' : 'Rough Estimate'}
-                </Badge>
-              </div>
+      {/* Results */}
+      {result && (
+        <ResultCard $confidence={result.confidence}>
+          <ConfidenceBadge $level={result.confidence}>
+            <Icon icon={
+              result.confidence === 'high' ? 'bi:check-circle-fill' :
+                result.confidence === 'medium' ? 'bi:exclamation-circle-fill' :
+                  'bi:question-circle-fill'
+            } />
+            {result.confidence === 'high' ? 'Verified Data' :
+              result.confidence === 'medium' ? 'Estimated' :
+                'Approximate'}
+          </ConfidenceBadge>
 
-              <ResultText>
-                After Episode <strong>{episode}</strong>, you should continue with:
-                <br /><br />
-                <span style={{ fontSize: '1.5rem', color: '#fbbf24', display: 'block', marginBottom: '1rem' }}>
-                  Start reading at <strong>Chapter {estimation.chapter}</strong>
-                </span>
-
-                {estimation.volume && (
-                  <div style={{ padding: '1rem', background: 'rgba(255,255,255,0.1)', borderRadius: '8px', border: '1px solid #fbbf24' }}>
-                    <Icon icon="bi:archive" style={{ marginRight: '0.5rem', color: '#fbbf24' }} />
-                    <strong>Buy {estimation.isEstimatedVolume ? 'Estimated ' : ''}Volume {estimation.volume}</strong>
-                  </div>
+          {result.chapter ? (
+            <>
+              <MainResult>
+                <ResultBox>
+                  <ResultLabel>Continue from</ResultLabel>
+                  <ResultValue>Ch. {result.chapter}</ResultValue>
+                </ResultBox>
+                {result.volume && (
+                  <ResultBox>
+                    <ResultLabel>In Volume</ResultLabel>
+                    <ResultValue>Vol. {result.volume}</ResultValue>
+                  </ResultBox>
                 )}
-              </ResultText>
+                {result.buyVolume && (
+                  <ResultBox>
+                    <ResultLabel>Buy</ResultLabel>
+                    <ResultValue>Vol. {result.buyVolume}</ResultValue>
+                  </ResultBox>
+                )}
+              </MainResult>
 
-              {estimation.note && (
-                <p style={{ marginTop: '1rem', color: 'rgba(255,255,255,0.7)', fontStyle: 'italic' }}>{estimation.note}</p>
+              {result.reasoning && (
+                <ReasoningBox>
+                  <ReasoningText>"{result.reasoning}"</ReasoningText>
+                </ReasoningBox>
               )}
 
-              {mangaDetails && (
-                <div style={{ marginTop: '1.5rem', display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                  <a
-                    href={`https://google.com/search?q=buy+${encodeURIComponent(mangaDetails.mangaTitle || selectedAnime.title)}+manga+volume+${estimation.volume || 1}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      color: '#00d4ff',
-                      textDecoration: 'none',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '0.5rem',
-                      fontWeight: 'bold',
-                      background: 'rgba(0, 212, 255, 0.1)',
-                      padding: '0.5rem 1rem',
-                      borderRadius: '8px'
-                    }}
-                  >
-                    <Icon icon="bi:cart-fill" /> Find Volume {estimation.volume || '1'}
-                  </a>
-                  {mangaDetails.mangaUrl && (
-                    <a
-                      href={mangaDetails.mangaUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        color: '#a78bfa',
-                        textDecoration: 'none',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: '0.5rem',
-                        fontWeight: 'bold'
-                      }}
-                    >
-                      <Icon icon="bi:info-circle" /> Manga Info
-                    </a>
-                  )}
-                </div>
+              {result.specialNotes && (
+                <SpecialNote>
+                  <Icon icon="bi:info-circle-fill" />
+                  {result.specialNotes}
+                </SpecialNote>
               )}
-            </ResultBox>
+
+              <ActionButtons>
+                <ActionButton
+                  $primary
+                  href={`https://www.google.com/search?q=buy+${encodeURIComponent(selectedAnime.title)}+manga+volume+${result.buyVolume || result.volume || 1}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon icon="bi:cart-fill" />
+                  Find Volume {result.buyVolume || result.volume || 1} to Buy
+                </ActionButton>
+                <ActionButton
+                  href={`https://www.google.com/search?q=read+${encodeURIComponent(selectedAnime.title)}+manga+chapter+${result.chapter}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Icon icon="bi:book" />
+                  Find Where to Read
+                </ActionButton>
+              </ActionButtons>
+            </>
+          ) : (
+            <ReasoningBox>
+              <ReasoningText>{result.reasoning}</ReasoningText>
+            </ReasoningBox>
           )}
 
-          <Disclaimer>
-            * {estimation?.confidence === 'high'
-              ? 'Data sourced from verified databases (AniList/MangaUpdates).'
-              : 'Estimation calculated based on average pacing and total chapters.'}
-          </Disclaimer>
-        </ConverterSection>
+          {result.sourceMaterial && result.sourceMaterial !== 'Manga' && (
+            <SpecialNote>
+              <Icon icon="bi:lightbulb-fill" />
+              Source: {result.sourceMaterial}
+            </SpecialNote>
+          )}
+        </ResultCard>
       )}
     </Container>
   );

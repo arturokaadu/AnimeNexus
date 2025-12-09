@@ -1,0 +1,468 @@
+[
+  {
+    "anime": "One Piece",
+    "success": 1107,
+    "chapter": 1107,
+    "volume": 108,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "1007ms"
+  },
+  {
+    "anime": "Naruto",
+    "success": 238,
+    "chapter": 238,
+    "volume": 27,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "703ms"
+  },
+  {
+    "anime": "Bleach",
+    "success": 479,
+    "chapter": 479,
+    "volume": 54,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "775ms"
+  },
+  {
+    "anime": "Dragon Ball",
+    "success": 194,
+    "chapter": 194,
+    "volume": 16,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "641ms"
+  },
+  {
+    "anime": "Hunter x Hunter",
+    "success": 2,
+    "chapter": 2,
+    "volume": 1,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "719ms"
+  },
+  {
+    "anime": "Jujutsu Kaisen",
+    "success": 63,
+    "chapter": 63,
+    "volume": 8,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "566ms"
+  },
+  {
+    "anime": "Demon Slayer",
+    "success": 54,
+    "chapter": 54,
+    "volume": 7,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "705ms"
+  },
+  {
+    "anime": "My Hero Academia",
+    "success": 21,
+    "chapter": 21,
+    "volume": 3,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "817ms"
+  },
+  {
+    "anime": "Black Clover",
+    "success": 270,
+    "chapter": 270,
+    "volume": 27,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "642ms"
+  },
+  {
+    "anime": "Chainsaw Man",
+    "success": 38,
+    "chapter": 38,
+    "volume": 5,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "1140ms"
+  },
+  {
+    "anime": "Attack on Titan",
+    "success": 34,
+    "chapter": 34,
+    "volume": 8,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "1014ms"
+  },
+  {
+    "anime": "Fullmetal Alchemist",
+    "success": 29,
+    "chapter": 29,
+    "volume": 7,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "1871ms"
+  },
+  {
+    "anime": "Fairy Tail",
+    "success": 298,
+    "chapter": 298,
+    "volume": 35,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "982ms"
+  },
+  {
+    "anime": "Re:Zero",
+    "success": 5,
+    "chapter": 5,
+    "volume": 9,
+    "source": "Verified Light Novel Database",
+    "confidence": "verified",
+    "time": "256ms"
+  },
+  {
+    "anime": "Mushoku Tensei",
+    "success": true,
+    "chapter": null,
+    "volume": 6,
+    "source": "Verified Light Novel Database",
+    "confidence": "verified",
+    "time": "394ms"
+  },
+  {
+    "anime": "Sword Art Online",
+    "success": true,
+    "chapter": null,
+    "volume": 4,
+    "source": "Verified Light Novel Database",
+    "confidence": "verified",
+    "time": "392ms"
+  },
+  {
+    "anime": "Overlord",
+    "success": true,
+    "chapter": null,
+    "volume": 3,
+    "source": "Verified Light Novel Database",
+    "confidence": "verified",
+    "time": "251ms"
+  },
+  {
+    "anime": "No Game No Life",
+    "success": true,
+    "chapter": null,
+    "volume": 3,
+    "source": "Verified Light Novel Database",
+    "confidence": "verified",
+    "time": "254ms"
+  },
+  {
+    "anime": "Konosuba",
+    "success": true,
+    "chapter": null,
+    "volume": 4,
+    "source": "Verified Light Novel Database",
+    "confidence": "verified",
+    "time": "263ms"
+  },
+  {
+    "anime": "The Rising of the Shield Hero",
+    "success": true,
+    "chapter": null,
+    "volume": 5,
+    "source": "Verified Light Novel Database",
+    "confidence": "verified",
+    "time": "413ms"
+  },
+  {
+    "anime": "That Time I Got Reincarnated as a Slime",
+    "success": true,
+    "chapter": null,
+    "volume": 4,
+    "source": "Verified Light Novel Database",
+    "confidence": "verified",
+    "time": "258ms"
+  },
+  {
+    "anime": "Apothecary Diaries",
+    "success": true,
+    "chapter": null,
+    "volume": 4,
+    "source": "Verified Light Novel Database",
+    "confidence": "verified",
+    "time": "258ms"
+  },
+  {
+    "anime": "Classroom of the Elite",
+    "success": true,
+    "chapter": null,
+    "volume": 4,
+    "source": "Verified Light Novel Database",
+    "confidence": "verified",
+    "time": "248ms"
+  },
+  {
+    "anime": "86",
+    "success": true,
+    "chapter": null,
+    "volume": 3,
+    "source": "Verified Light Novel Database",
+    "confidence": "verified",
+    "time": "255ms"
+  },
+  {
+    "anime": "Goblin Slayer",
+    "success": true,
+    "chapter": null,
+    "volume": 2,
+    "source": "Verified Light Novel Database",
+    "confidence": "verified",
+    "time": "252ms"
+  },
+  {
+    "anime": "Berserk",
+    "success": 87,
+    "chapter": 87,
+    "volume": 13,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "695ms"
+  },
+  {
+    "anime": "Vinland Saga",
+    "success": 54,
+    "chapter": 54,
+    "volume": 8,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "1587ms"
+  },
+  {
+    "anime": "Vagabond",
+    "success": 151,
+    "chapter": 151,
+    "volume": 18,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "1213ms"
+  },
+  {
+    "anime": "Monster",
+    "success": 162,
+    "chapter": 162,
+    "volume": 18,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "664ms"
+  },
+  {
+    "anime": "Pluto",
+    "success": 65,
+    "chapter": 65,
+    "volume": 8,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "516ms"
+  },
+  {
+    "anime": "Haikyuu",
+    "success": 71,
+    "chapter": 71,
+    "volume": 8,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "594ms"
+  },
+  {
+    "anime": "Blue Lock",
+    "success": 94,
+    "chapter": 94,
+    "volume": 11,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "756ms"
+  },
+  {
+    "anime": "Kuroko no Basket",
+    "success": 74,
+    "chapter": 74,
+    "volume": 9,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "873ms"
+  },
+  {
+    "anime": "Slam Dunk",
+    "success": 197,
+    "chapter": 197,
+    "volume": 22,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "709ms"
+  },
+  {
+    "anime": "Oshi no Ko",
+    "success": 40,
+    "chapter": 40,
+    "volume": 4,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "700ms"
+  },
+  {
+    "anime": "Kaguya-sama",
+    "success": 46,
+    "chapter": 46,
+    "volume": 5,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "3087ms"
+  },
+  {
+    "anime": "Spy x Family",
+    "success": 38,
+    "chapter": 38,
+    "volume": 7,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "660ms"
+  },
+  {
+    "anime": "Dr. Stone",
+    "success": 60,
+    "chapter": 60,
+    "volume": 7,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "766ms"
+  },
+  {
+    "anime": "Tokyo Ghoul",
+    "success": 66,
+    "chapter": 66,
+    "volume": 7,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "703ms"
+  },
+  {
+    "anime": "One Punch Man",
+    "success": 36,
+    "chapter": 36,
+    "volume": 8,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "617ms"
+  },
+  {
+    "anime": "Mob Psycho 100",
+    "success": 50,
+    "chapter": 50,
+    "volume": 6,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "731ms"
+  },
+  {
+    "anime": "Death Note",
+    "success": 107,
+    "chapter": 107,
+    "volume": 12,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "799ms"
+  },
+  {
+    "anime": "Code Geass",
+    "chapter": null,
+    "volume": null,
+    "source": "Manual Search Required",
+    "confidence": "none",
+    "time": "5653ms"
+  },
+  {
+    "anime": "Steins;Gate",
+    "success": 23,
+    "chapter": 23,
+    "volume": 3,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "789ms"
+  },
+  {
+    "anime": "Cowboy Bebop",
+    "chapter": null,
+    "volume": null,
+    "source": "Manual Search Required",
+    "confidence": "none",
+    "time": "4912ms"
+  },
+  {
+    "anime": "Neon Genesis Evangelion",
+    "success": 74,
+    "chapter": 74,
+    "volume": 11,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "896ms"
+  },
+  {
+    "anime": "Gurren Lagann",
+    "success": 65,
+    "chapter": 65,
+    "volume": 10,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "1012ms"
+  },
+  {
+    "anime": "Akame ga Kill",
+    "success": 38,
+    "chapter": 38,
+    "volume": 8,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "1038ms"
+  },
+  {
+    "anime": "Noragami",
+    "success": 12,
+    "chapter": 12,
+    "volume": 4,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "644ms"
+  },
+  {
+    "anime": "Soul Eater",
+    "success": 37,
+    "chapter": 37,
+    "volume": 10,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "773ms"
+  },
+  {
+    "anime": "Fire Force",
+    "success": 90,
+    "chapter": 90,
+    "volume": 11,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "646ms"
+  },
+  {
+    "anime": "Tokyo Revengers",
+    "success": 73,
+    "chapter": 73,
+    "volume": 9,
+    "source": "MangaUpdates Database",
+    "confidence": "verified",
+    "time": "814ms"
+  }
+]

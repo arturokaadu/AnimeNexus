@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Icon } from '@iconify/react';
-import { getMangaContinuationWithFallback } from '../../services/mangaService';
+import { getMangaContinuation } from '../../services/mangaService';
 
 const Container = styled.div`
     margin-top: 2rem;
@@ -39,158 +39,195 @@ const Content = styled.div`
     display: ${({ $expanded }) => $expanded ? 'block' : 'none'};
 `;
 
-const InfoCard = styled.div`
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    padding: 1.5rem;
+const EpisodeForm = styled.div`
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 1.5rem;
     flex-wrap: wrap;
+`;
 
-    @media (max-width: 600px) {
-        flex-direction: column;
+const FormGroup = styled.div`
+    flex: 1;
+    min-width: 150px;
+    
+    label {
+        display: block;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+        margin-bottom: 0.5rem;
+    }
+
+    input {
+        width: 100%;
+        padding: 0.6rem 0.8rem;
+        background: rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 6px;
+        color: white;
+        font-size: 1rem;
+
+        &:focus {
+            outline: none;
+            border-color: #a78bfa;
+        }
     }
 `;
 
-const ContinuationBox = styled.div`
-    flex: 1;
-    min-width: 200px;
-    text-align: center;
-    padding: 1rem;
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(59, 130, 246, 0.3));
-    border-radius: 8px;
-`;
-
-const ChapterNumber = styled.div`
-    font-size: 3rem;
+const SubmitButton = styled.button`
+    padding: 0.6rem 1.5rem;
+    background: linear-gradient(45deg, #8b5cf6, #6366f1);
+    color: white;
+    border: none;
+    border-radius: 6px;
     font-weight: bold;
-    color: #a78bfa;
-    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
 `;
 
-const ChapterLabel = styled.div`
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    margin-top: 0.5rem;
-`;
-
-const VolumeInfo = styled.div`
-    font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.5);
-    margin-top: 0.25rem;
-`;
-
-const MangaInfo = styled.div`
-    flex: 2;
-    min-width: 250px;
-`;
-
-const MangaTitle = styled.h4`
-    margin: 0 0 0.5rem 0;
-    color: #fff;
-    font-size: 1.1rem;
-`;
-
-const StatusBadge = styled.span`
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    background: ${({ $status }) =>
-        $status === 'Ongoing' ? 'rgba(16, 185, 129, 0.3)' :
-            $status === 'Complete' ? 'rgba(59, 130, 246, 0.3)' :
-                'rgba(255, 255, 255, 0.1)'
+const ResultCard = styled.div`
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1.25rem;
+    border-left: 4px solid ${({ $confidence }) =>
+        $confidence === 'high' ? '#10b981' :
+            $confidence === 'medium' ? '#f59e0b' : '#ef4444'
     };
-    color: ${({ $status }) =>
-        $status === 'Ongoing' ? '#10b981' :
-            $status === 'Complete' ? '#3b82f6' :
-                'rgba(255, 255, 255, 0.7)'
-    };
-    margin-left: 0.5rem;
 `;
 
 const ConfidenceBadge = styled.span`
-    display: inline-block;
-    padding: 0.35rem 0.85rem;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: bold;
-    background: ${({ $confidence }) =>
-        $confidence === 'high' ? 'rgba(16, 185, 129, 0.2)' :
-            $confidence === 'medium' ? 'rgba(245, 158, 11, 0.2)' :
-                'rgba(239, 68, 68, 0.2)'
-    };
-    color: ${({ $confidence }) =>
-        $confidence === 'high' ? '#34d399' :
-            $confidence === 'medium' ? '#fbbf24' :
-                '#f87171'
-    };
-    border: 1px solid currentColor;
-    margin-bottom: 1rem;
-`;
-
-const Description = styled.p`
-    font-size: 0.9rem;
-    color: rgba(255, 255, 255, 0.7);
-    line-height: 1.6;
-    margin: 0.75rem 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-`;
-
-const ReadButton = styled.a`
     display: inline-flex;
     align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    background: ${({ $level }) =>
+        $level === 'high' ? 'rgba(16, 185, 129, 0.2)' :
+            $level === 'medium' ? 'rgba(245, 158, 11, 0.2)' : 'rgba(239, 68, 68, 0.2)'
+    };
+    color: ${({ $level }) =>
+        $level === 'high' ? '#34d399' :
+            $level === 'medium' ? '#fbbf24' : '#f87171'
+    };
+    border: 1px solid currentColor;
+`;
+
+const ResultGrid = styled.div`
+    display: flex;
+    gap: 1.5rem;
+    margin: 1rem 0;
+    flex-wrap: wrap;
+`;
+
+const ResultBox = styled.div`
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(59, 130, 246, 0.25));
+    padding: 1rem 1.25rem;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 100px;
+`;
+
+const ResultLabel = styled.div`
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 0.25rem;
+`;
+
+const ResultValue = styled.div`
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #a78bfa;
+`;
+
+const Reasoning = styled.p`
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.5;
+    margin: 0.75rem 0;
+    font-style: italic;
+`;
+
+const SpecialNote = styled.div`
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    margin-top: 0.75rem;
+    display: flex;
+    align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
+    color: #fbbf24;
+    font-size: 0.85rem;
+`;
+
+const ActionLink = styled.a`
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
     background: linear-gradient(135deg, #8b5cf6, #3b82f6);
     color: white;
     text-decoration: none;
-    border-radius: 8px;
-    font-weight: bold;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 0.85rem;
     margin-top: 1rem;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: all 0.2s;
 
     &:hover {
         transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+        box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
     }
 `;
 
 const LoadingState = styled.div`
     text-align: center;
-    padding: 2rem;
-    color: rgba(255, 255, 255, 0.5);
-`;
-
-const NoDataState = styled.div`
-    text-align: center;
-    padding: 2rem;
+    padding: 1.5rem;
     color: rgba(255, 255, 255, 0.5);
 `;
 
 export const MangaGuide = ({ animeId, animeTitle }) => {
     const [expanded, setExpanded] = useState(false);
+    const [episode, setEpisode] = useState('');
     const [loading, setLoading] = useState(false);
-    const [mangaData, setMangaData] = useState(null);
-    const [hasFetched, setHasFetched] = useState(false);
+    const [result, setResult] = useState(null);
 
-    // Fetch data when expanded for the first time
-    useEffect(() => {
-        if (expanded && !hasFetched) {
-            setLoading(true);
-            setHasFetched(true);
-            getMangaContinuationWithFallback(animeId, animeTitle)
-                .then(data => {
-                    setMangaData(data);
-                })
-                .catch(console.error)
-                .finally(() => setLoading(false));
+    const handleSubmit = async () => {
+        if (!episode || !animeTitle) return;
+
+        setLoading(true);
+        setResult(null);
+
+        try {
+            const data = await getMangaContinuation(animeTitle, parseInt(episode));
+            setResult(data);
+        } catch (error) {
+            console.error('Error:', error);
+            setResult({
+                chapter: null,
+                confidence: 'low',
+                reasoning: 'Failed to fetch data.'
+            });
+        } finally {
+            setLoading(false);
         }
-    }, [expanded, hasFetched, animeId, animeTitle]);
+    };
 
     return (
         <Container>
@@ -203,78 +240,96 @@ export const MangaGuide = ({ animeId, animeTitle }) => {
             </Header>
 
             <Content $expanded={expanded}>
+                <EpisodeForm>
+                    <FormGroup>
+                        <label>Last episode you watched:</label>
+                        <input
+                            type="number"
+                            placeholder="e.g., 12"
+                            value={episode}
+                            onChange={(e) => setEpisode(e.target.value)}
+                            min="1"
+                        />
+                    </FormGroup>
+                    <SubmitButton onClick={handleSubmit} disabled={!episode || loading}>
+                        {loading ? (
+                            <>
+                                <Icon icon="eos-icons:loading" />
+                                Finding...
+                            </>
+                        ) : (
+                            <>
+                                <Icon icon="bi:search" />
+                                Find Chapter
+                            </>
+                        )}
+                    </SubmitButton>
+                </EpisodeForm>
+
                 {loading && (
                     <LoadingState>
-                        <Icon icon="eos-icons:loading" style={{ fontSize: '2rem' }} />
-                        <p>Searching manga database...</p>
+                        <Icon icon="eos-icons:loading" style={{ fontSize: '1.5rem' }} />
+                        <p>Asking AI for manga data...</p>
                     </LoadingState>
                 )}
 
-                {!loading && mangaData && mangaData.method === 'NotFound' && (
-                    <NoDataState>
-                        <Icon icon="bi:question-circle" style={{ fontSize: '2rem', marginBottom: '0.5rem' }} />
-                        <p>{mangaData.suggestion || "No manga continuation data found for this anime."}</p>
-                        <p style={{ fontSize: '0.85rem' }}>
-                            Try searching manually on{' '}
-                            <a href="https://www.mangaupdates.com" target="_blank" rel="noopener noreferrer" style={{ color: '#a78bfa' }}>
-                                MangaUpdates
-                            </a>
-                        </p>
-                    </NoDataState>
-                )}
+                {result && !loading && (
+                    <ResultCard $confidence={result.confidence}>
+                        <ConfidenceBadge $level={result.confidence}>
+                            <Icon icon={
+                                result.confidence === 'high' ? 'bi:check-circle-fill' :
+                                    result.confidence === 'medium' ? 'bi:exclamation-circle-fill' :
+                                        'bi:question-circle-fill'
+                            } />
+                            {result.confidence === 'high' ? 'Verified' :
+                                result.confidence === 'medium' ? 'Estimated' : 'Approximate'}
+                        </ConfidenceBadge>
 
-                {!loading && mangaData && mangaData.method !== 'NotFound' && (
-                    <InfoCard>
-                        <ContinuationBox>
-                            <ChapterLabel>Continue from</ChapterLabel>
-                            <ChapterNumber>Ch. {mangaData.endChapter || '?'}</ChapterNumber>
-                            {mangaData.endVolume && (
-                                <VolumeInfo>Volume {mangaData.endVolume}</VolumeInfo>
-                            )}
-                            {mangaData.confidence && (
-                                <ConfidenceBadge $confidence={mangaData.confidence}>
-                                    {mangaData.confidence === 'high' ? '✓ Verified' :
-                                        mangaData.confidence === 'medium' ? '~ Estimated' :
-                                            '? Approximation'}
-                                </ConfidenceBadge>
-                            )}
-                        </ContinuationBox>
+                        {result.chapter ? (
+                            <>
+                                <ResultGrid>
+                                    <ResultBox>
+                                        <ResultLabel>Continue from</ResultLabel>
+                                        <ResultValue>Ch. {result.chapter}</ResultValue>
+                                    </ResultBox>
+                                    {result.volume && (
+                                        <ResultBox>
+                                            <ResultLabel>Volume</ResultLabel>
+                                            <ResultValue>{result.volume}</ResultValue>
+                                        </ResultBox>
+                                    )}
+                                    {result.buyVolume && (
+                                        <ResultBox>
+                                            <ResultLabel>Buy</ResultLabel>
+                                            <ResultValue>Vol. {result.buyVolume}</ResultValue>
+                                        </ResultBox>
+                                    )}
+                                </ResultGrid>
 
-                        <MangaInfo>
-                            <MangaTitle>
-                                {mangaData.mangaTitle}
-                                {mangaData.status && (
-                                    <StatusBadge $status={mangaData.status}>
-                                        {mangaData.status}
-                                    </StatusBadge>
+                                {result.reasoning && (
+                                    <Reasoning>"{result.reasoning}"</Reasoning>
                                 )}
-                            </MangaTitle>
 
-                            {mangaData.description && (
-                                <Description>{mangaData.description}</Description>
-                            )}
+                                {result.specialNotes && (
+                                    <SpecialNote>
+                                        <Icon icon="bi:info-circle-fill" />
+                                        {result.specialNotes}
+                                    </SpecialNote>
+                                )}
 
-                            {mangaData.totalChapters && (
-                                <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.5)' }}>
-                                    Total chapters available: {mangaData.totalChapters}+
-                                </p>
-                            )}
-
-                            {mangaData.source && (
-                                <p style={{ fontSize: '0.75rem', color: 'rgba(255,255,255,0.4)', fontStyle: 'italic', marginTop: '0.5rem' }}>
-                                    Data source: {mangaData.source}
-                                </p>
-                            )}
-
-                            <ReadButton
-                                href={`https://www.google.com/search?q=read+${encodeURIComponent(mangaData.mangaTitle)}+manga+chapter+${mangaData.endChapter || 1}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <Icon icon="bi:search" /> Find Where to Read
-                            </ReadButton>
-                        </MangaInfo>
-                    </InfoCard>
+                                <ActionLink
+                                    href={`https://www.google.com/search?q=buy+${encodeURIComponent(animeTitle)}+manga+volume+${result.buyVolume || result.volume || 1}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <Icon icon="bi:cart-fill" />
+                                    Find Volume {result.buyVolume || result.volume || 1}
+                                </ActionLink>
+                            </>
+                        ) : (
+                            <Reasoning>{result.reasoning}</Reasoning>
+                        )}
+                    </ResultCard>
                 )}
             </Content>
         </Container>
