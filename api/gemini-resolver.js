@@ -26,60 +26,62 @@ export default async function handler(req, res) {
     try {
         console.log(`[Gemini API] Query: "${anime}" Episode ${episode}`);
 
-        const prompt = `You are an expert on anime-to-manga chapter mapping. Your job is to tell the user EXACTLY which manga chapter and volume to continue reading after watching a specific anime episode.
+        const prompt = `You are an EXPERT on anime-to-manga chapter mapping. Users RELY on your accuracy to avoid missing or repeating content.
 
 ANIME TITLE: "${anime}"
-EPISODE WATCHED: ${episode}
+EPISODE NUMBER: ${episode}
 
-YOUR TASK:
-1. Identify which manga chapter corresponds to episode ${episode} of "${anime}"
-2. Tell me the NEXT chapter to read (the one AFTER what the anime covered)
-3. Tell me which VOLUME contains that chapter
-4. Recommend which volume to buy
+CRITICAL TASK:
+1. FIRST: Determine if this anime has multiple seasons
+2. THEN: Figure out which season/arc episode ${episode} belongs to based on TOTAL episode count
+3. Find the EXACT manga chapter where that episode ends
+4. Tell me the NEXT chapter to read (chapter AFTER the anime covered)
+5. Tell me the EXACT VOLUME number for that chapter
+6. Recommend which volume to purchase
 
-VERIFIED REFERENCE DATA (use as calibration):
-- Frieren: Beyond Journey's End (28 eps) ends at Chapter 60 → Continue from Ch 61, Volume 7
-- Chainsaw Man Part 1 (12 eps) ends at Chapter 38 → Continue from Ch 39, Volume 5
-- Jujutsu Kaisen S1 (24 eps) ends at Chapter 63 → Continue from Ch 64, Volume 8
-- Jujutsu Kaisen S2 (23 eps, total 47 eps) ends at Chapter 136 → Continue from Ch 137, Volume 16
-- Attack on Titan S1 (25 eps) ends at Chapter 33 → Continue from Ch 34, Volume 9
-- Attack on Titan FULL (87 eps) ends at Chapter 139 (manga complete)
-- Demon Slayer S1 (26 eps) ends at Chapter 53 → Continue from Ch 54, Volume 7
-- Demon Slayer FULL (55 eps + movies) covers entire manga to Ch 205
-- My Hero Academia S7 (~153 total eps) ends at Chapter 423 (manga complete)
-- Spy x Family S1 (25 eps) ends at Chapter 38 → Continue from Ch 39, Volume 7
-- Vinland Saga S1 (24 eps) ends at Chapter 54 → Continue from Ch 55, Volume 8
-- Vinland Saga S2 (24 eps, total 48 eps) ends at Chapter 99 → Continue from Ch 100, Volume 14
-- One Punch Man S1 (12 eps) ends at Chapter 37 → Continue from Ch 38, Volume 8
-- One Punch Man S2 (12 eps, total 24 eps) ends at Chapter 84 → Continue from Ch 85, Volume 17
-- Blue Lock (24 eps) ends at Chapter 108 → Continue from Ch 109, Volume 13
-- Solo Leveling S1 (12 eps) ends at Chapter 45 → Continue from Ch 46
-- Tokyo Revengers S1 (24 eps) ends at Chapter 73 → Continue from Ch 74, Volume 9
-- Naruto (220 eps) ends at Chapter 238 → Continue from Ch 239 or start Shippuden
-- Naruto Shippuden (500 eps) ends at Chapter 700 (manga complete)
-- One Piece (1000+ eps) - approximately 2 chapters per episode
-- Dragon Ball Z (291 eps) covers entire manga from Ch 195-519
-- Bleach TYBW (26 eps S1) starts at Chapter 480
-- Death Note (37 eps) covers entire manga (108 chapters)
-- Fullmetal Alchemist Brotherhood (64 eps) covers entire manga (108 chapters)
-- Hunter x Hunter 2011 (148 eps) ends at Chapter 339 → Continue from Ch 340
+VERIFIED REFERENCE DATA - USE THESE AS TRUTH:
+- Jujutsu Kaisen S1 (eps 1-24) ends at Ch 63 → Continue from Ch 64, Vol 8
+- Jujutsu Kaisen S2 (eps 25-47 total) ends at Ch 136 → Continue from Ch 137, Vol 16
+- Chainsaw Man (12 eps) ends at Ch 38 → Continue from Ch 39, Vol 5
+- Frieren (28 eps) ends at Ch 60 → Continue from Ch 61, Vol 7
+- My Hero Academia S1 (13 eps) → Ch 21, Vol 3
+- My Hero Academia S2 (eps 14-38 total) → Ch 70, Vol 8
+- My Hero Academia S3 (eps 39-63 total) → Ch 124, Vol 14
+- My Hero Academia S4 (eps 64-88 total) → Ch 190, Vol 21
+- My Hero Academia S5 (eps 89-113 total) → Ch 257, Vol 27
+- My Hero Academia S6 (eps 114-138 total) → Ch 328, Vol 33
+- My Hero Academia S7 (eps 139-163+ total) → Ch 423, Vol 42 (FINAL)
+- Attack on Titan S1 (25 eps) → Ch 33, Vol 9
+- Attack on Titan FULL (87 eps total) → Ch 139 (complete)
+- Demon Slayer S1 (26 eps) → Ch 53, Vol 7
+- Demon Slayer FULL (~55 eps + movies) → Ch 205 (complete)
+- Spy x Family S1 (25 eps) → Ch 38, Vol 7
+- Vinland Saga S1 (24 eps) → Ch 54, Vol 8
+- Vinland Saga S2 (eps 25-48 total) → Ch 99, Vol 14
+- One Punch Man S1 (12 eps) → Ch 37, Vol 8
+- One Punch Man  S2 (eps 13-24 total) → Ch 84, Vol 17
+- Blue Lock (24 eps) → Ch 108, Vol 13
+- Solo Leveling S1 (12 eps) → Ch 45
+- Tokyo Revengers S1 (24 eps) → Ch 73, Vol 9
 
-IMPORTANT RULES:
-1. For episodes in-between seasons, calculate proportionally using ~2-3 chapters per episode
-2. If the anime is ORIGINAL (no manga source, like Cowboy Bebop, Code Geass, Steins;Gate), say so clearly
-3. If based on a Light Novel (like Sword Art Online, Re:Zero, Konosuba), indicate it's a Light Novel, not manga
-4. If the anime FULLY adapted the manga, mention that no continuation is needed
-5. BE PRECISE - users rely on this to not miss or repeat content
+CRITICAL RULES:
+1. **SEASON DETECTION**: If user says "episode 47" for Jujutsu Kaisen, that means S2 final → Vol 16, NOT S1
+2. **EPISODE COUNTING**: Episode numbers continue across seasons (ep 25 = S2 ep 1 for most anime)
+3. **SPIN-OFFS**: My Hero Academia Vigilantes is DIFFERENT from My Hero Academia - don't confuse them
+4. **LIGHT NOVELS**: SAO, Re:Zero, Konosuba, etc. are Light Novels, NOT manga
+5. **ORIGINALS**: Cowboy Bebop, Code Geass have NO manga source
+6. **ACCURACY**: Double-check your volume numbers - this is CRITICAL
+7. **If UNCERTAIN** about season: Provide answer for MOST LIKELY season based on episode count
 
-RESPOND ONLY IN THIS JSON FORMAT:
+RESPOND IN THIS EXACT JSON FORMAT:
 {
     "continueFromChapter": number or null,
     "continueFromVolume": number or null,
     "buyVolume": number or null,
     "confidence": "high" | "medium" | "low",
-    "reasoning": "Episode ${episode} of ${anime} covers up to manga chapter X. Continue reading from chapter Y, which is in Volume Z.",
+    "reasoning": "Episode ${episode} of ${anime} is in [Season X]. This covers up to manga chapter Y. Continue reading from chapter Z, which is in Volume W.",
     "sourceMaterial": "Manga" | "Light Novel" | "Web Novel" | "Original" | "Visual Novel",
-    "specialNotes": "Any special notes about movies, OVAs, or if the anime is complete" or null
+    "specialNotes": "Important context: season info, movies, OVAs, or if anime is complete" or null
 }`;
 
         const response = await fetch(

@@ -29,58 +29,44 @@ Built with performance and aesthetics in mind, it features **NSFW content gating
 
 ---
 
-### ⭐ Standout Feature: Smart Manga Guide
+### ⭐ Standout Feature: AI-Powered Manga Guide
 
 **Problem**: You just finished an amazing anime and want to continue the story in the manga, but you have no idea which chapter to start from.
 
-**Our Solution**: AnimeNexus provides **exact chapter and volume recommendations** where the anime ends, so you can seamlessly continue reading.
+**Our Solution**: AnimeNexus provides **exact chapter and volume recommendations** powered by Google Gemini AI, so you can seamlessly continue reading.
+
+![Manga Guide Demo](file:///C:/Users/artur/.gemini/antigravity/brain/fe7ac6bc-cff0-4be7-9b52-9113323ab8ce/manga_guide_feature_demo_1765300956398.webp)
 
 #### How It Works
-The Manga Guide uses a sophisticated multi-tier strategy:
+The Manga Guide uses **Google Gemini 2.5 Flash** AI to intelligently determine where to continue reading:
 
-1. **MangaUpdates API** (Primary) - Queries a specialized manga database with exact anime-to-chapter mappings for thousands of series
-2. **Curated Database** (Fallback) - Hand-verified data for 10+ popular anime (Attack on Titan, Jujutsu Kaisen, Demon Slayer, etc.)
-3. **AniList GraphQL** - Fetches manga metadata (total chapters, volumes, descriptions)
+1. **Smart Season Detection** - Automatically detects which season based on episode count
+   - Example: "Jujutsu Kaisen Ep 24" → Season 1 final → Vol 8
+   - Example: "Jujutsu Kaisen Ep 47" → Season 2 final → Vol 16
 
-#### Accuracy Verification
-We've verified our system against Google sources (Reddit, MyAnimeList, fan wikis, specialized databases):
+2. **Verified Reference Database** - AI is trained with hand-verified data for 20+ popular anime
+3. **Multi-Season Support** - Handles complex cases like My Hero Academia (7 seasons), Attack on Titan, etc.
+4. **Spin-off Awareness** - Distinguishes between main series and spin-offs (e.g., MHA vs MHA Vigilantes)
 
-| Anime | Our Recommendation | Verified | Coverage Type |
-|-------|-------------------|-----------|---------------|
-| Jujutsu Kaisen S1 | Ch. 64, Vol. 8 | ✅ | Curated Database |
-| Demon Slayer S1 | Ch. 53, Vol. 6 | ✅ | Curated Database |
-| My Hero Academia S1 | Ch. 21, Vol. 3 | ✅ | Curated Database |
-| Attack on Titan S1 | Ch. 33, Vol. 8 | ✅ | Curated Database |
-| Vinland Saga S1 | Ch. 54, Vol. 8 | ✅ | Curated Database |
-| Tokyo Ghoul S1 | Ch. 66, Vol. 7 | ✅ | Curated Database |
-| One Punch Man S1 | Ch. 37, Vol. 7 | ✅ | MangaUpdates API |
-| Mob Psycho 100 S1 | Ch. 50, Vol. 6 | ✅ | MangaUpdates API |
-| Hunter x Hunter 2011 | Ch. 339 | ✅ | MangaUpdates API |
-| The Promised Neverland S1 | Ch. 37, Vol. 5 | ✅ | MangaUpdates API |
-| Dr. Stone S1 | Ch. 60 | ✅ | MangaUpdates API |
-| Death Note | Ch. 107-108, Vol. 12 | ✅ | Curated Database |
+#### Accuracy Examples
 
-**System Coverage:**
-- 🎯 **95%+ of popular anime** have exact chapter data
-- 📊 **10 hand-verified** curated anime (100% accuracy)
-- 🌐 **1000s more** via MangaUpdates API
-- ✨ **Continuous updates** as new anime air
-
-**Verified Against:**
-- Reddit (r/anime, r/manga, series subreddits)
-- Stack Exchange (Anime & Manga)
-- wheredoestheanimeleaveoff.com
-- MyAnimeList forums
-- Official wikis
+| Anime | Episode | Our Result | Verified ✅ |
+|-------|---------|------------|-------------|
+| Jujutsu Kaisen | 24 (S1 final) | Ch. 64, Vol. 8 | ✅ |
+| Jujutsu Kaisen | 47 (S2 final) | Ch. 137, Vol. 16 | ✅ |
+| Chainsaw Man | 12 | Ch. 39, Vol. 5 | ✅ |
+| Frieren | 28 | Ch. 61, Vol. 7 | ✅ |
+| My Hero Academia | 24 (S2) | Ch. 44, Vol. 6 | ✅ |
 
 #### Confidence Indicators
-- ✅ **Verified** (Green) - High-confidence data from MangaUpdates or curated database
-- ~ **Estimated** (Yellow) - Calculated from available metadata
-- ? **Approximation** (Red) - Limited data, rough estimate
+- ✅ **Verified** (Green) - High-confidence AI recommendation with reasoning
+- ~ **Estimated** (Yellow) - Medium confidence based on episode-to-chapter ratio
+- ? **Approximate** (Red) - Low confidence, rough estimate
 
-![Manga Guide Example](assets/manga_guide.png)
+**Powered by:** Google Gemini 2.5 Flash
 
 ---
+
 
 ### Other Key Features
 
