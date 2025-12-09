@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { apiCache, requestDeduplicator } from '../utils/cacheSystem';
+import { groupAnimeByBase } from '../utils/animeGrouping';
 
 const API_URL = "https://api.jikan.moe/v4";
 
@@ -108,7 +109,17 @@ export const searchAnime = async (query, page = 1, sfw = true, genres = null, ty
     if (rating) params.rating = rating;
 
     const response = await rateLimitedGet(`${API_URL}/anime`, { params });
-    return response.data;
+
+    // Apply grouping to remove duplicate seasons, specials, recaps
+    const grouped = groupAnimeByBase(response.data.data, query || '');
+
+    // Combine series and movies but keep them in proper order
+    const combinedResults = [...grouped.series, ...grouped.movies];
+
+    return {
+      ...response.data,
+      data: combinedResults
+    };
   } catch (error) {
     console.error("Error searching anime:", error);
     throw error;
