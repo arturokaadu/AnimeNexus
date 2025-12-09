@@ -287,6 +287,33 @@ export const MangaGuide = ({ animeId, animeTitle }) => {
 
                         {result.chapter ? (
                             <>
+                                {/* Volume Cover */}
+                                {result.volumeCoverUrl && (
+                                    <div style={{
+                                        textAlign: 'center',
+                                        marginBottom: '1.5rem'
+                                    }}>
+                                        <img
+                                            src={result.volumeCoverUrl}
+                                            alt={`Volume ${result.volume} Cover`}
+                                            style={{
+                                                maxWidth: '200px',
+                                                height: 'auto',
+                                                borderRadius: '8px',
+                                                boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
+                                                border: '2px solid rgba(139, 92, 246, 0.3)'
+                                            }}
+                                        />
+                                        <div style={{
+                                            marginTop: '0.5rem',
+                                            fontSize: '0.85rem',
+                                            color: 'rgba(255,255,255,0.6)'
+                                        }}>
+                                            Volume {result.volume}
+                                        </div>
+                                    </div>
+                                )}
+
                                 <ResultGrid>
                                     <ResultBox>
                                         <ResultLabel>Continue from</ResultLabel>

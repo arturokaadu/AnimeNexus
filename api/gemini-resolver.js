@@ -24,7 +24,7 @@ export default async function handler(req, res) {
         console.log(`[Intelligent Resolver] Query: "${anime}" Episode ${episode}`);
 
         // STEP 1: Try intelligent prediction with mathematical ratios
-        const intelligentResult = intelligentPredict(anime, parseInt(episode));
+        const intelligentResult = await intelligentPredict(anime, parseInt(episode));
 
         if (intelligentResult) {
             console.log(`[✅ ${intelligentResult.method}] Ch ${intelligentResult.continueFromChapter}, Vol ${intelligentResult.continueFromVolume}`);
@@ -43,11 +43,12 @@ export default async function handler(req, res) {
         return res.status(200).json(geminiResult);
 
     } catch (error) {
-        console.error('[Resolver Error]', error);
+        console.error('[Manga Resolver Error]', error);
         return res.status(500).json({
             error: error.message,
             continueFromChapter: null,
             continueFromVolume: null,
+            buyVolume: null,
             confidence: 'low',
             reasoning: 'Error al obtener datos del servicio.'
         });
@@ -55,10 +56,49 @@ export default async function handler(req, res) {
 }
 
 /**
+ * Fetch volume cover image from Google Books API
+ */
+async function getVolumeCover(mangaTitle, volumeNumber) {
+    try {
+        // Clean title for better search results
+        const cleanTitle = mangaTitle.replace(/[:\-]/g, ' ').trim();
+        const query = `${cleanTitle} volume ${volumeNumber} manga`;
+
+        const response = await fetch(
+            `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=5`
+        );
+
+        if (!response.ok) return null;
+
+        const data = await response.json();
+
+        if (data.items && data.items.length > 0) {
+            // Try to find best match
+            for (const item of data.items) {
+                if (item.volumeInfo?.imageLinks) {
+                    // Prefer larger images
+                    const imageLinks = item.volumeInfo.imageLinks;
+                    return imageLinks.large ||
+                        imageLinks.medium ||
+                        imageLinks.small ||
+                        imageLinks.thumbnail ||
+                        imageLinks.smallThumbnail;
+                }
+            }
+        }
+
+        return null;
+    } catch (error) {
+        console.error('[Google Books API Error]', error);
+        return null;
+    }
+}
+
+/**
  * INTELLIGENT PREDICTION - The Core Algorithm
  * Uses mathematical adaptation ratios to predict ANY episode
  */
-function intelligentPredict(animeTitle, episodeNumber) {
+async function intelligentPredict(animeTitle, episodeNumber) {
     // Find anime in database (with fuzzy matching + aliases)
     const animeData = findAnimeInDB(animeTitle);
 
@@ -99,6 +139,9 @@ function intelligentPredict(animeTitle, episodeNumber) {
             contextMsg = `${seasonInfo}. `;
         }
 
+        // Fetch volume cover image
+        const volumeCover = await getVolumeCover(animeData.matchedName, exactMatch.continueFromVolume);
+
         return {
             continueFromChapter: exactMatch.continueFromChapter,
             continueFromVolume: exactMatch.continueFromVolume,
@@ -108,7 +151,8 @@ function intelligentPredict(animeTitle, episodeNumber) {
             sourceMaterial: 'Manga',
             specialNotes: null,
             verified: true,
-            method: 'exact_match'
+            method: 'exact_match',
+            volumeCoverUrl: volumeCover
         };
     }
 
