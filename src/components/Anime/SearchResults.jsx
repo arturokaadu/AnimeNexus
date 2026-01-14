@@ -77,7 +77,7 @@ export const SearchResults = ({ addOrRemoveFromFavorites, favs }) => {
                 setLoading(false);
             }
         };
-        if (keyword || type || rating) {
+        if (keyword || type || rating || genre) {
             fetchResults();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

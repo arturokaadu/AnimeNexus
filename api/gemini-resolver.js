@@ -336,11 +336,20 @@ function calculateAdaptationRatio(animeData) {
     const effectiveEpisodes = hasCanonData ? totalCanonEpisodes : totalEpisodes;
     const avgRatio = totalChapters / effectiveEpisodes;
 
-    // Calculate consistency (lower variance = higher consistency)
-    const variance = ratios.reduce((sum, r) => sum + Math.pow(r - avgRatio, 2), 0) / ratios.length;
     const stdDev = Math.sqrt(variance);
-    avgChaptersPerVolume: avgChPerVol
-};
+    const consistency = 1 - Math.min(stdDev, 1); // Normalize consistency
+
+    // Estimate chapters per volume (Total Chapters / Total Volumes)
+    // We use the last season's data as it represents the cumulative total
+    const lastSeason = seasons[seasons.length - 1];
+    const totalVolumes = lastSeason.continueFromVolume || 1;
+    const avgChaptersPerVolume = totalChapters / totalVolumes;
+
+    return {
+        avgRatio,
+        consistency,
+        avgChaptersPerVolume: avgChaptersPerVolume || 9 // Default to 9 if calculation fails
+    };
 }
 
 /**
