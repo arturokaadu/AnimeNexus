@@ -82,7 +82,7 @@ Built with performance and aesthetics in mind, it features **NSFW content gating
 | **NSFW Fanservice** | Age-Gated Content. Curated "Brutal Moments" and "Hot Characters" with video clips (not just images). | ![NSFW Content](assets/home_hero.png) |
 
 ### Additional Features
-*   **Authentication:** Secure login and registration.
+*   **Current Status:**: ✅ Production Ready (Favorites Fixed) - 2026/01/14.
 *   **Responsive:** Works perfectly on mobile.
 
 ### Tech Stack
