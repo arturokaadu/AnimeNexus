@@ -59,7 +59,7 @@ export const HiddenGemsPage = () => {
 
     if (loading) return (
         <LoadingContainer>
-            <img src="https://media.tenor.com/q1k3P3R5h80AAAAi/pochita-chainsaw-man.gif" alt="Loading..." />
+            <img src="https://media.tenor.com/_BiwWBWhYucAAAAi/what-loading.gif" alt="Loading..." />
             <h2>Finding Hidden Gems...</h2>
         </LoadingContainer>
     );

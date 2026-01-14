@@ -156,7 +156,7 @@ export const AnimeDetails = () => {
 
     if (loading) return (
         <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '100vh', color: '#00d4ff' }}>
-            <img src="https://media.tenor.com/q1k3P3R5h80AAAAi/pochita-chainsaw-man.gif" alt="Loading..." />
+            <img src="https://media.tenor.com/_BiwWBWhYucAAAAi/what-loading.gif" alt="Loading..." />
             <h2>Loading Anime...</h2>
         </div>
     );

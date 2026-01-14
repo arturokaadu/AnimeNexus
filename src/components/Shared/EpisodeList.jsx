@@ -340,7 +340,7 @@ export const EpisodeList = ({ animeId, themes: initialThemes, relations, details
                                 <EpisodesColumn>
                                     {isLoading ? (
                                         <LoadingSpinner>
-                                            <img src="https://media.tenor.com/q1k3P3R5h80AAAAi/pochita-chainsaw-man.gif" alt="Loading..." />
+                                            <img src="https://media.tenor.com/_BiwWBWhYucAAAAi/what-loading.gif" alt="Loading..." />
                                             <p>Loading episodes...</p>
                                         </LoadingSpinner>
                                     ) : season.episodes.length > 0 ? (
