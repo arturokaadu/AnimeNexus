@@ -23,3 +23,13 @@ root.render(
 // Learn more about service workers: https://cra.link/PWA
 serviceWorkerRegistration.unregister();
 
+// Also force cleanup of any existing service workers
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.getRegistrations().then(function (registrations) {
+    for (let registration of registrations) {
+      registration.unregister();
+    }
+  });
+}
+
+
