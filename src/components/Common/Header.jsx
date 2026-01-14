@@ -48,7 +48,7 @@ export const Header = ({ favs, isDarkMode, toggleTheme }) => {
       <Container>
         <Brand to="/">
           <Icon icon="bi:play-circle-fill" />
-          AnimeNexus
+          Zenith
         </Brand>
 
         <MobileToggle onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}>

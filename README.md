@@ -1,4 +1,4 @@
-# AnimeNexus
+# Zenith
 
 [![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&style=flat-square)](https://reactjs.org/)
 [![Firebase](https://img.shields.io/badge/Firebase-Auth-FFCA28?logo=firebase&style=flat-square)](https://firebase.google.com/)
@@ -6,12 +6,12 @@
 [![Vercel](https://img.shields.io/badge/Vercel-Deployment-000000?style=flat-square&logo=vercel&logoColor=white)](https://vercel.com/)
 [![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen?style=flat-square&logo=vercel)](https://animenexusapp.vercel.app/)
 
-![AnimeNexus Home](./assets/image.png)
+![Zenith Home](./assets/image.png)
 
 **Link to the page:** https://animenexusapp.vercel.app/ (Live Updated: 2026-01-14)
 
 ## About the Project
-**AnimeNexus** is a modern, feature-rich web application designed for anime enthusiasts. It provides a comprehensive platform to discover movies, TV series, and explore detailed character information.
+**Zenith** is a modern, feature-rich web application designed for anime enthusiasts. It provides a comprehensive platform to discover movies, TV series, and explore detailed character information.
 
 Built with performance and aesthetics in mind, it features **NSFW content gating** and a seamless user experience powered by **React** and **Jikan API (MyAnimeList)**.
 
@@ -33,7 +33,7 @@ Built with performance and aesthetics in mind, it features **NSFW content gating
 
 **Problem**: You just finished an amazing anime and want to continue the story in the manga, but you have no idea which chapter to start from.
 
-**Our Solution**: AnimeNexus provides **chapter and volume recommendations** using a hybrid approach for maximum accuracy.
+**Our Solution**: Zenith provides **chapter and volume recommendations** using a hybrid approach for maximum accuracy.
 
 #### How It Works
 
@@ -100,7 +100,7 @@ Built with performance and aesthetics in mind, it features **NSFW content gating
 
 <a name="español"></a>
 ## Sobre el Proyecto
-**AnimeNexus** es una aplicación web moderna y completa diseñada para fanáticos del anime. Ofrece una plataforma para descubrir películas, series de TV y explorar información detallada sobre personajes.
+**Zenith** es una aplicación web moderna y completa diseñada para fanáticos del anime. Ofrece una plataforma para descubrir películas, series de TV y explorar información detallada sobre personajes.
 
 Construida pensando en el rendimiento y la estética, cuenta con **Modo Oscuro** personalizado, **protección de contenido NSFW** y una experiencia de usuario fluida impulsada por **React** y la **Jikan API (MyAnimeList)**.
 
@@ -118,7 +118,7 @@ Construida pensando en el rendimiento y la estética, cuenta con **Modo Oscuro**
 
 **Problema**: Terminaste un anime increíble y quieres continuar la historia en el manga, pero no sabes desde qué capítulo empezar.
 
-**Nuestra Solución**: AnimeNexus proporciona **recomendaciones exactas de capítulo y volumen** donde termina el anime, para que puedas continuar leyendo sin problemas.
+**Nuestra Solución**: Zenith proporciona **recomendaciones exactas de capítulo y volumen** donde termina el anime, para que puedas continuar leyendo sin problemas.
 
 #### Cómo Funciona
 La Guía de Manga usa una estrategia sofisticada de múltiples niveles:
