@@ -112,73 +112,71 @@ export const SearchResults = ({ addOrRemoveFromFavorites, favs }) => {
             setTimeout(() => navigate("/login"), 1500);
             return;
         }
-        return;
+        addOrRemoveFromFavorites(animeData)(e);
+    };
+
+    if (loading && page === 1) {
+        return (
+            <LoadingContainer>
+                <div className="spinner"></div>
+                <style>{`\n                    .spinner {\n                        width: 50px;\n                        height: 50px;\n                        border: 5px solid rgba(255, 255, 255, 0.1);\n                        border-top: 5px solid #fbbf24;\n                        border-radius: 50%;\n                        animation: spin 1s linear infinite;\n                    }\n                    @keyframes spin {\n                        0% { transform: rotate(0deg); }\n                        100% { transform: rotate(360deg); }\n                    }\n                `}</style>
+            </LoadingContainer>
+        );
     }
-    addOrRemoveFromFavorites(animeData)(e);
-};
 
-if (loading && page === 1) {
     return (
-        <LoadingContainer>
-            <div className="spinner"></div>
-            <style>{`\n                    .spinner {\n                        width: 50px;\n                        height: 50px;\n                        border: 5px solid rgba(255, 255, 255, 0.1);\n                        border-top: 5px solid #fbbf24;\n                        border-radius: 50%;\n                        animation: spin 1s linear infinite;\n                    }\n                    @keyframes spin {\n                        0% { transform: rotate(0deg); }\n                        100% { transform: rotate(360deg); }\n                    }\n                `}</style>
-        </LoadingContainer>
+        <Container>
+            <Header>{keyword ? `Results for: ${keyword}` : (type === 'movie' ? 'Movies' : type === 'tv' ? 'Series' : rating ? `Rated: ${rating}` : 'Results')}</Header>
+            <Grid>
+                {seriesResults.map(anime => {
+                    const animeData = {
+                        id: anime.mal_id,
+                        title: anime.title,
+                        img: anime.images.jpg.large_image_url,
+                        overview: anime.synopsis,
+                        vote_average: anime.score,
+                    };
+                    const isFav = favs.find(fav => fav.id === anime.mal_id);
+                    return (
+                        <AnimeCard
+                            key={anime.mal_id}
+                            anime={anime}
+                            isFav={isFav}
+                            onHeartClick={e => HandleHeartClick(e, animeData)}
+                        />
+                    );
+                })}
+            </Grid>
+            {movieResults.length > 0 && (
+                <>
+                    <Header style={{ marginTop: '3rem', borderTop: '2px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>
+                        <h2 style={{ color: '#fbbf24', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                            <Icon icon="bi:film" /> Movies ({movieResults.length})
+                        </h2>
+                    </Header>
+                    <Grid>
+                        {movieResults.map(anime => {
+                            const animeData = {
+                                id: anime.mal_id,
+                                title: anime.title,
+                                img: anime.images.jpg.image_url,
+                                overview: anime.synopsis,
+                                vote_average: anime.score,
+                            };
+                            const isFav = favs.find(fav => fav.id === anime.mal_id);
+                            return (
+                                <AnimeCard
+                                    key={anime.mal_id}
+                                    anime={anime}
+                                    isFav={isFav}
+                                    onHeartClick={e => HandleHeartClick(e, animeData)}
+                                />
+                            );
+                        })}
+                    </Grid>
+                </>
+            )}
+            <LoadMoreSpinner ref={loadMoreRef} />
+        </Container>
     );
-}
-
-return (
-    <Container>
-        <Header>{keyword ? `Results for: ${keyword}` : (type === 'movie' ? 'Movies' : type === 'tv' ? 'Series' : rating ? `Rated: ${rating}` : 'Results')}</Header>
-        <Grid>
-            {seriesResults.map(anime => {
-                const animeData = {
-                    id: anime.mal_id,
-                    title: anime.title,
-                    img: anime.images.jpg.large_image_url,
-                    overview: anime.synopsis,
-                    vote_average: anime.score,
-                };
-                const isFav = favs.find(fav => fav.id === anime.mal_id);
-                return (
-                    <AnimeCard
-                        key={anime.mal_id}
-                        anime={anime}
-                        isFav={isFav}
-                        onHeartClick={e => HandleHeartClick(e, animeData)}
-                    />
-                );
-            })}
-        </Grid>
-        {movieResults.length > 0 && (
-            <>
-                <Header style={{ marginTop: '3rem', borderTop: '2px solid rgba(255,255,255,0.1)', paddingTop: '2rem' }}>
-                    <h2 style={{ color: '#fbbf24', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                        <Icon icon="bi:film" /> Movies ({movieResults.length})
-                    </h2>
-                </Header>
-                <Grid>
-                    {movieResults.map(anime => {
-                        const animeData = {
-                            id: anime.mal_id,
-                            title: anime.title,
-                            img: anime.images.jpg.image_url,
-                            overview: anime.synopsis,
-                            vote_average: anime.score,
-                        };
-                        const isFav = favs.find(fav => fav.id === anime.mal_id);
-                        return (
-                            <AnimeCard
-                                key={anime.mal_id}
-                                anime={anime}
-                                isFav={isFav}
-                                onHeartClick={e => HandleHeartClick(e, animeData)}
-                            />
-                        );
-                    })}
-                </Grid>
-            </>
-        )}
-        <LoadMoreSpinner ref={loadMoreRef} />
-    </Container>
-);
 };
