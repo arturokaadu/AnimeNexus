@@ -120,7 +120,8 @@ export const searchAnime = async (query, page = 1, sfw = true, genres = null, ty
     if (type) params.type = type;
     if (rating) params.rating = rating;
 
-    const response = await rateLimitedGet(`${API_URL}/anime`, { params });
+    const cacheKey = `search_${normalizedQuery}_${page}_${sfw}_${genres}_${type}_${rating}`;
+    const response = await rateLimitedGet(`${API_URL}/anime`, { params }, cacheKey);
 
     // Apply grouping to remove duplicate seasons, specials, recaps
     const grouped = groupAnimeByBase(response.data.data, query || '');
