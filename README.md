@@ -8,7 +8,7 @@
 
 ![AnimeNexus Home](./assets/image.png)
 
-**Link to the page:** https://animenexusapp.vercel.app/
+**Link to the page:** https://animenexusapp.vercel.app/ (Live Updated: 2026-01-14)
 
 ## About the Project
 **AnimeNexus** is a modern, feature-rich web application designed for anime enthusiasts. It provides a comprehensive platform to discover movies, TV series, and explore detailed character information.

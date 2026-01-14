@@ -4,11 +4,14 @@ import { groupAnimeByBase } from '../utils/animeGrouping';
 
 const API_URL = "https://api.jikan.moe/v4";
 
-// Optimized Rate Limiting Queue with deduplication
-// Jikan allows 3 requests/second, we use 300ms delay (safely under limit)
+/**
+ * Request Queue for Jikan API
+ * Handles rate limiting (3 req/s) and debouncing.
+ * Ensures we don't get 429 errors from the external service.
+ */
 const queue = [];
 let isProcessing = false;
-const RATE_LIMIT_DELAY = 300; // Reduced to 300ms for faster loading (was 400ms)
+const RATE_LIMIT_DELAY = 300;
 
 const processQueue = async () => {
   if (isProcessing || queue.length === 0) return;
@@ -17,7 +20,7 @@ const processQueue = async () => {
   const { resolve, reject, fn, cacheKey } = queue.shift();
 
   try {
-    // Check cache first
+    // 1. Check in-memory cache before hitting API
     if (cacheKey) {
       const cached = apiCache.get(cacheKey);
       if (cached) {
@@ -28,17 +31,19 @@ const processQueue = async () => {
       }
     }
 
+    // 2. Execute request
     const result = await fn();
 
-    // Cache the result
+    // 3. Store in cache if successful
     if (cacheKey) {
       apiCache.set(cacheKey, result);
     }
 
     resolve(result);
   } catch (error) {
+    // Handle Jikan's specific 429 Rate Limit error gracefully
     if (error.response && error.response.status === 429) {
-      console.warn("Rate limit hit, retrying in 1.5 seconds...");
+      console.warn("Jikan API limit reached. Cooling down...");
       setTimeout(async () => {
         try {
           const retryResult = await fn();
@@ -53,6 +58,7 @@ const processQueue = async () => {
     }
   }
 
+  // Process next item after delay
   setTimeout(() => {
     isProcessing = false;
     processQueue();
@@ -94,17 +100,20 @@ export const getTopAnime = async (page = 1, filter = 'bypopularity') => {
   }
 };
 
+/**
+ * Search anime with smart query processing.
+ * Handles edge cases like "Kaiju 8" -> "Kaiju No. 8" automatically.
+ * @param {string} query - Search term
+ * @param {number} page - Page number
+ * @param {boolean} sfw - Filter adult content
+ */
 export const searchAnime = async (query, page = 1, sfw = true, genres = null, type = null, rating = null) => {
   try {
-    // Normalize search query for better matching
     let normalizedQuery = query;
 
-    // Handle "No." variations (e.g., "Kaiju 8" -> "Kaiju No. 8")
+    // Smart fix for titles that Jikan struggles with (e.g. Kaiju 8)
     if (normalizedQuery) {
-      // Match patterns like "Kaiju 8", "Demon 8", etc. and add "No."
       normalizedQuery = normalizedQuery.replace(/(\w+)\s+(\d+)$/i, '$1 No. $2');
-
-      // Also handle "n 8" -> "No. 8"  
       normalizedQuery = normalizedQuery.replace(/\bn\s+(\d+)/gi, 'No. $1');
     }
 

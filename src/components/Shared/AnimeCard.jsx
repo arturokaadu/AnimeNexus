@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
-import { HeartSwitch } from './HeartSwitch';
+import { FavoriteButton } from './FavoriteButton';
 import { StreamingBadges } from './StreamingBadges';
 
 const Card = styled.div`
@@ -53,12 +53,12 @@ const Badge = styled.div`
   backdrop-filter: blur(4px);
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
 
-  ${props => props.position === 'top-right' && `
+  ${props => props.$position === 'top-right' && `
     top: 8px;
     right: 8px;
   `}
 
-  ${props => props.position === 'bottom-left' && `
+  ${props => props.$position === 'bottom-left' && `
     bottom: 8px;
     left: 8px;
     background: #ef4444;
@@ -134,13 +134,16 @@ export const AnimeCard = ({ anime, isFav, onHeartClick }) => {
     <Tag>{anime.genres[0].name}</Tag>
   ) : null;
 
+  const detailUrl = `/detalle?id=${anime.mal_id}`;
+
   return (
     <Card>
-      <CardLink to={`/detalle?id=${anime.mal_id}`}>
+      {/* 1. Image Area - Clickable Link */}
+      <CardLink to={detailUrl}>
         <ImageContainer>
           <CardImage src={anime.images?.jpg?.large_image_url} alt={anime.title} loading="lazy" />
           {anime.score && (
-            <Badge position="top-right" style={{ background: 'rgba(0,0,0,0.7)' }}>
+            <Badge $position="top-right" style={{ background: 'rgba(0,0,0,0.7)' }}>
               ★ {anime.score}
             </Badge>
           )}
@@ -154,7 +157,7 @@ export const AnimeCard = ({ anime, isFav, onHeartClick }) => {
             flexWrap: 'wrap'
           }}>
             {(anime.status === 'Currently Airing' || anime._isAiring) && (
-              <Badge position="custom" style={{
+              <Badge $position="custom" style={{
                 position: 'relative',
                 background: '#10b981',
                 color: 'white'
@@ -165,52 +168,51 @@ export const AnimeCard = ({ anime, isFav, onHeartClick }) => {
 
           </div>
         </ImageContainer>
-
-        <CardContent>
-          <CardTitle title={anime.title}>{anime.title}</CardTitle>
-
-          <MetaInfo>
-            <span>
-              <Icon icon="bi:calendar-event" style={{ marginRight: '4px' }} />
-              {anime.aired?.from ? new Date(anime.aired.from).getFullYear() : 'N/A'}
-            </span>
-            {anime.studios?.[0]?.name && (
-              <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-                <Icon icon="bi:building" />
-                {anime.studios[0].name}
-              </span>
-            )}
-          </MetaInfo>
-
-          <TagContainer>
-            {mainTag}
-          </TagContainer>
-
-          <div style={{ margin: '0.5rem 0', minHeight: '24px' }}>
-            <StreamingBadges
-              title={anime.title}
-              licensors={anime.licensors}
-              compact={true}
-            />
-          </div>
-
-          <CardFooter>
-            <Rating>★ {anime.score || '?'}</Rating>
-            <div onClick={(e) => {
-              e.preventDefault();
-              e.stopPropagation();
-              onHeartClick(e, anime);
-            }}>
-              <HeartSwitch
-                size="sm"
-                inactiveColor="rgba(255,255,255,0.5)"
-                activeColor="#ff0055"
-                checked={!!isFav}
-              />
-            </div>
-          </CardFooter>
-        </CardContent>
       </CardLink>
+
+      <CardContent>
+        {/* 2. Text Area - Clickable Link */}
+        <CardLink to={detailUrl} style={{ flexGrow: 0, height: 'auto', marginBottom: '0.5rem' }}>
+          <CardTitle title={anime.title}>{anime.title}</CardTitle>
+        </CardLink>
+
+        {/* 3. Meta & Tags - Non-clickable or Separate */}
+        <MetaInfo>
+          <span>
+            <Icon icon="bi:calendar-event" style={{ marginRight: '4px' }} />
+            {anime.aired?.from ? new Date(anime.aired.from).getFullYear() : 'N/A'}
+          </span>
+          {anime.studios?.[0]?.name && (
+            <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
+              <Icon icon="bi:building" />
+              {anime.studios[0].name}
+            </span>
+          )}
+        </MetaInfo>
+
+        <TagContainer style={{ marginTop: '0.5rem' }}>
+          {mainTag}
+        </TagContainer>
+
+        <div style={{ margin: '0.5rem 0', minHeight: '24px' }}>
+          <StreamingBadges
+            title={anime.title}
+            licensors={anime.licensors}
+            compact={true}
+          />
+        </div>
+
+        {/* 4. Footer & Heart - COMPLETELY OUTSIDE LINK */}
+        <CardFooter>
+          <Rating>★ {anime.score || '?'}</Rating>
+
+          <FavoriteButton
+            isFav={isFav}
+            onClick={(e) => onHeartClick(e, anime)}
+            size={28}
+          />
+        </CardFooter>
+      </CardContent>
     </Card>
   );
 };

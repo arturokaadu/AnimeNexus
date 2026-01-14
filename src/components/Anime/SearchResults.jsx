@@ -136,7 +136,7 @@ export const SearchResults = ({ addOrRemoveFromFavorites, favs }) => {
                         overview: anime.synopsis,
                         vote_average: anime.score,
                     };
-                    const isFav = favs.find(fav => fav.id === anime.mal_id);
+                    const isFav = favs.find(fav => (fav.mal_id || fav.id) === anime.mal_id);
                     return (
                         <AnimeCard
                             key={anime.mal_id}
@@ -163,7 +163,7 @@ export const SearchResults = ({ addOrRemoveFromFavorites, favs }) => {
                                 overview: anime.synopsis,
                                 vote_average: anime.score,
                             };
-                            const isFav = favs.find(fav => fav.id === anime.mal_id);
+                            const isFav = favs.find(fav => (fav.mal_id || fav.id) === anime.mal_id);
                             return (
                                 <AnimeCard
                                     key={anime.mal_id}

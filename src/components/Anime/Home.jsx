@@ -131,13 +131,14 @@ export const Home = ({ addOrRemoveFromFavorites, favs }) => {
         fetchHomeData();
     }, [user]);
 
-    const HandleHeartClick = (animeData) => {
+    const HandleHeartClick = (e, animeData) => {
         if (!user) {
             toast.error("Please log in to add to favorites");
             setTimeout(() => navigate("/login"), 1500);
             return;
         }
-        addOrRemoveFromFavorites(animeData);
+        // CRITICAL FIX: invoke the returned function with event (e)
+        addOrRemoveFromFavorites(animeData)(e);
     };
 
     const renderAnimeCard = (anime) => {
@@ -148,14 +149,14 @@ export const Home = ({ addOrRemoveFromFavorites, favs }) => {
             overview: anime.synopsis,
             vote_average: anime.score,
         };
-        const isFav = favs.find((fav) => fav.id === anime.mal_id);
+        const isFav = favs.find((fav) => (fav.mal_id || fav.id) === anime.mal_id);
 
         return (
             <AnimeCard
                 key={anime.mal_id}
                 anime={anime}
                 isFav={isFav}
-                onHeartClick={(e) => HandleHeartClick(animeData)}
+                onHeartClick={(e) => HandleHeartClick(e, animeData)}
             />
         );
     };

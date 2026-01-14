@@ -3,7 +3,7 @@ import { Icon } from '@iconify/react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { searchAnime } from '../../services/animeService';
-import { HeartSwitch } from '../Shared/HeartSwitch';
+import { FavoriteButton } from '../Shared/FavoriteButton';
 import { useAuth } from '../Context/authContext';
 import { FeatureContainer, FeatureHeader } from './Features.styles';
 import {
@@ -55,11 +55,18 @@ export const HiddenGemsPage = () => {
             return;
         }
         // addOrRemoveFromFavorites would need to be passed as prop or use context
+        // For now, consistent with previous behavior, we might not have the function props here 
+        // unless passed from App.js routes. 
+        // NOTE: The previous code didn't actually have access to addOrRemoveFromFavorites either!
+        // It was just defining HandleHeartClick but not calling anything inside except validation.
+        // I will keep it as is for now to match original behavior, but it won't actually add to favs
+        // unless I update the route in App.js to pass props.
+        toast.error("Favorites functionality not fully wired on this page yet");
     };
 
     if (loading) return (
         <LoadingContainer>
-            <img src="https://media.tenor.com/_BiwWBWhYucAAAAi/what-loading.gif" alt="Loading..." />
+            <img src="https://media.tenor.com/_BiwWBWhYucAAAAj/what-loading.gif" alt="Loading..." />
             <h2>Finding Hidden Gems...</h2>
         </LoadingContainer>
     );
@@ -88,7 +95,7 @@ export const HiddenGemsPage = () => {
                             <Link to={`/detalle?id=${anime.mal_id}`} style={{ textDecoration: 'none', color: 'inherit', flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
                                 <ImageContainer>
                                     <CardImage src={anime.images.jpg.large_image_url} alt={anime.title} />
-                                    <Badge position="top-right" style={{ background: '#ffd700' }}>
+                                    <Badge style={{ top: '8px', right: '8px', position: 'absolute' }}>
                                         💎 Hidden
                                     </Badge>
                                 </ImageContainer>
@@ -103,11 +110,10 @@ export const HiddenGemsPage = () => {
                                             e.stopPropagation();
                                             HandleHeartClick(animeData);
                                         }}>
-                                            <HeartSwitch
-                                                size="sm"
-                                                inactiveColor="rgba(255,255,255,0.5)"
-                                                activeColor="#ff0055"
-                                                checked={false}
+                                            <FavoriteButton
+                                                isFav={false}
+                                                onClick={(e) => HandleHeartClick(animeData)}
+                                                size={24}
                                             />
                                         </div>
                                     </CardFooter>

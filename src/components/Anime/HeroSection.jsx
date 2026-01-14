@@ -192,7 +192,7 @@ export const HeroSection = ({ slides }) => {
                             zIndex: -1
                         }}
                         loading={index === 0 ? "eager" : "lazy"}
-                        fetchPriority={index === 0 ? "high" : "auto"}
+                        fetchpriority={index === 0 ? "high" : "auto"}
                     />
                     <Content>
                         <GenreBadge>{slide.genre || 'Trending'}</GenreBadge>

@@ -45,7 +45,7 @@ export const AuthProvider = ({ children }) => {
       email,
       password
     );
-    console.log(userCredentials);
+    // User credentials handled by auth state observer
   };
 
   const loginWithGoogle = async () => {
@@ -122,7 +122,6 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
       }
       setLoading(false);
-      console.log(currentUser);
     });
     return () => unsubscribe();
   }, []);
