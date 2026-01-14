@@ -5,9 +5,9 @@ import { groupAnimeByBase } from '../utils/animeGrouping';
 const API_URL = "https://api.jikan.moe/v4";
 
 /**
- * Request Queue for Jikan API
- * Handles rate limiting (3 req/s) and debouncing.
- * Ensures we don't get 429 errors from the external service.
+ * Cola de Solicitudes para la API de Jikan
+ * Maneja el límite de velocidad (3 req/s) y evita duplicados.
+ * Asegura que no recibamos errores 429 del servicio externo.
  */
 const queue = [];
 let isProcessing = false;
@@ -20,7 +20,7 @@ const processQueue = async () => {
   const { resolve, reject, fn, cacheKey } = queue.shift();
 
   try {
-    // 1. Check in-memory cache before hitting API
+    // 1. Revisar caché en memoria antes de impactar la API
     if (cacheKey) {
       const cached = apiCache.get(cacheKey);
       if (cached) {
@@ -31,10 +31,10 @@ const processQueue = async () => {
       }
     }
 
-    // 2. Execute request
+    // 2. Ejecutar la solicitud
     const result = await fn();
 
-    // 3. Store in cache if successful
+    // 3. Guardar en caché si fue exitoso
     if (cacheKey) {
       apiCache.set(cacheKey, result);
     }
@@ -101,17 +101,17 @@ export const getTopAnime = async (page = 1, filter = 'bypopularity') => {
 };
 
 /**
- * Search anime with smart query processing.
- * Handles edge cases like "Kaiju 8" -> "Kaiju No. 8" automatically.
- * @param {string} query - Search term
- * @param {number} page - Page number
- * @param {boolean} sfw - Filter adult content
+ * Búsqueda de anime con procesamiento inteligente de query.
+ * Maneja casos borde como "Kaiju 8" -> "Kaiju No. 8" automáticamente.
+ * @param {string} query - Término de búsqueda
+ * @param {number} page - Número de página
+ * @param {boolean} sfw - Filtrar contenido adulto
  */
 export const searchAnime = async (query, page = 1, sfw = true, genres = null, type = null, rating = null) => {
   try {
     let normalizedQuery = query;
 
-    // Smart fix for titles that Jikan struggles with (e.g. Kaiju 8)
+    // Corrección inteligente para títulos con los que Jikan tiene problemas (ej. Kaiju 8)
     if (normalizedQuery) {
       normalizedQuery = normalizedQuery.replace(/(\w+)\s+(\d+)$/i, '$1 No. $2');
       normalizedQuery = normalizedQuery.replace(/\bn\s+(\d+)/gi, 'No. $1');

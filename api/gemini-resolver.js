@@ -1,9 +1,9 @@
 /**
- * Intelligent Manga Resolver API
- * Hybdrid approach:
- * 1. Checks verified local database for known anime/manga mappings.
- * 2. Uses adaptation ratios (chapters per episode) to predict reading progress.
- * 3. Fallback to Gemini AI if no local data exists.
+ * API Inteligente de Resolución de Manga
+ * Enfoque Híbrido:
+ * 1. Verifica base de datos local verificada para mapeos conocidos.
+ * 2. Usa ratios de adaptación (capítulos por episodio) para predecir el progreso.
+ * 3. Fallback a Gemini AI si no existe data local.
  */
 
 import verifiedDB from '../src/data/verified-anime-reference.json';
@@ -16,13 +16,13 @@ export default async function handler(req, res) {
     }
 
     try {
-        console.log(`[Resolver] Processing: "${anime}" Ep: ${episode}`);
+        console.log(`[Resolver] Procesando: "${anime}" Ep: ${episode}`);
 
-        // Approach 1: Math-based prediction from verified data
+        // Enfoque 1: Predicción matemática basada en datos verificados
         const intelligentResult = await intelligentPredict(anime, parseInt(episode));
 
         if (intelligentResult) {
-            console.log(`[Metric Match] Ch ${intelligentResult.continueFromChapter}`);
+            console.log(`[Metric Match] Cap ${intelligentResult.continueFromChapter}`);
             return res.status(200).json(intelligentResult);
         }
 
