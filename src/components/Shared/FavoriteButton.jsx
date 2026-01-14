@@ -43,13 +43,13 @@ export const FavoriteButton = ({ isFav, onClick, size = 24 }) => {
             type="button"
         >
             <Icon
-                icon={isFav ? "uis:favorite" : "uis:favorite"}
+                icon={isFav ? "bi:heart-fill" : "bi:heart"}
                 width={size}
                 height={size}
                 color={isFav ? "#ff0055" : "rgba(255, 255, 255, 0.5)"}
                 style={{
                     filter: isFav ? 'drop-shadow(0 0 8px rgba(255, 0, 85, 0.5))' : 'none',
-                    transition: 'color 0.3s ease, filter 0.3s ease'
+                    transition: 'all 0.3s ease'
                 }}
             />
         </Button>
