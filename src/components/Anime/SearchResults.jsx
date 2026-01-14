@@ -21,7 +21,7 @@ export const SearchResults = ({ addOrRemoveFromFavorites, favs }) => {
     const keyword = query.get("keyword") || "";
     const type = query.get("type") || null;
     const rating = query.get("rating") || null;
-
+    const genre = query.get("genre") || null;
     const [seriesResults, setSeriesResults] = useState([]);
     const [movieResults, setMovieResults] = useState([]);
     const [rawResults, setRawResults] = useState([]);
@@ -36,7 +36,7 @@ export const SearchResults = ({ addOrRemoveFromFavorites, favs }) => {
         setMovieResults([]);
         setPage(1);
         setHasMore(true);
-    }, [keyword, type, rating]);
+    }, [keyword, type, rating, genre]);
 
     // Fetch results
     useEffect(() => {
@@ -44,7 +44,7 @@ export const SearchResults = ({ addOrRemoveFromFavorites, favs }) => {
             setLoading(true);
             try {
                 const sfwMode = !user?.settings?.showNSFW;
-                const data = await searchAnime(keyword, page, sfwMode, null, type, rating);
+                const data = await searchAnime(keyword, page, sfwMode, genre, type, rating);
                 const newResults = data.data;
 
                 if (page === 1 && newResults.length === 0) {
